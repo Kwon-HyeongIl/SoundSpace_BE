@@ -79,37 +79,6 @@ function Heart() {
   );
 }
 
-//사이드바 예제
-// function Sidebar() {
-//   const [isOpen, setIsOpen] = useState(false);
-//   const sidebarRef = useRef(null);
-
-//   useEffect(() => {
-//     function handleClickOutside(event) {
-//       if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-//         setIsOpen(false);
-//       }
-//     }
-
-//     document.addEventListener("mousedown", handleClickOutside);
-//     return () => {
-//       document.removeEventListener("mousedown", handleClickOutside);
-//     };
-//   }, [sidebarRef]);
-
-//   return (
-//     <div className={`sidebar ${isOpen ? "open" : "closed"}`} ref={sidebarRef}>
-//       {/* Sidebar content goes here */}
-//       <p>Profile</p>
-//       <ul>
-//         <li>Profile item 1</li>
-//         <li>Profile item 2</li>
-//         <li>Profile item 3</li>
-//       </ul>
-//     </div>
-//   );
-// }
-
 export default function Gallery() {
   //canvas 크기 조절
   // const canvas = document.getElementById("artifactCanvas");
