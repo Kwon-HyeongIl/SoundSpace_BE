@@ -25,6 +25,23 @@
   padding: 10px;
 }
 
+.userImg {
+  margin-right: 20px;
+  float: left;
+  background-color: #03fff0;
+  width: 50px;
+  height: 50px;
+  border-radius: 70%;
+}
+.userName {
+  color: white;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 42px;
+}
+
 .menu:hover .sidebar {
   display: block;
 }
@@ -44,6 +61,7 @@
 }
 .navitem {
   text-align: center;
+  padding-right: 20px;
   color: white;
   font-weight: 700;
   /* a태그 밑줄 없애기 : text-decoration-line:none 추가 */
@@ -59,4 +77,30 @@
 .canvas {
   height: 800px;
   width: 800px;
+}
+.sideContent {
+  margin-top: 70px;
+  color: white;
+}
+.item {
+  text-decoration-line: none;
+  border: none;
+  background-color: #000000;
+  color: white;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 36px;
+}
+.itemContainer {
+  border: none;
+  background-color: #000000;
+  color: white;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 36px;
+  margin: 20px;
 }

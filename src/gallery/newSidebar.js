@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./newSidebar.module.css";
+import "./gallery.css";
 
 //참고자료
 //https://ji-u.tistory.com/22
@@ -51,14 +52,17 @@ const Sidebar = ({ width = 280, children }) => {
       >
         <button onClick={() => toggleMenu()} className={styles.button}>
           {isOpen ? (
-            <span>X</span>
+            <span className="hidden"></span>
           ) : (
-            <img
-              src="./heart.png"
-              alt="heart"
-              alr="contact open button"
-              className={styles.openBtn}
-            />
+            // <span>X</span>
+            // <img
+            //   src="./heart.png"
+            //   alt="heart"
+            //   alr="contact open button"
+            //   className={styles.openBtn}
+            // />
+            //이미지 버튼 대신 menu글자로 >> gallery.css
+            <span className="menu">MENU</span>
           )}
         </button>
 
