@@ -2,6 +2,7 @@ import { React, useState, useEffect, useRef } from "react";
 import "./gallery.css";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import Sidebar from "./newSidebar";
 //import { Grid } from "@react-three/drei";
 // import Sidebar from "./sidebar";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -94,6 +95,7 @@ export default function Gallery() {
   return (
     <div className="gallery">
       <NavBar></NavBar>
+      <Sidebar width={1000}>hello</Sidebar>
       <GalleryCanvas></GalleryCanvas>
     </div>
   );
