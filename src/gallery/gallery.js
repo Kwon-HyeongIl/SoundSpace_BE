@@ -28,7 +28,7 @@ function NavBar() {
             <div className="userName">User Name</div>
           </div>
           <div className="sideContent">
-            <button className="itemContainer">CHANGE INFO</button>
+            <div className="itemContainer">CHANGE INFO</div>
             <div className="itemContainer" onClick={() => workToggle()}>
               WORK MANAGER
               {workOpen ? (
@@ -67,6 +67,15 @@ function NavBar() {
         </a>
       </div>
     </nav>
+  );
+}
+
+function Heart() {
+  return (
+    <div className="like">
+      <img alt="" id="heart"></img>
+      <span>1000</span>
+    </div>
   );
 }
 
@@ -110,6 +119,7 @@ export default function Gallery() {
     <div className="gallery">
       <NavBar></NavBar>
       <GalleryCanvas></GalleryCanvas>
+      <Heart></Heart>
     </div>
   );
   //사이드 바 예제

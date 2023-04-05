@@ -104,3 +104,24 @@
   line-height: 36px;
   margin: 20px;
 }
+#heart {
+  background-image: url("./heart.png");
+  bottom: 10px;
+  right: 10px;
+  width: 65px;
+  height: 55px;
+  background-size: cover;
+  background-position: center;
+  /* 이미지 태그 경계선 없애기 */
+  border: 0;
+}
+.like {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 61px;
+}
