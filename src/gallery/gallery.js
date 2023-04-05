@@ -3,10 +3,10 @@ import "./gallery.css";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Sidebar from "./newSidebar";
+import GalleryCanvas from "./galleryCanvas";
 //import { Grid } from "@react-three/drei";
 // import Sidebar from "./sidebar";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Home from "./Home";
 
 //상단네비게이션바
 function NavBar() {
@@ -34,25 +34,6 @@ function NavBar() {
         </a>
       </div>
     </nav>
-  );
-}
-
-//갤러리 캔버스
-function GalleryCanvas() {
-  return (
-    <Canvas className="canvas">
-      <OrbitControls autoRotate={false} autoRotateSpeed={10} />
-      <mesh>
-        <ambientLight intensity={1} />
-        <directionalLight
-          position={[-1, 0, 1]}
-          color={0xa52a2a}
-          intensity={0.5}
-        />
-        <boxGeometry args={[5, 5, 5]} />
-        <meshStandardMaterial attach="material" color={0xffdeff} />
-      </mesh>
-    </Canvas>
   );
 }
 
@@ -95,8 +76,11 @@ export default function Gallery() {
   return (
     <div className="gallery">
       <NavBar></NavBar>
-      <Sidebar width={1000}>hello</Sidebar>
-      <GalleryCanvas></GalleryCanvas>
+      <img src="./heart.png" alt=""></img>
+      <Sidebar width={320}>
+        <p>sfjelsjeisjlef sfjljeilsjleijslfjeiflsjfljel</p>
+      </Sidebar>
+      {/* <GalleryCanvas></GalleryCanvas> */}
     </div>
   );
   //사이드 바 예제

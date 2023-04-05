@@ -45,6 +45,7 @@ const Sidebar = ({ width = 280, children }) => {
         style={{
           width: `${width}px`,
           height: "100%",
+          //이게 왜 안되는지 모르겠음 ㅇㅅㅇ
           transform: `translatex(${-xPosition}px)`,
         }}
       >
@@ -54,7 +55,7 @@ const Sidebar = ({ width = 280, children }) => {
           ) : (
             <img
               src="./heart.png"
-              alt=""
+              alt="heart"
               alr="contact open button"
               className={styles.openBtn}
             />
