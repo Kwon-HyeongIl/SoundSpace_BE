@@ -33,7 +33,7 @@ function NavBar() {
               WORK MANAGER
               {workOpen ? (
                 <ul className="item">
-                  <a href="#">Add Work</a>
+                  <li href="#">Add Work</li>
                   <li href="#">Edit Gallery</li>
                 </ul>
               ) : (
@@ -87,6 +87,7 @@ export default function Gallery() {
   return (
     <div className="gallery">
       <NavBar></NavBar>
+      <GalleryCanvas></GalleryCanvas>
       <GalleryCanvas></GalleryCanvas>
       <Heart></Heart>
     </div>
