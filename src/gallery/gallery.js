@@ -88,7 +88,6 @@ export default function Gallery() {
     <div className="gallery">
       <NavBar></NavBar>
       <GalleryCanvas></GalleryCanvas>
-      <GalleryCanvas></GalleryCanvas>
       <Heart></Heart>
     </div>
   );
