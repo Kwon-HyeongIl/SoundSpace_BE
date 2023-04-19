@@ -152,7 +152,7 @@
   color: white;
 }
 .rankContainer {
-  margin: 15px;
+  padding: 15px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   text-align: center;
