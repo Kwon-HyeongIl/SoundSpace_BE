@@ -59,7 +59,7 @@ function NavBar() {
           <sapn className="logo_f">S</sapn>OUND{" "}
           <span className="logo_f">S</span>PACE
         </div>
-        <a className="navitem" href="">
+        <a className="navitem" href="#">
           SEARCH
         </a>
         <a className="navitem" href="#">
@@ -88,8 +88,7 @@ export default function Gallery() {
     <div className="gallery">
       <NavBar></NavBar>
       <GalleryCanvas></GalleryCanvas>
-      <GalleryCanvas></GalleryCanvas>
-      <Heart></Heart> 
+      <Heart></Heart>
     </div>
   );
   //사이드 바 예제
