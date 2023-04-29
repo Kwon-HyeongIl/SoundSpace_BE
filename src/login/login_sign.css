@@ -1,0 +1,120 @@
+.back_color {
+  background-color: black;
+  background: linear-gradient(#282828,black);
+  min-height: 100vh;
+  padding-bottom: 100px;
+}
+
+@font-face {
+  font-family: 'Aguafina Script';
+  src: url('./fonts/AguafinaScript-Regular.woff') format('woff');
+}
+
+.main_logo {
+
+  padding-top: 70px;
+  padding-bottom: 50px;
+
+  text-align: center;
+  font-family: 'Aguafina Script';
+  font-style: normal;
+  font-size: 220px;
+  color: white;
+}
+
+.main_logo_p {
+  text-align: center;
+  font-family: 'Aguafina Script', cursive;
+  font-style: normal;
+  font-size: 220px;
+  color: #EBFF00;
+}
+
+#f_r {
+  padding-right: 157px;
+  padding-left: 0px;
+  height: 180px;
+}
+
+#s_r {
+  padding-right: 0px;
+  padding-left: 157px;
+}
+
+.Enter_info{
+  display: block;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding-left: 40px;
+  padding-right: 40px;
+
+  width: 530px;
+  height: 80px;
+  border-radius: 50px;
+
+  font-size: 30px;
+}
+
+.login_button {
+
+  height: 100px;
+  width: 200px;
+  border-radius: 50px;
+  background-color: #EBFF00;
+
+  display :block;
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+
+  color: #282828;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 38px;
+}
+
+.login_to_sign {
+  
+  height: 180px;
+  width: 180px;
+  border-radius: 50%;
+  background-color: #828D8D;
+
+  border-left: 0 auto;
+  border-right: 100px;
+  
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.back_circle{
+  position: absolute;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+#circle_one{
+  background-color: #EBFF00;
+  width: 200px;
+  height: 200px;
+  margin-top: 30%;
+  margin-left: 80%;
+}
+
+#circle_two{
+  background-color: white;
+  width: 100px;
+  height: 100px;
+  margin-top: 40%;
+  margin-left: 70%;
+}
+
+#circle_three{
+  background-color: #EBFF00;
+  width: 100px;
+  height: 100px;
+  margin-top: 10%;
+  margin-left: 20%;
+}

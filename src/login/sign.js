@@ -1,7 +1,7 @@
 import './login_sign.css';
 
 
-function CenterLogo () {
+function SignLogo () {
   return (
 
     <div className='back_color'>
@@ -16,17 +16,14 @@ function CenterLogo () {
         <div id='f_r'><sapn className="main_logo_p">S</sapn>ound</div>
         <div id='s_r'><span className="main_logo_p">S</span>pace</div>
       </div>
-      
 
       <div>
+        <div className='signtext'>SIGN IN</div>
         <input className='Enter_info' type='text'></input>
         <input className='Enter_info' type='text'></input>
-        <button className="login_button"> LOGIN </button>
+        <button className="login_button"> CHECK </button>
       </div>
 
-      <div>
-        <button className="login_to_sign"> SIGN IN </button>
-      </div>
 
 
     </div>
@@ -39,7 +36,7 @@ function CenterLogo () {
 export default function Login(){
   return (
     <div className="login">
-      <CenterLogo></CenterLogo>
+      <SignLogo></SignLogo>
     </div>
   )
 }
