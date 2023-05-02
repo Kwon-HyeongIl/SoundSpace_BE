@@ -11,8 +11,22 @@ function SignLogo () {
         <div className='back_circle' id='circle_one'></div>
         <div className='back_circle' id='circle_three'></div>
         <div className='back_circle' id='circle_five'></div>
-      </div>
 
+        <div>
+          <div className='note_head' id='note_1'></div>
+          <div className='note_tail' id='tail_1'></div>
+          <div className='note_tail' id='tail_2'></div>
+          <div className='note_tail' id='tail_3'></div>
+          <div className='note_tail' id='tail_4'></div>
+          <div className='note_tail' id='tail_5'></div>
+        </div>
+
+        <div>
+          <div className='note_head' id='note_2'></div>
+          <div className='note_tail' id='tail_6'></div>
+        </div>
+      </div>
+      
       <div className="main_logo">
         <div id='f_r'>
           <sapn className="main_logo_p">S</sapn>ound

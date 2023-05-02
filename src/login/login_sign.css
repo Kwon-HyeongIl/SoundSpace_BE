@@ -44,6 +44,7 @@
 }
 
 .signtext {
+  position: relative;
   text-align: center;
   font-family: 'Inter';
   font-style: normal;
@@ -51,6 +52,7 @@
   font-weight: 750;
   color: white;
   margin-top: 5px;
+  text-shadow: 0px 0px 10px #282828;
 }
 
 .Enter_info{
@@ -111,8 +113,8 @@
   border-width: 4px;
 
   display :block;
-  margin-left: 62%;
-  margin-top: -8%;
+  margin-left: 61%;
+  margin-top: -8.5%;
   
   color: white;
   font-size: 32px;
@@ -168,18 +170,76 @@
   margin-left: 150px;
 }
 
+.note_head {
+  position: absolute;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.note_tail {
+  position: absolute;
+  display: inline-block;
+  background-color: white;
+  border-radius: 50px;
+}
+
 #note_1{
   background-color: white;
-  height: 200px;
-  width: 200px;
-  margin-top: 200px;
-  margin-left: 150px;
+  height: 40px;
+  width: 50px;
+  margin-top: 461px;
+  margin-left: 1510px;
+  rotate: -35deg;
+}
+#tail_1 {
+  height: 120px;
+  width: 10px;
+  margin-top: 359px;
+  margin-left: 1531px;
+  rotate: -18deg;
+}
+#tail_2 {
+  height: 80px;
+  width: 10px;
+  margin-top: 350px;
+  margin-left: 1542.5px;
+  rotate: -50deg;
+}
+#tail_3 {
+  height: 20px;
+  width: 10px;
+  margin-top: 410px;
+  margin-left: 1573.5px;
+  rotate: -25deg;
+}
+#tail_4 {
+  height: 21px;
+  width: 10px;
+  margin-top: 422px;
+  margin-left: 1576.5px;
+  rotate: -5deg;
+}
+#tail_5 {
+  height: 20px;
+  width: 10px;
+  margin-top: 434.5px;
+  margin-left: 1575.5px;
+  rotate: 16deg;
 }
 
 #note_2{
-  background-color: white;
-  height: 200px;
-  width: 200px;
-  margin-top: 200px;
-  margin-left: 150px;
+  background-color: #EBFF00;
+  height: 40px;
+  width: 50px;
+  margin-top: 591px;
+  margin-left: 440px;
+  rotate: 10deg;
+}
+#tail_6 {
+  height: 135px;
+  width: 10px;
+  margin-top: 490.1px;
+  margin-left: 499.5px;
+  rotate: 19deg;
+  background-color: #EBFF00;
 }
