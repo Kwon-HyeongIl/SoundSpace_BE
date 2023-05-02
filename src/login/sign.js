@@ -26,7 +26,7 @@ function SignLogo () {
           <div className='note_tail' id='tail_6'></div>
         </div>
       </div>
-      
+
       <div className="main_logo">
         <div id='f_r'>
           <sapn className="main_logo_p">S</sapn>ound
@@ -45,9 +45,6 @@ function SignLogo () {
 
     </div>
 
-    
-
-    
   );
 }
 
