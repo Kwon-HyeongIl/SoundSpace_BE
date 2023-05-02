@@ -68,7 +68,15 @@ function NavBar() {
 function Ranking() {
   return (
     <div className="rankingBackground">
-      <div className="bookmark">BookMark</div>
+      <div className="bookmark-title">
+        <span className="favorite material-icons" id="bookmark-icon">
+          bookmark_border
+        </span>
+        <span className="bookmark">BookMark</span>
+        <span className="favorite material-icons" id="bookmark-icon">
+          bookmark_border
+        </span>
+      </div>
       <div className="rankingFrame">
         <div className="rankingGrid">
           <div className="rankContainer_head">
