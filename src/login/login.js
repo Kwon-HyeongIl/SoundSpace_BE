@@ -6,32 +6,38 @@ function CenterLogo () {
 
     <div className='back_color'>
       
-      <div>
-        <input className='back_circle' id='circle_one'></input>
-        <input className='back_circle' id='circle_two'></input>
-        <input className='back_circle' id='circle_three' ></input>
+      <div className='back_circle'>
+        <div className='back_circle' id='circle_one'></div>
+        <div className='back_circle' id='circle_two'></div>
+        <div className='back_circle' id='circle_three' ></div>
+        <div className='back_circle' id='circle_four' ></div>
       </div>
       
       <div className="main_logo">
-        <div id='f_r'><sapn className="main_logo_p">S</sapn>ound</div>
-        <div id='s_r'><span className="main_logo_p">S</span>pace</div>
+        <div id='f_r'>
+          <sapn className="main_logo_p">S</sapn>ound
+        </div>
+        <div id='s_r'>
+          <span className="main_logo_p">S</span>pace
+        </div>
       </div>
-      
 
       <div>
         <input className='Enter_info' type='text'></input>
         <input className='Enter_info' type='text'></input>
-        <button className="login_button"> LOGIN </button>
+        <button className="login_button">
+          LOGIN  
+        </button>
       </div>
 
       <div>
-        <button className="login_to_sign"> SIGN IN </button>
+        <button className="login_to_sign">
+          SIGN IN
+        </button>
       </div>
-
 
     </div>
 
-    
   );
 }
 
