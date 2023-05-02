@@ -1,0 +1,19 @@
+.search_back_color {
+    background-color: #282828;
+    height: 100vh;
+}
+
+.just_word {
+    color: white;
+    display: block;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.random_dice {
+    background-color: #282828;
+}
+
+.user_searching {
+    background-color: #282828;
+}
