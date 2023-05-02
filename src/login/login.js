@@ -1,6 +1,5 @@
 import './login_sign.css';
 
-
 function CenterLogo () {
   return (
 
@@ -9,8 +8,12 @@ function CenterLogo () {
       <div>
         <div className='back_circle' id='circle_one'></div>
         <div className='back_circle' id='circle_two'></div>
-        <div className='back_circle' id='circle_three' ></div>
-        <div className='back_circle' id='circle_four' ></div>
+        <div className='back_circle' id='circle_three'></div>
+        <div className='back_circle' id='circle_four'></div>
+        <div className='back_circle' id='circle_five'></div>
+
+        <div className='back_circle' id='note_1'></div>
+        <div className='back_circle' id='note_2'></div>
       </div>
       
       <div className="main_logo">
@@ -23,19 +26,18 @@ function CenterLogo () {
       </div>
 
       <div>
-        <input className='Enter_info' type='text' placeholder='TYPING YOUR ID...'></input>
-        <input className='Enter_info' type='password' placeholder='TYPING YOUR PASSWORD...'></input>
-        <button className="login_button">
-          LOGIN  
-        </button>
+        <input className='Enter_info' type='text' name='user_input_id' placeholder='TYPING YOUR ID...'></input>
+        <input className='Enter_info' type='password' name='user_input_password' placeholder='TYPING YOUR PASSWORD...'></input>
+        <div>  
+          <button className="login_button">
+            LOGIN  
+          </button>
+          <button className="login_to_sign">
+            SIGN IN
+          </button>
+          
+        </div>
       </div>
-
-      <div className='with_back'>
-        <button className="login_to_sign">
-          SIGN IN
-        </button>
-      </div>
-
     </div>
 
   );

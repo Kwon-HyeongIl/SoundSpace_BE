@@ -1,5 +1,5 @@
 .back_color {
-  
+  overflow: hidden;
   background-color: black;
   background: linear-gradient(#282828,black);
   min-height: 100vh;
@@ -13,14 +13,15 @@
 
 .main_logo {
 
-  padding-top: 60px;
+  padding-top: 40px;
   padding-bottom: 10px;
+  text-shadow: 0px 0px 10px #282828;
 
   position: relative;
   text-align: center;
   font-family: 'Aguafina Script';
   font-style: normal;
-  font-size: 180px;
+  font-size: 220px;
   color: white;
   
 }
@@ -29,20 +30,20 @@
   text-align: center;
   font-family: 'Aguafina Script';
   font-style: normal;
-  font-size: 200px;
+  font-size: 220px;
   color: #EBFF00;
 }
 
 #f_r {
-  padding-right: 145px;
-  height: 160px;
+  padding-right: 160px;
+  height: 175px;
 }
 
 #s_r {
-  padding-left: 145px;
+  padding-left: 160px;
 }
 
-.signtext{
+.signtext {
   text-align: center;
   font-family: 'Inter';
   font-style: normal;
@@ -62,8 +63,8 @@
   border-color: black;
   border-width: 4px;
 
-  width: 350px;
-  height: 50px;
+  width: 400px;
+  height: 60px;
   border-radius: 50px;
 
   font-size: 24px;
@@ -71,9 +72,9 @@
 
 .login_button {
 
-  height: 80px;
-  width: 160px;
-  border-radius: 50px;
+  height: 110px;
+  width: 180px;
+  border-radius: 60px;
   background-color: #EBFF00;
   position: relative;
   border-color: black;
@@ -83,15 +84,24 @@
   margin-top: 40px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20px;
 
   color: #282828;
   font-family: 'Inter';
   font-style: normal;
-  font-weight: 700;
+  font-weight: 900;
   font-size: 32px;
 }
 
-.login_to_sign {
+#sign_check {
+  
+  margin-top: 20px;
+
+}
+
+.login_to_sign{
+
+  position: absolute;
   
   height: 180px;
   width: 180px;
@@ -100,55 +110,76 @@
   border-color: black;
   border-width: 4px;
 
-  border-left: 0 auto;
-  border-right: 100px;
+  display :block;
+  margin-left: 62%;
+  margin-top: -8%;
   
   color: white;
   font-size: 32px;
   font-weight: 700;
 }
 
-.with_back{
-  position: absolute;
-}
-
 .back_circle{
   position: absolute;
   display: inline-block;
   border-radius: 50%;
-  border-style: solid;
-  border-color: #282828;
-  border-width: 5px;
+  
+  box-shadow: 0px 0px 15px #282828;
+
 }
 
 #circle_one{
   background-color: #EBFF00;
-  height: 50px;
-  width: 50px;
-  margin-top: 30%;
-  margin-left: 80%;
+  height: 450px;
+  width: 450px;
+  margin-top: 700px;
+  margin-left: 1600px;
 }
 
 #circle_two{
-  background-color: white;
-  width: 100px;
-  height: 100px;
-  margin-top: 40%;
-  margin-left: 70%;
+  background-color: #EBFF00;
+  width: 300px;
+  height: 300px;
+  margin-top: -100px;
+  margin-left: 1670px;
 }
 
 #circle_three{
   background-color: #EBFF00;
-  width: 100px;
-  height: 100px;
-  margin-top: 10%;
-  margin-left: 20%;
+  width: 500px;
+  height: 500px;
+  margin-top: -100px;
+  margin-left: -250px;
 }
 
 #circle_four{
   background-color: white;
-  width: 500px;
-  height: 500px;
-  margin-top: 30%;
-  margin-left: 20%;
+  width: 650px;
+  height: 650px;
+  margin-top: 750px;
+  margin-left: -150px;
+}
+
+#circle_five{
+  background-color: white;
+  height: 200px;
+  width: 200px;
+  margin-top: 200px;
+  margin-left: 150px;
+}
+
+#note_1{
+  background-color: white;
+  height: 200px;
+  width: 200px;
+  margin-top: 200px;
+  margin-left: 150px;
+}
+
+#note_2{
+  background-color: white;
+  height: 200px;
+  width: 200px;
+  margin-top: 200px;
+  margin-left: 150px;
 }

@@ -4,6 +4,14 @@ function SignLogo () {
   return (
 
     <div className='back_color'>
+      
+      <div>
+        <div className='back_circle' id='circle_four'></div>
+        <div className='back_circle' id='circle_two'></div>
+        <div className='back_circle' id='circle_one'></div>
+        <div className='back_circle' id='circle_three'></div>
+        <div className='back_circle' id='circle_five'></div>
+      </div>
 
       <div className="main_logo">
         <div id='f_r'>
@@ -18,17 +26,8 @@ function SignLogo () {
         <div className='signtext'>SIGN IN</div>
         <input className='Enter_info' type='text' placeholder='TYPING YOUR ID...'></input>
         <input className='Enter_info' type='password' placeholder='TYPING YOUR PASSWORD...'></input>
-        <button className="login_button"> CHECK </button>
+        <button className="login_button" id='sign_check'> CHECK </button>
       </div>
-
-      <div>
-        <div className='back_circle' id='circle_four' ></div>
-        
-        <div className='back_circle' id='circle_two'></div>
-        <div className='back_circle' id='circle_one'></div>
-        <div className='back_circle' id='circle_three' ></div>
-      </div>
-
 
     </div>
 
