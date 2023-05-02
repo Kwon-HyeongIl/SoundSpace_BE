@@ -1,5 +1,5 @@
 import React from "react";
-import Firstpage from "./ranking/ranking";
+import Firstpage from "./bookmark/bookmark";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function App() {
