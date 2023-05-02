@@ -6,7 +6,7 @@ function CenterLogo () {
 
     <div className='back_color'>
       
-      <div className='back_circle'>
+      <div>
         <div className='back_circle' id='circle_one'></div>
         <div className='back_circle' id='circle_two'></div>
         <div className='back_circle' id='circle_three' ></div>
@@ -23,14 +23,14 @@ function CenterLogo () {
       </div>
 
       <div>
-        <input className='Enter_info' type='text'></input>
-        <input className='Enter_info' type='text'></input>
+        <input className='Enter_info' type='text' placeholder='TYPING YOUR ID...'></input>
+        <input className='Enter_info' type='password' placeholder='TYPING YOUR PASSWORD...'></input>
         <button className="login_button">
           LOGIN  
         </button>
       </div>
 
-      <div>
+      <div className='with_back'>
         <button className="login_to_sign">
           SIGN IN
         </button>
