@@ -1,18 +1,17 @@
 import './login_sign.css';
 
-
-function CenterLogo () {
+function SignLogo () {
   return (
 
     <div className='back_color'>
-      
-      <div className='back_circle'>
+
+      <div>
         <div className='back_circle' id='circle_one'></div>
         <div className='back_circle' id='circle_two'></div>
         <div className='back_circle' id='circle_three' ></div>
         <div className='back_circle' id='circle_four' ></div>
       </div>
-      
+
       <div className="main_logo">
         <div id='f_r'>
           <sapn className="main_logo_p">S</sapn>ound
@@ -23,21 +22,17 @@ function CenterLogo () {
       </div>
 
       <div>
-        <input className='Enter_info' type='text'></input>
-        <input className='Enter_info' type='text'></input>
-        <button className="login_button">
-          LOGIN  
-        </button>
-      </div>
-
-      <div>
-        <button className="login_to_sign">
-          SIGN IN
-        </button>
+        <div className='signtext'>SIGN IN</div>
+        <input className='Enter_info' type='text' placeholder='TYPING YOUR ID...'></input>
+        <input className='Enter_info' type='text' placeholder='TYPING YOUR PASSWORD...'></input>
+        <button className="login_button"> CHECK </button>
       </div>
 
     </div>
 
+    
+
+    
   );
 }
 
@@ -45,7 +40,7 @@ function CenterLogo () {
 export default function Login(){
   return (
     <div className="login">
-      <CenterLogo></CenterLogo>
+      <SignLogo></SignLogo>
     </div>
   )
 }

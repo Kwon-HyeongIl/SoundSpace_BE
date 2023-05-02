@@ -1,11 +1,6 @@
 import { React, useState, useEffect, useRef } from "react";
-import "./gallery.css";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import Sidebar from "./newSidebar";
-import GalleryCanvas from "./galleryCanvas";
-//import { Grid } from "@react-three/drei";
-// import Sidebar from "./sidebar";
+import "./ranking.css";
+import Sidebar from "../gallery/newSidebar";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 //상단네비게이션바
@@ -70,41 +65,36 @@ function NavBar() {
   );
 }
 
-function Heart() {
+function Ranking() {
   return (
-    <div className="like">
-      <img alt="" id="heart"></img>
-      <span>1000</span>
+    <div className="rankingBackground">
+      <div className="rankingFrame">
+        <div className="rankingGrid">
+          <div className="rankContainer_head">
+            <div className="rankingItem_head">Rank</div>
+            <div className="rankingItem_head">User_Name</div>
+            <div className="rankingItem_head">Heart</div>
+          </div>
+          {Array.from({ length: 10 }, (_, i) => (
+            <div className="rankContainer" key={i}>
+              <span className="rankingItem">{i + 1}</span>
+              <span className="rankingItem">User_Name</span>
+              <span className="rankingItem">1004</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
 
 export default function Gallery() {
-  //canvas 크기 조절
-  // const canvas = document.getElementById("artifactCanvas");
-  // var width = canvas.clientWidth;
-  // var height = canvas.clientHeight;
   return (
     <div className="gallery">
       <NavBar></NavBar>
-      {/* <GalleryCanvas></GalleryCanvas> */}
-      <Heart></Heart>
+      <Ranking></Ranking>
     </div>
   );
-  //사이드 바 예제
-  // const [isOpen, setIsOpen] = useState(false);
-
-  // const handleMenuClick = () => {
-  //   console.log("Menu clicked");
-  //   setIsOpen(true);
-  // };
-
-  // return (
-  //   <div>
-  //     <button onClick={handleMenuClick}>Menu</button>
-  //     {isOpen && <Sidebar />}
-  //   </div>
-  // );
 }
 
 //https://discourse.threejs.org/t/i-use-canvas-size-as-my-renderer-size-but-got-low-resolution-when-width-not-euqalss-height-size/39655
