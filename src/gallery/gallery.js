@@ -87,7 +87,7 @@ export default function Gallery() {
   return (
     <div className="gallery">
       <NavBar></NavBar>
-      <GalleryCanvas></GalleryCanvas>
+      {/* <GalleryCanvas></GalleryCanvas> */}
       <Heart></Heart>
     </div>
   );
