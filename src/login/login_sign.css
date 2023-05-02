@@ -2,7 +2,6 @@
   background-color: black;
   background: linear-gradient(#282828,black);
   min-height: 100vh;
-  padding-bottom: 100px;
 }
 
 @font-face {
@@ -12,58 +11,66 @@
 
 .main_logo {
 
-  padding-top: 70px;
-  padding-bottom: 50px;
+  padding-top: 60px;
+  padding-bottom: 10px;
 
   text-align: center;
   font-family: 'Aguafina Script';
   font-style: normal;
-  font-size: 220px;
+  font-size: 180px;
   color: white;
 }
 
 .main_logo_p {
   text-align: center;
-  font-family: 'Aguafina Script', cursive;
+  font-family: 'Aguafina Script';
   font-style: normal;
-  font-size: 220px;
+  font-size: 200px;
   color: #EBFF00;
 }
 
 #f_r {
-  padding-right: 157px;
-  padding-left: 0px;
-  height: 180px;
+  padding-right: 145px;
+  height: 160px;
 }
 
 #s_r {
-  padding-right: 0px;
-  padding-left: 157px;
+  padding-left: 145px;
+}
+
+.signtext{
+  text-align: center;
+  font-family: 'Inter';
+  font-style: normal;
+  font-size: 32px;
+  font-weight: 750;
+  color: white;
+  margin-top: 5px;
 }
 
 .Enter_info{
   display: block;
   margin: 0 auto;
-  margin-top: 50px;
-  padding-left: 40px;
-  padding-right: 40px;
+  margin-top: 25px;
+  padding-left: 30px;
+  padding-right: 30px;
 
-  width: 530px;
-  height: 80px;
+  width: 350px;
+  height: 50px;
   border-radius: 50px;
 
-  font-size: 30px;
+  font-size: 24px;
 }
 
 .login_button {
 
-  height: 100px;
-  width: 200px;
+  height: 80px;
+  width: 160px;
   border-radius: 50px;
   background-color: #EBFF00;
 
   display :block;
-  margin-top: 60px;
+  margin-top: 40px;
   margin-left: auto;
   margin-right: auto;
 
@@ -71,7 +78,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
-  font-size: 38px;
+  font-size: 32px;
 }
 
 .login_to_sign {
@@ -93,6 +100,7 @@
   position: absolute;
   display: inline-block;
   border-radius: 50%;
+  border-style: #282828 5px;
 }
 
 #circle_one{
@@ -116,5 +124,13 @@
   width: 100px;
   height: 100px;
   margin-top: 10%;
+  margin-left: 20%;
+}
+
+#circle_four{
+  background-color: white;
+  width: 500px;
+  height: 500px;
+  margin-top: 30%;
   margin-left: 20%;
 }
