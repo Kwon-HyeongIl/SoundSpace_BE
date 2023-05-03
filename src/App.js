@@ -4,7 +4,7 @@ import SignPage from "./login/sign";
 import RankPage from "./ranking/ranking";
 import BookmarkPage from "./bookmark/bookmark";
 import GalleryPage from "./gallery/gallery";
-import LikePage from "./likeList/like4me";
+import LikePage from "./likeList/like4other";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function App() {

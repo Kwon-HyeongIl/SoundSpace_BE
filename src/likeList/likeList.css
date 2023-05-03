@@ -3,8 +3,8 @@
   height: 100%;
   padding-top: 50px;
   padding-bottom: 10px;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 150px;
+  padding-right: 150px;
   background: linear-gradient(#282828, #000000);
 }
 .likeforme {
@@ -13,14 +13,36 @@
   border-radius: 50px;
   color: white;
   padding-left: 10px;
+  position: relative;
 }
 .likeforme-title {
+  color: #ebff00;
   margin-left: 20px;
   font-family: "Inter";
   font-style: normal;
-  /* font-weight: 700; */
+  font-weight: 700;
   font-size: 30px;
   line-height: 61px;
+}
+#like-icon-title {
+  position: absolute; /* 자식 요소를 absolute로 지정 */
+  top: 50%; /* 상단 위치를 50%로 조정 */
+  right: 40px; /* 우측 위치를 20px로 조정 */
+  transform: translateY(-50%); /* 수직 중앙 정렬 */
+  opacity: 30%;
+}
+#like-icon-title1 {
+  position: absolute; /* 자식 요소를 absolute로 지정 */
+  top: 50%; /* 상단 위치를 50%로 조정 */
+  right: 30px; /* 우측 위치를 20px로 조정 */
+  transform: translateY(-50%);
+  opacity: 50%; /* 수직 중앙 정렬 */
+}
+#like-icon-title2 {
+  position: absolute; /* 자식 요소를 absolute로 지정 */
+  top: 50%; /* 상단 위치를 50%로 조정 */
+  right: 20px; /* 우측 위치를 20px로 조정 */
+  transform: translateY(-50%); /* 수직 중앙 정렬 */
 }
 .rankingFrame {
   margin-top: 50px;
@@ -58,6 +80,9 @@
   font-size: 30px;
   line-height: 35px;
   color: white;
+}
+.like-hr {
+  margin: auto;
 }
 .rankContainer:hover {
   background-color: #ebff00;

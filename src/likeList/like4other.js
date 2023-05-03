@@ -73,6 +73,12 @@ function Ranking() {
         <span className="favorite material-icons" id="like-icon-title">
           favorite
         </span>
+        <span className="favorite material-icons" id="like-icon-title1">
+          favorite
+        </span>
+        <span className="favorite material-icons" id="like-icon-title2">
+          favorite
+        </span>
       </div>
       <div className="rankingFrame">
         <div className="rankingGrid">
@@ -81,20 +87,23 @@ function Ranking() {
             <div className="rankingItem_head">User Name</div>
             <div className="rankingItem_head">Like</div>
           </div>
-          {Array.from({ length: 10 }, (_, i) => (
-            <div className="rankContainer" key={i}>
-              <link
-                href="https://fonts.googleapis.com/icon?family=Material+Icons"
-                rel="stylesheet"
-              />
-              <div className="rankingItem" id="profile-like"></div>
-              <span className="rankingItem">User_Name</span>
-              <span className="rankingItem">
-                <span className="favorite material-icons" id="like-icon">
-                  favorite
+          {Array.from({ length: 10 }, (i) => (
+            <div>
+              <hr className="like-hr" />
+              <div className="rankContainer" key={i}>
+                <link
+                  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+                  rel="stylesheet"
+                />
+                <div className="rankingItem" id="profile-like"></div>
+                <span className="rankingItem">User_Name</span>
+                <span className="rankingItem">
+                  <span className="favorite material-icons" id="like-icon">
+                    favorite
+                  </span>
+                  1004
                 </span>
-                1004
-              </span>
+              </div>
             </div>
           ))}
         </div>
