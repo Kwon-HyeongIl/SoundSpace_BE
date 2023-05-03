@@ -66,6 +66,11 @@ function NavBar() {
 }
 
 function Ranking() {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const togglePlay = () => {
+    setIsPlaying((prevState) => !prevState);
+  };
   return (
     <div className="rankingBackground">
       <div className="bookmark-title">
@@ -84,6 +89,24 @@ function Ranking() {
             <div className="rankingItem_head">Artist</div>
             <div className="rankingItem_head">By</div>
           </div>
+          <div className="rankContainer">
+            <link
+              href="https://fonts.googleapis.com/icon?family=Material+Icons"
+              rel="stylesheet"
+            />
+            <span className="music">
+              <input
+                id="play-icon-button"
+                type="button"
+                className="material-icons"
+                value={isPlaying ? "pause" : "play_arrow"}
+                onClick={togglePlay}
+              />
+              <span className="rankingItem">Attention</span>
+            </span>
+            <span className="rankingItem">Newjeans</span>
+            <span className="rankingItem">PKNU</span>
+          </div>
           {Array.from({ length: 10 }, (_, i) => (
             <div className="rankContainer" key={i}>
               <link
@@ -92,6 +115,7 @@ function Ranking() {
               />
               <span className="music">
                 <input
+                  id="play-icon-button"
                   type="button"
                   className="material-icons"
                   value="play_arrow"

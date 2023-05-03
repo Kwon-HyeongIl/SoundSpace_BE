@@ -1,5 +1,6 @@
 .bookmark-title {
   margin: auto;
+  margin-top: 50px;
   padding: 50px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -26,8 +27,8 @@
   height: 100%;
   padding-top: 50px;
   padding-bottom: 10px;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 150px;
+  padding-right: 150px;
   background: linear-gradient(#282828, #000000);
 }
 .rankingFrame {
@@ -70,4 +71,13 @@
 .rankContainer:hover {
   background-color: #000000;
   color: #ebff00;
+}
+.music {
+  margin: auto;
+}
+#play-icon-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  margin-right: 10px;
 }
