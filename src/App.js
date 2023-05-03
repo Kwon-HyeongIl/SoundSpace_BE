@@ -1,5 +1,5 @@
 import React from "react";
-import LoginPage from "./search/search";
+import LoginPage from "./login/login";
 import SignPage from "./login/sign";
 import RankPage from "./ranking/ranking";
 import BookmarkPage from "./bookmark/bookmark";
