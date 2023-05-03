@@ -3,6 +3,7 @@ import "./gallery.css";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Sidebar from "./newSidebar";
+import ToggleButtonOnOff from "./toggleButton";
 import GalleryCanvas from "./galleryCanvas";
 //import { Grid } from "@react-three/drei";
 // import Sidebar from "./sidebar";
@@ -73,8 +74,8 @@ function NavBar() {
 function Heart() {
   return (
     <div className="like">
-      <img alt="" id="heart"></img>
-      <span>1000</span>
+      <img alt="" id="heart" src="heart1.png"></img>
+      <div className="like-num">1000</div>
     </div>
   );
 }
@@ -87,7 +88,9 @@ export default function Gallery() {
   return (
     <div className="gallery">
       <NavBar></NavBar>
-      {/* <GalleryCanvas></GalleryCanvas> */}
+      <div className="gallerycanvasFrame">
+        {/* <GalleryCanvas></GalleryCanvas> */}
+      </div>
       <Heart></Heart>
     </div>
   );
@@ -108,3 +111,4 @@ export default function Gallery() {
 }
 
 //https://discourse.threejs.org/t/i-use-canvas-size-as-my-renderer-size-but-got-low-resolution-when-width-not-euqalss-height-size/39655
+//https://goddino.tistory.com/350
