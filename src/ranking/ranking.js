@@ -68,6 +68,7 @@ function NavBar() {
 function Ranking() {
   return (
     <div className="rankingBackground">
+      <div className="rank-title">Ranking</div>
       <div className="rankingFrame">
         <div className="rankingGrid">
           <div className="rankContainer_head">
@@ -76,10 +77,13 @@ function Ranking() {
             <div className="rankingItem_head">Heart</div>
           </div>
           {Array.from({ length: 10 }, (_, i) => (
-            <div className="rankContainer" key={i}>
-              <span className="rankingItem">{i + 1}</span>
-              <span className="rankingItem">User_Name</span>
-              <span className="rankingItem">1004</span>
+            <div>
+              <hr className="rank-hr" />
+              <div className="rankContainer" key={i}>
+                <span className="rankingItem">{i + 1}</span>
+                <span className="rankingItem">User_Name</span>
+                <span className="rankingItem">1004</span>
+              </div>
             </div>
           ))}
         </div>
