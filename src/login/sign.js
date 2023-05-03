@@ -4,12 +4,27 @@ function SignLogo () {
   return (
 
     <div className='back_color'>
-
+      
       <div>
-        <div className='back_circle' id='circle_one'></div>
+        <div className='back_circle' id='circle_four'></div>
         <div className='back_circle' id='circle_two'></div>
-        <div className='back_circle' id='circle_three' ></div>
-        <div className='back_circle' id='circle_four' ></div>
+        <div className='back_circle' id='circle_one'></div>
+        <div className='back_circle' id='circle_three'></div>
+        <div className='back_circle' id='circle_five'></div>
+
+        <div>
+          <div className='note_head' id='note_1'></div>
+          <div className='note_tail' id='tail_1'></div>
+          <div className='note_tail' id='tail_2'></div>
+          <div className='note_tail' id='tail_3'></div>
+          <div className='note_tail' id='tail_4'></div>
+          <div className='note_tail' id='tail_5'></div>
+        </div>
+
+        <div>
+          <div className='note_head' id='note_2'></div>
+          <div className='note_tail' id='tail_6'></div>
+        </div>
       </div>
 
       <div className="main_logo">
@@ -24,15 +39,12 @@ function SignLogo () {
       <div>
         <div className='signtext'>SIGN IN</div>
         <input className='Enter_info' type='text' placeholder='TYPING YOUR ID...'></input>
-        <input className='Enter_info' type='text' placeholder='TYPING YOUR PASSWORD...'></input>
-        <button className="login_button"> CHECK </button>
+        <input className='Enter_info' type='password' placeholder='TYPING YOUR PASSWORD...'></input>
+        <button className="login_button" id='sign_check'> CHECK </button>
       </div>
 
     </div>
 
-    
-
-    
   );
 }
 

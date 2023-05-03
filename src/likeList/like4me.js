@@ -1,5 +1,5 @@
 import { React, useState, useEffect, useRef } from "react";
-import "./ranking.css";
+import "./likeList.css";
 import Sidebar from "../gallery/newSidebar";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
@@ -68,21 +68,41 @@ function NavBar() {
 function Ranking() {
   return (
     <div className="rankingBackground">
-      <div className="rank-title">Ranking</div>
+      <div className="likeforme">
+        <span className="likeforme-title">Like for me</span>
+        <span className="favorite material-icons" id="like-icon-title">
+          favorite
+        </span>
+        <span className="favorite material-icons" id="like-icon-title1">
+          favorite
+        </span>
+        <span className="favorite material-icons" id="like-icon-title2">
+          favorite
+        </span>
+      </div>
       <div className="rankingFrame">
         <div className="rankingGrid">
           <div className="rankContainer_head">
-            <div className="rankingItem_head">Rank</div>
-            <div className="rankingItem_head">User_Name</div>
-            <div className="rankingItem_head">Heart</div>
+            <div className="rankingItem_head">Profile</div>
+            <div className="rankingItem_head">User Name</div>
+            <div className="rankingItem_head">Like</div>
           </div>
-          {Array.from({ length: 10 }, (_, i) => (
+          {Array.from({ length: 10 }, (i) => (
             <div>
-              <hr className="rank-hr" />
+              <hr className="like-hr" />
               <div className="rankContainer" key={i}>
-                <span className="rankingItem">{i + 1}</span>
+                <link
+                  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+                  rel="stylesheet"
+                />
+                <div className="rankingItem" id="profile-like"></div>
                 <span className="rankingItem">User_Name</span>
-                <span className="rankingItem">1004</span>
+                <span className="rankingItem">
+                  <span className="favorite material-icons" id="like-icon">
+                    favorite
+                  </span>
+                  1004
+                </span>
               </div>
             </div>
           ))}
