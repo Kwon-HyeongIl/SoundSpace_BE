@@ -3,7 +3,19 @@ import "./search.css"
 function UserSearch(){
     return(
         <div className='search_back_color'>
-                <div className="just_word">Hello!</div>
+            <div className="search_random">
+                <input className="Searching" type="text" name ="searching" placeholder="Search for User_Name"></input>
+                <button className="find_user"></button>
+                <button className="random_dice"></button>
+            </div>
+            
+            <div className="word">Searching result...</div>
+
+            <div className="search_result">
+                <div className="user_UI"></div>
+                <div className="user_ID">PKNU_WAP</div>
+                <div className="like">1004</div>
+            </div>
         </div>
     );
 }
