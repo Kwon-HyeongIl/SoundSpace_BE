@@ -89,7 +89,7 @@ export default function Gallery() {
     <div className="gallery">
       <NavBar></NavBar>
       <div className="gallerycanvasFrame">
-        {/* <GalleryCanvas></GalleryCanvas> */}
+        <GalleryCanvas></GalleryCanvas>
       </div>
       <Heart></Heart>
     </div>
