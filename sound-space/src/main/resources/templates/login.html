@@ -60,9 +60,10 @@
             data: formData,
         }).done(function(response){
             if (response.state == "200") {
-                localStorage.setItem("accessToken", response.data.accessToken);
-                alert("로그인에 성공 했습니다.");
-                location.href = "/myhome";
+                // localStorage.setItem("Authorization", "Bearer " + response.data.accessToken);
+                document.cookie = "Authorization=Bearer " + response.data.accessToken + ";path=/;secure;HttpOnly";
+                alert(response.message);
+                location.href = "/" + formData.username;
             }
             else if (response.message == "")
                 alert(JSON.stringify((response.error)[0]));

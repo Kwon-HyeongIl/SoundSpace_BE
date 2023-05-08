@@ -74,8 +74,7 @@
             data: formData,
         }).done(function(response){
             if (response.state == "200") {
-                // localStorage.setItem("Authorization", "Bearer " + response.data.accessToken);
-                document.cookie = "Authorization=Bearer " + response.data.accessToken + ";path=/;secure;HttpOnly";
+                localStorage.setItem("Authorization", "Bearer " + response.data.accessToken);
                 alert(response.message);
                 location.href = "/" + formData.username;
             }

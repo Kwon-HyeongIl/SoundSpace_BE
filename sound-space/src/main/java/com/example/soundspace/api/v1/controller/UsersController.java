@@ -27,10 +27,10 @@ public class UsersController {
     private final Response response;
 
     @GetMapping("/user")
-    public String user(@RequestParam String accessToken) {
-        Authentication authentication = jwtTokenProvider.getAuthentication(accessToken);
+    public String user(Authentication authentication) {
+        if (authentication == null)
+            return "";
         UserDetails user = (UserDetails) authentication.getPrincipal();
-
         return user.getUsername();
     }
     @PostMapping("/sign-up")
@@ -50,11 +50,11 @@ public class UsersController {
     }
 
     @PostMapping("/reissue")
-    public ResponseEntity<?> reissue(@Validated UserRequestDto.Reissue reissue, Errors errors) {
-        if (errors.hasErrors()) {
-            return response.invalidFields(Helper.refineErrors(errors));
-        }
-        return usersService.reissue(reissue);
+        public ResponseEntity<?> reissue(@Validated UserRequestDto.Reissue reissue, Errors errors) {
+            if (errors.hasErrors()) {
+                return response.invalidFields(Helper.refineErrors(errors));
+            }
+            return usersService.reissue(reissue);
     }
 
     @PostMapping("/logout")
@@ -62,6 +62,7 @@ public class UsersController {
         if (errors.hasErrors()) {
             return response.invalidFields(Helper.refineErrors(errors));
         }
+        logout.setAccessToken(logout.getAccessToken().substring(7));
         return usersService.logout(logout);
     }
 

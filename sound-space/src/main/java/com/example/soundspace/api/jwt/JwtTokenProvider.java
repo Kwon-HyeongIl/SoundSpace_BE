@@ -80,7 +80,6 @@ public class JwtTokenProvider {
         return new UsernamePasswordAuthenticationToken(principal, "", authorities);
     }
 
-    // 토큰 정보를 검증하는 메서드
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
@@ -106,9 +105,8 @@ public class JwtTokenProvider {
     }
 
     public Long getExpiration(String accessToken) {
-        // accessToken 남은 유효시간
         Date expiration = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(accessToken).getBody().getExpiration();
-        // 현재 시간
+
         Long now = new Date().getTime();
         return (expiration.getTime() - now);
     }
