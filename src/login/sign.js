@@ -1,4 +1,5 @@
 import './login_sign.css';
+import { Link } from 'react-router-dom';
 
 function SignLogo () {
   return (
@@ -40,7 +41,9 @@ function SignLogo () {
         <div className='signtext'>SIGN IN</div>
         <input className='Enter_info' type='text' placeholder='TYPING YOUR ID...'></input>
         <input className='Enter_info' type='password' placeholder='TYPING YOUR PASSWORD...'></input>
-        <button className="login_button" id='sign_check'> CHECK </button>
+        <Link to={"/"} className='no_line'>
+          <button className="login_button" id='sign_check'> CHECK </button>
+        </Link>
       </div>
 
     </div>
