@@ -99,6 +99,10 @@
   font-size: 32px;
 }
 
+.login_button.check_click {
+  background-color: rgb(167, 167, 34);
+}
+
 #sign_check {
   
   margin-top: 20px;
