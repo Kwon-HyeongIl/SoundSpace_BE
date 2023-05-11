@@ -1,8 +1,6 @@
 //learning-threejs 예제 불러오는 코드
-import React, { useRef, useEffect } from "react";
-import * as THREE from "three";
-import "./galleryCanvas.css";
 
+//
 // function GalleryCanvas() {
 //   const canvasRef = useRef(null);
 
@@ -79,17 +77,19 @@ import "./galleryCanvas.css";
 //https://www.youtube.com/watch?v=9ZEjSxDRIik&t=5s 예제
 
 // import { createRoot } from "react-dom/client";
+import React, { useRef, useEffect } from "react";
+import * as THREE from "three";
+import "./galleryCanvas.css";
 import { Canvas } from "@react-three/fiber";
 import {
   FirstPersonControls,
   Stars,
   PointerLockControls,
   KeyboardControls,
-  OrbitControls,
-  w,
 } from "@react-three/drei";
 import { Physics, usePlane, useBox } from "@react-three/cannon";
 import Ground from "./Ground.js";
+import Player from "./Player.js";
 // import "./styles.css";
 
 function Box() {
@@ -114,8 +114,9 @@ function PlaneBottom() {
     position: [0, 0, 0],
   }));
   return (
-    <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-      <planeBufferGeometry attach="geometry" args={[100, 100]} />
+    // <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+    <mesh position={[0, 0, 0]} rotation-x={-Math.PI / 2}>
+      <planeBufferGeometry attach="geometry" args={[1000, 1000]} />
       <meshLambertMaterial attach="material" color="lightblue" />
     </mesh>
   );
@@ -174,22 +175,23 @@ export default function GalleryCanvas() {
         { name: "jump", keys: ["Space"] },
       ]}
     >
-      <Canvas>
+      <Canvas shadows camera={{ fov: 45 }}>
         {/* <OrbitControls /> */}
         <FirstPersonControls
-          minDistance={0} // 최소 거리
-          maxDistance={50} // 최대 거리
+        // minDistance={0} // 최소 거리
+        // maxDistance={50} // 최대 거리
         />
+        {/* <PointerLockControls /> */}
         <ambientLight intensity={0.5} />
+        <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />
         <Stars />
         <spotLight position={[0, 15, 10]} angle={0.3} />
         <Physics gravity={[0, -30, 0]}>
-          {/* <Ground /> */}
+          {/* <Player /> */}
           <Box />
+          {/* <Ground /> */}
           <PlaneBottom />
         </Physics>
-        <PlaneRight />
-        <PointerLockControls />
       </Canvas>
     </KeyboardControls>
   );

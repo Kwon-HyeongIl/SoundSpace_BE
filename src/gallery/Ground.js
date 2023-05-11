@@ -1,22 +1,49 @@
-import * as THREE from "three";
-import { useTexture } from "@react-three/drei";
-import { CuboidCollider, RigidBody } from "@react-three/rapier";
-// import grass from "./assets/grass.jpg";
+// import * as THREE from "three";
+// // import { RigidBody } from "@react-three/rapier";
+// import { useRigidBody } from "@react-three/cannon";
 
-export function Ground(props) {
-  //   const texture = useTexture(grass);
-  //   texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+// export default function Ground(props) {
+//   const ref = useRigidBody(() => ({
+//     type: "Static",
+//     position: [0, 0, 0],
+//     rotation: [0, 0, 0],
+//   }));
+
+//   return (
+//     // <RigidBody {...props} type="fixed" colliders={false}>
+//     <mesh receiveShadow position={[0, 0, 0]} rotation-x={-Math.PI / 2}>
+//       <boxGeometry args={[1000, 2, 1000]} />
+//       <planeGeometry args={[1000, 1000]} />
+//       <meshStandardMaterial color="lightblue" />
+//     </mesh>
+//     // </RigidBody>
+//   );
+// }
+
+// import * as THREE from "three";
+// import { RigidBody } from "@react-three/rapier";
+
+// export default function Ground(props) {
+//   return (
+//     <RigidBody {...props} type="fixed" colliders={false}>
+//       <mesh receiveShadow position={[0, 0, 0]} rotation-x={-Math.PI / 2}>
+//         <planeGeometry args={[1000, 1000]} />
+//         <meshStandardMaterial color="lightblue" />
+//       </mesh>
+//       <boxGeometry args={[1000, 2, 1000]} />
+//     </RigidBody>
+//   );
+// }
+
+import * as THREE from "three";
+import { RigidBody } from "@react-three/rapier";
+
+export default function Ground(props) {
   return (
-    <RigidBody {...props} type="fixed" colliders={false}>
-      <mesh receiveShadow position={[0, 0, 0]} rotation-x={-Math.PI / 2}>
-        <planeGeometry args={[1000, 1000]} />
-        <meshStandardMaterial
-          //   map={texture}
-          map-repeat={[240, 240]}
-          color="green"
-        />
-      </mesh>
-      <CuboidCollider args={[1000, 2, 1000]} position={[0, -2, 0]} />
-    </RigidBody>
+    <mesh receiveShadow position={[0, 0, 0]} rotation-x={-Math.PI / 2}>
+      <planeGeometry args={[1000, 1000]} />
+      <meshStandardMaterial color="lightblue" />
+      <boxGeometry args={[1000, 2, 1000]} />
+    </mesh>
   );
 }
