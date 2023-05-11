@@ -178,10 +178,13 @@ export default function GalleryCanvas() {
       <Canvas shadows camera={{ fov: 45 }}>
         {/* <OrbitControls /> */}
         <FirstPersonControls
-        // minDistance={0} // 최소 거리
-        // maxDistance={50} // 최대 거리
+          lookSpeed={0.07}
+          minDistance={0} // 최소 거리
+          maxDistance={50} // 최대 거리
         />
-        {/* <PointerLockControls /> */}
+        <PointerLockControls
+        // moveForward={5} moveRight={10}
+        />
         <ambientLight intensity={0.5} />
         <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />
         <Stars />
