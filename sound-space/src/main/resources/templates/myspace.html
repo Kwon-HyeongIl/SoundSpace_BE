@@ -21,7 +21,8 @@
             type: 'POST',
             url: '/api/v1/users/logout',
             data: {
-                accessToken: localStorage.getItem("Authorization")
+                accessToken: localStorage.getItem("accessToken"),
+                refreshToken: localStorage.getItem("refreshToken")
             },
         }).done(function(response) {
             if (response.state == "200")
@@ -31,6 +32,7 @@
             location.href = "/";
         }).fail(function(error){
             alert("로그아웃에 실패 했습니다.");
+            location.href = "/";
         });
     }
 </script>

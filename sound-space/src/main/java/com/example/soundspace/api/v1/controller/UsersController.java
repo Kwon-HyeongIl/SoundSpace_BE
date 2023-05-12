@@ -26,13 +26,6 @@ public class UsersController {
     private final UsersService usersService;
     private final Response response;
 
-    @GetMapping("/user")
-    public String user(Authentication authentication) {
-        if (authentication == null)
-            return "";
-        UserDetails user = (UserDetails) authentication.getPrincipal();
-        return user.getUsername();
-    }
     @PostMapping("/sign-up")
     public ResponseEntity<?> signUp(@Validated UserRequestDto.SignUp signUp, Errors errors) {
         if (errors.hasErrors()) {
@@ -62,7 +55,6 @@ public class UsersController {
         if (errors.hasErrors()) {
             return response.invalidFields(Helper.refineErrors(errors));
         }
-        logout.setAccessToken(logout.getAccessToken().substring(7));
         return usersService.logout(logout);
     }
 
@@ -72,9 +64,9 @@ public class UsersController {
         return usersService.authority();
     }
 
-    @GetMapping("/userTest")
-    public ResponseEntity<?> userTest() {
-        log.info("ROLE_USER TEST");
+    @GetMapping("/user")
+    public ResponseEntity<?> user() {
+        log.info("ROLE_USER");
         return response.success();
     }
 

@@ -1,6 +1,7 @@
 package com.example.soundspace.api.v1.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,18 +17,8 @@ import java.util.Enumeration;
 public class IndexController {
 
     @GetMapping("/")
-    public String main(HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("Authorization")) {
-                    String authentication = cookie.getValue();
-
-                    return "myspace";
-                }
-            }
-        }
-        return "login";
+    public String main() {
+        return "main";
     }
 
     @GetMapping("/sign-up")
