@@ -2,9 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./newSidebar.module.css";
 import "./gallery.css";
 
-//참고자료
-//https://ji-u.tistory.com/22
-
 const Sidebar = ({ width = 280, children }) => {
   const [isOpen, setOpen] = useState(false);
   const [xPosition, setX] = useState(width);
