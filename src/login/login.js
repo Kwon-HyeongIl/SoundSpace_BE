@@ -1,5 +1,5 @@
-import "./login_sign.css";
-import React from "react";
+import './login_sign.css';
+import { Link } from 'react-router-dom';
 
 function CenterLogo() {
   const [username, setUsername] = React.useState("");
@@ -87,8 +87,16 @@ function CenterLogo() {
           placeholder="TYPING YOUR PASSWORD..."
         ></input>
         <div>
-          <button className="login_button">LOGIN</button>
-          <button className="login_to_sign">SIGN IN</button>
+          <Link to={"./gallery"} className='no_line'>
+            <button className="login_button">
+              LOGIN  
+            </button>
+          </Link>
+          <Link to={"./sign"} className='no_line'>
+            <button className="login_to_sign">
+              SIGN IN
+            </button>
+          </Link>
         </div>
       </div>
     </div>

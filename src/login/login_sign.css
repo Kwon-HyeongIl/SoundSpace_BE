@@ -11,6 +11,10 @@
   src: url('./fonts/AguafinaScript-Regular.woff') format('woff');
 }
 
+.no_line {
+  text-decoration: none;
+}
+
 .main_logo {
 
   padding-top: 40px;
@@ -95,6 +99,10 @@
   font-size: 32px;
 }
 
+.login_button.check_click {
+  background-color: rgb(167, 167, 34);
+}
+
 #sign_check {
   
   margin-top: 20px;
@@ -119,6 +127,7 @@
   color: white;
   font-size: 32px;
   font-weight: 700;
+
 }
 
 .back_circle{

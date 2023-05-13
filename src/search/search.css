@@ -1,19 +1,132 @@
 .search_back_color {
+    text-align: center;
+    overflow: hidden;
     background-color: #282828;
     height: 100vh;
 }
 
-.just_word {
-    color: white;
-    display: block;
+.search_random{
+    width: 1050px;
     text-align: center;
-    padding-top: 100px;
+    display: flex;
+    padding-top: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.search_box {
+    position: relative;
+    display: flex;
+    background-color: #282828;
+    width: 900px;
+    height: 110px;
+
+    margin-right: 10px;
+
+    border: solid 5px white;
+    border-radius: 10px;
+}
+
+.Searching {
+    position: absolute;
+    background-color: #282828;
+    width: 751px;
+    height: 105px;
+    padding-left: 25px;
+    padding-right: 120px;
+
+    border-radius: 6px;
+    color: white;
+    font-size: 45px;
+    font-weight: 700;
+}
+
+.find_user {
+    position: relative;
+    background-color: #282828;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: 5px;
+    width: 100px;
+    height: 100px;
+
+    border: solid 3px white;
+    border-radius: 6px;
 }
 
 .random_dice {
+    
     background-color: #282828;
+    width: 120px;
+    height: 120px;
+
+    margin-left: 10px;
+    
+    border: solid 5px #EBFF00;
+    border-radius: 10px;
 }
 
-.user_searching {
+.search_result {
+    display: flex;
+    position: relative;
+    text-align: center;
+    
     background-color: #282828;
+    width: 1200px;
+    height: 140px;
+    
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 30px;
+    padding-right: 30px;
+    
+    border: solid 5px white;
+    border-radius: 120px;
+
+    color: white;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.word {
+    padding-top: 90px;
+    margin-right: 37%;
+    margin-top: 30px;
+    margin-bottom: -10px;
+    color: #A4A4A4;
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.result_gradation {
+    background: linear-gradient(#282828,black);
+    width: 900px;
+    height: 140px;
+}
+
+.user_UI {
+    position: absolute;
+    background-color: #282828;
+    
+    width: 140px;
+    height: 140px;
+    margin-top: -5px;
+    margin-left: -35px;
+    margin-right: 50px;
+
+    border-radius: 120px;
+    border: 5px solid white;
+}
+
+.user_ID {
+    position: relative;
+}
+
+.like {
+    position: relative;
+    color: white;   
+    width: 100px;
+    height: 100px;
 }
