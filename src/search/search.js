@@ -1,6 +1,7 @@
 import "./search.css"
 
 function UserSearch(){
+    
     return(
         <div className='search_back_color'>
             <div className="search_random">
@@ -9,12 +10,10 @@ function UserSearch(){
                     <button className="find_user"></button>
                 </div>
                     <button className="random_dice"></button>
-                
             </div>
-            
-            <div className="word">Searching result...</div>
 
             <div className="search_result">
+                <div className="word">Searching Result !</div>      
                 <div className="user_UI"></div>
                 <div className="user_ID">PKNU_WAP</div>
                 <div id="like">1004</div>

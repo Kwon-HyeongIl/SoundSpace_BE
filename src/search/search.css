@@ -1,3 +1,5 @@
+
+
 .search_back_color {
     text-align: center;
     overflow: hidden;
@@ -42,29 +44,40 @@
 }
 
 .find_user {
+    background-image: url("./search_lens.png");
+    background-size: cover;
     position: relative;
     background-color: #282828;
     margin-top: auto;
     margin-bottom: auto;
     margin-left: auto;
-    margin-right: 5px;
-    width: 100px;
-    height: 100px;
+    margin-right: 13px;
+    width: 60px;
+    height: 60px;
 
-    border: solid 3px white;
-    border-radius: 6px;
+    border: solid 3px #282828;
+    cursor: pointer;
 }
 
+
 .random_dice {
-    
+    background-image: url("./dice.png");
+    background-size: 80px 80px;
+    background-position: center center;
     background-color: #282828;
+    background-repeat: no-repeat;
     width: 120px;
     height: 120px;
-
     margin-left: 10px;
-    
     border: solid 5px #EBFF00;
     border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.img_size {
+    width: 10px;
+    height: 10px;
 }
 
 .search_result {
@@ -91,6 +104,7 @@
 }
 
 .word {
+    display: inline;
     padding-top: 90px;
     margin-right: 37%;
     margin-top: 30px;
