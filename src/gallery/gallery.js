@@ -1,13 +1,7 @@
 import { React, useState, useEffect, useRef } from "react";
 import "./gallery.css";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import Sidebar from "./newSidebar";
-import ToggleButtonOnOff from "./toggleButton";
+import Sidebar from "../sidebar/newSidebar";
 import GalleryCanvas from "./galleryCanvas";
-//import { Grid } from "@react-three/drei";
-// import Sidebar from "./sidebar";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 //상단네비게이션바
 function NavBar() {
@@ -81,33 +75,15 @@ function Heart() {
 }
 
 export default function Gallery() {
-  //canvas 크기 조절
-  // const canvas = document.getElementById("artifactCanvas");
-  // var width = canvas.clientWidth;
-  // var height = canvas.clientHeight;
   return (
     <div className="gallery">
       <NavBar></NavBar>
       <div className="gallerycanvasFrame">
-        {/* <GalleryCanvas></GalleryCanvas> */}
+        <GalleryCanvas></GalleryCanvas>
       </div>
       <Heart></Heart>
     </div>
   );
-  //사이드 바 예제
-  // const [isOpen, setIsOpen] = useState(false);
-
-  // const handleMenuClick = () => {
-  //   console.log("Menu clicked");
-  //   setIsOpen(true);
-  // };
-
-  // return (
-  //   <div>
-  //     <button onClick={handleMenuClick}>Menu</button>
-  //     {isOpen && <Sidebar />}
-  //   </div>
-  // );
 }
 
 //https://discourse.threejs.org/t/i-use-canvas-size-as-my-renderer-size-but-got-low-resolution-when-width-not-euqalss-height-size/39655
