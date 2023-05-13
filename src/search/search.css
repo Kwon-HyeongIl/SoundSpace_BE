@@ -95,7 +95,6 @@
     
     background-color: #282828;
     background: linear-gradient(to right, black, #282828);
-
     width: 1200px;
     height: 140px;
     
@@ -118,7 +117,6 @@
     width: 900px;
     height: 140px;
 }
-
 .user_UI {
     position: absolute;
     background-color: #282828;
