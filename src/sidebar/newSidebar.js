@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./newSidebar.module.css";
-import "./gallery.css";
+import "../gallery/gallery.css";
 
 const Sidebar = ({ width = 280, children }) => {
   const [isOpen, setOpen] = useState(false);

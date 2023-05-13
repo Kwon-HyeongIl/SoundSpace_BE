@@ -1,6 +1,6 @@
 import { React, useState, useEffect, useRef } from "react";
 import "./gallery.css";
-import Sidebar from "./newSidebar";
+import Sidebar from "../sidebar/newSidebar";
 import GalleryCanvas from "./galleryCanvas";
 
 //상단네비게이션바
