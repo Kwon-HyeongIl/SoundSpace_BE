@@ -21,7 +21,7 @@ public class Users extends BaseTime implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idx;
+    private Long id;
 
     @Column
     private String username;
@@ -68,4 +68,5 @@ public class Users extends BaseTime implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

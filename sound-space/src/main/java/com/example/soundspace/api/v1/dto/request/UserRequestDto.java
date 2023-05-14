@@ -59,4 +59,13 @@ public class UserRequestDto {
         @NotEmpty(message = "잘못된 요청입니다.")
         private String refreshToken;
     }
+
+    @Getter
+    @Setter
+    public static class Update {
+        @NotEmpty(message = "기존 패스워드를 입력해 주세요.")
+        private String oldPassword;
+        @NotEmpty(message = "새로운 패스워드를 입력해 주세요.")
+        private String newPassword;
+    }
 }

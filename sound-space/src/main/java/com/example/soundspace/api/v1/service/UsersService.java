@@ -19,6 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
 import java.util.Collections;
@@ -27,6 +28,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @RequiredArgsConstructor
 @Service
+@Transactional
 public class UsersService {
 
     private final UsersRepository usersRepository;
@@ -126,5 +128,20 @@ public class UsersService {
         usersRepository.save(user);
 
         return response.success();
+    }
+
+    public ResponseEntity<?> updateUser(String username, UserRequestDto.Update update) {
+        Users user = usersRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("해당하는 유저를 찾을 수 없습니다.(" + username + ")"));
+
+        if (!passwordEncoder.matches(update.getOldPassword(), user.getPassword())) {
+            return response.fail("기존 패스워드가 일치하지 않습니다.", HttpStatus.BAD_REQUEST);
+        }
+
+        String newPassword = update.getNewPassword();
+        user.setPassword(passwordEncoder.encode(newPassword));
+        usersRepository.save(user);
+
+        return response.success("회원 정보가 변경 되었습니다.");
     }
 }
