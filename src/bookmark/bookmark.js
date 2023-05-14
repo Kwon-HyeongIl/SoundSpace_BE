@@ -1,6 +1,6 @@
 import { React, useState, useEffect, useRef } from "react";
 import "./bookmark.css";
-import Sidebar from "../gallery/newSidebar";
+import Sidebar from "../sidebar/newSidebar";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 //상단네비게이션바

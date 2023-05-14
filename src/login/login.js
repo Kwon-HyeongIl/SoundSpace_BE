@@ -1,4 +1,5 @@
 import './login_sign.css';
+import { Link } from 'react-router-dom';
 
 function CenterLogo () {
   return (
@@ -40,13 +41,16 @@ function CenterLogo () {
         <input className='Enter_info' type='text' name='user_input_id' placeholder='TYPING YOUR ID...'></input>
         <input className='Enter_info' type='password' name='user_input_password' placeholder='TYPING YOUR PASSWORD...'></input>
         <div>
-          <button className="login_button">
-            LOGIN  
-          </button>
-          <button className="login_to_sign">
-            SIGN IN
-          </button>
-          
+          <Link to={"./gallery"} className='no_line'>
+            <button className="login_button">
+              LOGIN  
+            </button>
+          </Link>
+          <Link to={"./sign"} className='no_line'>
+            <button className="login_to_sign">
+              SIGN IN
+            </button>
+          </Link>
         </div>
       </div>
     </div>
