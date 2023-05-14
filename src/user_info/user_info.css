@@ -1,0 +1,14 @@
+.back_info{
+    display: inline-block;
+    background-color: #282828;
+}
+
+.now_info{
+    display: block;
+    background-color: white;
+}
+
+.change_info{
+    display: block;
+    background-color: black;
+}
