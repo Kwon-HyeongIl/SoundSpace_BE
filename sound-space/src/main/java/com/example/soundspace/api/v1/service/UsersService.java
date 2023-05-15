@@ -51,6 +51,7 @@ public class UsersService {
                 .username(signUp.getUsername())
                 .email(signUp.getEmail())
                 .password(passwordEncoder.encode(signUp.getPassword()))
+                .likes(0L)
                 .roles(Collections.singletonList(Authority.ROLE_USER.name()))
                 .build();
         usersRepository.save(user);
@@ -143,5 +144,18 @@ public class UsersService {
         usersRepository.save(user);
 
         return response.success("회원 정보가 변경 되었습니다.");
+    }
+
+    public ResponseEntity<?> profiles(String username) {
+        Users user = usersRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("해당하는 유저를 찾을 수 없습니다.(" + username + ")"));
+
+        UserResponseDto.UsersInfo usersInfo = UserResponseDto.UsersInfo.builder()
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .likes(user.getLikes())
+                .build();
+
+        return response.success(usersInfo, "회원 프로필 조회에 성공했습니다.", HttpStatus.OK);
     }
 }

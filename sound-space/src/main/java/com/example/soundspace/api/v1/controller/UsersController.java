@@ -94,4 +94,9 @@ public class UsersController {
 
         return usersService.updateUser(username, update);
     }
+
+    @GetMapping("/{username}/profiles")
+    public ResponseEntity<?> profiles(@PathVariable String username) {
+        return usersService.profiles(username);
+    }
 }
