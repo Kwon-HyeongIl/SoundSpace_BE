@@ -96,10 +96,10 @@ function PlaneBottom() {
   );
 }
 
-function PlaneRight() {
+function PlaneLeft() {
   const [ref] = usePlane(() => ({
-    rotation: [0, Math.PI / 2, 0], // Rotate the plane 90 degrees around the y-axis
-    position: [-10, 0, 0], // Adjust the position to move it to the right side
+    rotation: [0, Math.PI / 2, 0],
+    position: [-4, 0, 0],
   }));
 
   return (
@@ -110,10 +110,24 @@ function PlaneRight() {
   );
 }
 
-function PlaneLeft() {
+function PlaneRight() {
   const [ref] = usePlane(() => ({
-    rotation: [0, 0, Math.PI / 2], // Rotate the plane 90 degrees around the y-axis
-    position: [0, 0, -10], // Adjust the position to move it to the right side
+    rotation: [0, Math.PI / 2, 0],
+    position: [4, 0, 0],
+  }));
+
+  return (
+    <mesh ref={ref} receiveShadow>
+      <planeBufferGeometry attach="geometry" args={[10, 10]} />
+      <meshLambertMaterial attach="material" color="green" />
+    </mesh>
+  );
+}
+
+function PlaneFront() {
+  const [ref] = usePlane(() => ({
+    rotation: [0, 0, 0],
+    position: [0, 0, -5],
   }));
 
   return (
@@ -178,8 +192,9 @@ export default function GalleryCanvas() {
           <PlaneBottom />
           <Box />
           {/* <Box position={[-40, 0, -40]} /> */}
-          <PlaneRight />
           <PlaneLeft />
+          <PlaneRight />
+          <PlaneFront />
         </Physics>
       </Canvas>
       <div className="absolute centered cursor">+</div>
