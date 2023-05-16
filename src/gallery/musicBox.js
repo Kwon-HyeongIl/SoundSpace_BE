@@ -10,6 +10,7 @@ import {
 } from "@react-three/drei";
 import { Physics, usePlane, useBox } from "@react-three/cannon";
 import { Text } from "@react-three/drei";
+import { useNavigate } from "react-router-dom";
 
 function Box({ position }) {
   const [ref, api] = useBox(() => ({ mass: 1, position: [0, 0, 0] }));
@@ -79,6 +80,7 @@ const Button = () => {
   const handlePointerOut = () => {
     setHovered(false);
   };
+  const navigate = useNavigate();
 
   // useFrame(() => {
   //   buttonRef.current.rotation.y += 0.01;
@@ -91,6 +93,7 @@ const Button = () => {
       onPointerOut={handlePointerOut}
       position={[0, 0.5, 1]}
       castShadow
+      onClick={() => navigate("/MusicInfo")} //임시로 /LikePage 넘어가도록
     >
       <boxBufferGeometry args={[0.2, 0.2, 0.2]} />
       <meshStandardMaterial map={texture} color={isHovered ? "red" : "blue"} />

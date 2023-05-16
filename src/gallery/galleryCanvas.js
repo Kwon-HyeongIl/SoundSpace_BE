@@ -30,47 +30,47 @@ function PlaneBottom() {
 }
 
 // Wall
-// function PlaneLeft() {
-//   const [ref] = usePlane(() => ({
-//     rotation: [0, Math.PI / 2, 0],
-//     position: [-4, 0, 0],
-//   }));
+function PlaneLeft() {
+  const [ref] = usePlane(() => ({
+    rotation: [0, Math.PI / 2, 0],
+    position: [-4, 0, 0],
+  }));
 
-//   return (
-//     <mesh ref={ref} receiveShadow>
-//       <planeBufferGeometry attach="geometry" args={[10, 10]} />
-//       <meshLambertMaterial attach="material" color="yellow" />
-//     </mesh>
-//   );
-// }
+  return (
+    <mesh ref={ref} receiveShadow>
+      <planeBufferGeometry attach="geometry" args={[10, 10]} />
+      <meshLambertMaterial attach="material" color="yellow" />
+    </mesh>
+  );
+}
 
-// function PlaneRight() {
-//   const [ref] = usePlane(() => ({
-//     rotation: [0, Math.PI / 2, 0],
-//     position: [4, 0, 0],
-//   }));
+function PlaneRight() {
+  const [ref] = usePlane(() => ({
+    rotation: [0, Math.PI / 2, 0],
+    position: [4, 0, 0],
+  }));
 
-//   return (
-//     <mesh ref={ref} receiveShadow>
-//       <planeBufferGeometry attach="geometry" args={[10, 10]} />
-//       <meshLambertMaterial attach="material" color="green" />
-//     </mesh>
-//   );
-// }
+  return (
+    <mesh ref={ref} receiveShadow>
+      <planeBufferGeometry attach="geometry" args={[10, 10]} />
+      <meshLambertMaterial attach="material" color="green" />
+    </mesh>
+  );
+}
 
-// function PlaneFront() {
-//   const [ref] = usePlane(() => ({
-//     rotation: [0, 0, 0],
-//     position: [0, 0, -5],
-//   }));
+function PlaneFront() {
+  const [ref] = usePlane(() => ({
+    rotation: [0, 0, 0],
+    position: [0, 0, -5],
+  }));
 
-//   return (
-//     <mesh ref={ref} receiveShadow>
-//       <planeBufferGeometry attach="geometry" args={[10, 10]} />
-//       <meshLambertMaterial attach="material" color="purple" />
-//     </mesh>
-//   );
-// }
+  return (
+    <mesh ref={ref} receiveShadow>
+      <planeBufferGeometry attach="geometry" args={[10, 10]} />
+      <meshLambertMaterial attach="material" color="purple" />
+    </mesh>
+  );
+}
 
 export default function GalleryCanvas() {
   return (
