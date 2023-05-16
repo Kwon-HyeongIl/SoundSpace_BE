@@ -192,9 +192,9 @@ export default function GalleryCanvas() {
           <PlaneBottom />
           <Box />
           {/* <Box position={[-40, 0, -40]} /> */}
-          <PlaneLeft />
+          {/* <PlaneLeft />
           <PlaneRight />
-          <PlaneFront />
+          <PlaneFront /> */}
         </Physics>
       </Canvas>
       <div className="absolute centered cursor">+</div>
