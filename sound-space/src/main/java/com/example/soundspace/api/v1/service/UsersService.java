@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,7 @@ import java.util.concurrent.TimeUnit;
 @Transactional
 public class UsersService {
 
+    private final CustomUserDetailsService customUserDetailsService;
     private final UsersRepository usersRepository;
     private final Response response;
     private final PasswordEncoder passwordEncoder;
@@ -122,8 +124,7 @@ public class UsersService {
     public ResponseEntity<?> authority() {
         String username = SecurityUtil.getCurrentUsername();
 
-        Users user = usersRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("No authentication information."));
+        Users user = (Users) customUserDetailsService.loadUserByUsername(username);
 
         user.getRoles().add(Authority.ROLE_ADMIN.name());
         usersRepository.save(user);
@@ -132,8 +133,7 @@ public class UsersService {
     }
 
     public ResponseEntity<?> updateUser(String username, UserRequestDto.Update update) {
-        Users user = usersRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("해당하는 유저를 찾을 수 없습니다.(" + username + ")"));
+        Users user = (Users) customUserDetailsService.loadUserByUsername(username);
 
         if (!passwordEncoder.matches(update.getOldPassword(), user.getPassword())) {
             return response.fail("기존 패스워드가 일치하지 않습니다.", HttpStatus.BAD_REQUEST);
@@ -147,8 +147,7 @@ public class UsersService {
     }
 
     public ResponseEntity<?> profiles(String username) {
-        Users user = usersRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("해당하는 유저를 찾을 수 없습니다.(" + username + ")"));
+        Users user = (Users) customUserDetailsService.loadUserByUsername(username);
 
         UserResponseDto.UsersInfo usersInfo = UserResponseDto.UsersInfo.builder()
                 .username(user.getUsername())

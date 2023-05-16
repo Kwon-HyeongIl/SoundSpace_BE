@@ -36,3 +36,7 @@ spring:
   redis:
     host: localhost
     port: 6379
+
+spotify:
+  clientId: f3f0bcf58f5849b0bf5228f10fbf64f3
+  clientSecret: 3b93ad6b89764a938a37f1f8b0595ed3
