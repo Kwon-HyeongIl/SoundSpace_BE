@@ -16,14 +16,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -149,12 +149,28 @@ public class UsersService {
     public ResponseEntity<?> profiles(String username) {
         Users user = (Users) customUserDetailsService.loadUserByUsername(username);
 
-        UserResponseDto.UsersInfo usersInfo = UserResponseDto.UsersInfo.builder()
+        UserResponseDto.UserInfo userInfo = UserResponseDto.UserInfo.builder()
                 .username(user.getUsername())
                 .email(user.getEmail())
                 .likes(user.getLikes())
                 .build();
 
-        return response.success(usersInfo, "회원 프로필 조회에 성공했습니다.", HttpStatus.OK);
+        return response.success(userInfo, "회원 프로필 조회에 성공했습니다.", HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> search(String query) {
+        List<Users> users = usersRepository.findByUsernameContaining(query);
+
+        List<UserResponseDto.UserInfo> userInfos = new ArrayList<>();
+        for (Users user : users) {
+            UserResponseDto.UserInfo userInfo = UserResponseDto.UserInfo.builder()
+                    .username(user.getUsername())
+                    .email(user.getEmail())
+                    .likes(user.getLikes())
+                    .build();
+
+            userInfos.add(userInfo);
+        }
+        return response.success(userInfos, "유저 조회에 성공했습니다.", HttpStatus.OK);
     }
 }

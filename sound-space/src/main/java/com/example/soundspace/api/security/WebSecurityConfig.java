@@ -30,9 +30,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/api/v1/users/sign-up", "/api/v1/users/login", "/api/v1/users/authority",
-                        "/api/v1/users/reissue", "/api/v1/users/logout", "/api/v1/users/{username}/profiles",
+                        "/api/v1/users/reissue", "/api/v1/users/logout", "/api/v1/users/{username}/profiles", "/api/v1/users/search",
                         "/api/v1/music/*").permitAll()
-                .antMatchers("/api/v1/users/user").hasRole("USER")
+                .antMatchers("/api/v1/users/userTest").hasRole("USER")
                 .antMatchers("/api/v1/users/{username}").hasRole("USER")
                 .antMatchers("/api/v1/users/adminTest").hasRole("ADMIN")
                 .and()

@@ -12,7 +12,7 @@
 <script>
     $.ajax({
         type: 'GET',
-        url: '/api/v1/users/user',
+        url: '/api/v1/users/userTest',
         contentType:'application/json; charset=utf-8',
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("accessToken"));

@@ -19,7 +19,7 @@ public class UserResponseDto {
     @Builder
     @Getter
     @AllArgsConstructor
-    public static class UsersInfo {
+    public static class UserInfo {
         private String username;
         private String email;
         private Long likes;

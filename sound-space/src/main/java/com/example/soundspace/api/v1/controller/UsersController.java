@@ -18,6 +18,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -69,8 +70,8 @@ public class UsersController {
         return usersService.authority();
     }
 
-    @GetMapping("/user")
-    public ResponseEntity<?> user() {
+    @GetMapping("/userTest")
+    public ResponseEntity<?> userTest() {
         log.info("ROLE_USER");
         return response.success();
     }
@@ -98,5 +99,10 @@ public class UsersController {
     @GetMapping("/{username}/profiles")
     public ResponseEntity<?> profiles(@PathVariable String username) {
         return usersService.profiles(username);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> search(String query) {
+        return usersService.search(query);
     }
 }
