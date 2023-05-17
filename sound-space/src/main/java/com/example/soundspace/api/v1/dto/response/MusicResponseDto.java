@@ -1,0 +1,19 @@
+package com.example.soundspace.api.v1.dto.response;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+
+import java.util.List;
+
+public class MusicResponseDto {
+
+    @Builder
+    @Getter
+    @AllArgsConstructor
+    public static class TrackInfo {
+        private String artistName;
+        private String trackTitle;
+        private String albumImageUrl;
+    }
+}
