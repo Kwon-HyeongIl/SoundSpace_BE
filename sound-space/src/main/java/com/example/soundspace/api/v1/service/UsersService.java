@@ -160,17 +160,20 @@ public class UsersService {
 
     public ResponseEntity<?> search(String query) {
         List<Users> users = usersRepository.findByUsernameContaining(query);
+        if (users.isEmpty())
+            return response.success("'" + query + "'에 대한 검색결과가 없습니다.");
+        else {
+            List<UserResponseDto.UserInfo> userInfos = new ArrayList<>();
+            for (Users user : users) {
+                UserResponseDto.UserInfo userInfo = UserResponseDto.UserInfo.builder()
+                        .username(user.getUsername())
+                        .email(user.getEmail())
+                        .likes(user.getLikes())
+                        .build();
 
-        List<UserResponseDto.UserInfo> userInfos = new ArrayList<>();
-        for (Users user : users) {
-            UserResponseDto.UserInfo userInfo = UserResponseDto.UserInfo.builder()
-                    .username(user.getUsername())
-                    .email(user.getEmail())
-                    .likes(user.getLikes())
-                    .build();
-
-            userInfos.add(userInfo);
+                userInfos.add(userInfo);
+            }
+            return response.success(userInfos, "유저 조회에 성공했습니다.", HttpStatus.OK);
         }
-        return response.success(userInfos, "유저 조회에 성공했습니다.", HttpStatus.OK);
     }
 }
