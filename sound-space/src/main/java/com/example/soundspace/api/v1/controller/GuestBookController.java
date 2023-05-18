@@ -11,6 +11,7 @@ import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,8 @@ public class GuestBookController {
 
     @PostMapping("/{targetUserId}")
     public ResponseEntity<GuestBookResponseDto> writeGuestBook(@PathVariable Long targetUserId,
-                                                               @RequestBody GuestBookRequestDto guestBookRequestDto, @AuthenticationPrincipal Users writer) {
-        return ResponseEntity.ok(guestBookService.writeGuestBook(writer, targetUserId, guestBookRequestDto));
+                                                               @RequestBody GuestBookRequestDto guestBookRequestDto,
+                                                               @AuthenticationPrincipal Authentication authentication) {
+        return ResponseEntity.ok(guestBookService.writeGuestBook(authentication.getName(), targetUserId, guestBookRequestDto));
     }
 }

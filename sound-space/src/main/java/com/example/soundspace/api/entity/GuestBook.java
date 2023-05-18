@@ -21,11 +21,11 @@ public class GuestBook {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private Users writer;  // 작성자
+    private Users writer;
 
     @ManyToOne
     @JoinColumn(name = "target_user_id")
-    private Users targetUser;  // 방명록의 주인
+    private Users targetUser;
 
-    private String content;  // 방명록 내용
+    private String content; 
 }

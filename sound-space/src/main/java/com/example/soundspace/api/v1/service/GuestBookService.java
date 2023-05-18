@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
-// GuestBookService.java
 @Service
 public class GuestBookService {
 
@@ -27,14 +26,11 @@ public class GuestBookService {
         this.usersRepository = usersRepository;
     }
 
-    public GuestBookResponseDto writeGuestBook(Users writer, Long targetUserId, GuestBookRequestDto guestBookRequestDto) {
+    public GuestBookResponseDto writeGuestBook(String writerUsername, Long targetUserId, GuestBookRequestDto guestBookRequestDto) {
+        Users writer = usersRepository.findByUsername(writerUsername)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username : " + writerUsername));
         Users targetUser = usersRepository.findById(targetUserId)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with id : " + targetUserId));
-
-        // Check if writer is not null
-        if (writer == null) {
-            throw new IllegalArgumentException("Writer is null");
-        }
 
         GuestBook guestBook = new GuestBook();
         guestBook.setWriter(writer);
@@ -43,7 +39,6 @@ public class GuestBookService {
 
         guestBookRepository.save(guestBook);
 
-        // GuestBook을 GuestBookResponseDto로 변환
         GuestBookResponseDto responseDto = new GuestBookResponseDto();
         responseDto.setContent(guestBook.getContent());
         responseDto.setWriterNickname(writer.getNickname());
