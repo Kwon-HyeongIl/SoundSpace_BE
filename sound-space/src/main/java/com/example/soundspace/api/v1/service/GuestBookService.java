@@ -31,6 +31,11 @@ public class GuestBookService {
         Users targetUser = usersRepository.findById(targetUserId)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with id : " + targetUserId));
 
+        // Check if writer is not null
+        if (writer == null) {
+            throw new IllegalArgumentException("Writer is null");
+        }
+
         GuestBook guestBook = new GuestBook();
         guestBook.setWriter(writer);
         guestBook.setTargetUser(targetUser);
