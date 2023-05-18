@@ -30,6 +30,9 @@ public class Users extends BaseTime implements UserDetails {
     private String email;
 
     @Column
+    private String nickname;
+
+    @Column
     private String password;
 
     @Column
