@@ -13,6 +13,6 @@ import lombok.Setter;
 public class GuestBookResponseDto {
 
     private String content;
-    private String writerNickname;
+    private String writerEmail;
 
 }

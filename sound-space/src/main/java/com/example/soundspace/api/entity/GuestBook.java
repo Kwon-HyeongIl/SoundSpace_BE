@@ -27,5 +27,5 @@ public class GuestBook {
     @JoinColumn(name = "target_user_id")
     private Users targetUser;
 
-    private String content; 
+    private String content;
 }

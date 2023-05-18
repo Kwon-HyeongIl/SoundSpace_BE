@@ -41,7 +41,7 @@ public class GuestBookService {
 
         GuestBookResponseDto responseDto = new GuestBookResponseDto();
         responseDto.setContent(guestBook.getContent());
-        responseDto.setWriterNickname(writer.getNickname());
+        responseDto.setWriterEmail(writer.getEmail());
 
         return responseDto;
     }
