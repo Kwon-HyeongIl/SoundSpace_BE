@@ -27,6 +27,9 @@ public class GuestBookService {
     }
 
     public GuestBookResponseDto writeGuestBook(String writerUsername, Long targetUserId, GuestBookRequestDto guestBookRequestDto) {
+        if(writerUsername == null) {
+            throw new IllegalArgumentException("Authentication failed. User is not authenticated.");
+        }
         Users writer = usersRepository.findByUsername(writerUsername)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with username : " + writerUsername));
         Users targetUser = usersRepository.findById(targetUserId)
