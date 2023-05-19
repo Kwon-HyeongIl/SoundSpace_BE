@@ -17,6 +17,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.NoSuchElementException;
+
 @RestController
 @RequestMapping("/api/v1/guestbook")
 public class GuestBookController {
@@ -56,4 +58,32 @@ public class GuestBookController {
                 guestBookRequestDto
         ));
     }
+
+    @DeleteMapping("/{guestBookId}")
+    public ResponseEntity<Void> deleteGuestBook(@PathVariable Long guestBookId,
+                                                @RequestHeader("Authorization") String token) {
+        if (!jwtTokenProvider.validateToken(token)) {
+            System.out.println("Invalid token");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+
+        if(authentication == null || authentication.getName() == null) {
+            System.out.println("Authentication is null");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        try {
+            guestBookService.deleteGuestBook(authentication.getName(), guestBookId);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        } catch (IllegalArgumentException e) {
+            System.out.println("Unauthorized access: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        } catch (NoSuchElementException e) {
+            System.out.println("Entity not found: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 }
+

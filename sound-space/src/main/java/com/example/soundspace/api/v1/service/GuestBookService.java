@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.NoSuchElementException;
+
 
 @Service
 public class GuestBookService {
@@ -48,4 +51,19 @@ public class GuestBookService {
 
         return responseDto;
     }
+
+    public void deleteGuestBook(String requesterUsername, Long guestBookId) {
+        Users requester = usersRepository.findByUsername(requesterUsername)
+                .orElseThrow(() -> new UsernameNotFoundException("username으로 사용자를 찾을 수 없습니다. : " + requesterUsername));
+
+        GuestBook guestBook = guestBookRepository.findById(guestBookId)
+                .orElseThrow(() -> new NoSuchElementException("id로 방명록을 찾을 수 없습니다. : " + guestBookId));
+
+        if (!requester.getIdx().equals(guestBook.getWriter().getIdx())) {
+            throw new IllegalArgumentException("요청자는 방명록의 작성자가 아닙니다.");
+        }
+
+        guestBookRepository.delete(guestBook);
+    }
 }
+
