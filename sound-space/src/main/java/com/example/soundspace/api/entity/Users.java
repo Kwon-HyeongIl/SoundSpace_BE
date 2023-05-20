@@ -33,6 +33,12 @@ public class Users extends BaseTime implements UserDetails {
     private String password;
 
     @Column
+    private Integer likes = 0;
+
+    @Column
+    private String profilePictureUrl;
+
+    @Column
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private List<String> roles = new ArrayList<>();
