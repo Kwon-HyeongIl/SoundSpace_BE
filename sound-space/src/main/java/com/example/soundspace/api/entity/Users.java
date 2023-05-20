@@ -33,10 +33,13 @@ public class Users extends BaseTime implements UserDetails {
     private String password;
 
     @Column
-    private Integer likes = 0;
-
-    @Column
     private String profilePictureUrl;
+
+    @OneToMany(mappedBy = "liker")
+    private List<UserLikes> likesGiven = new ArrayList<>();
+
+    @OneToMany(mappedBy = "likee")
+    private List<UserLikes> likesReceived = new ArrayList<>();
 
     @Column
     @ElementCollection(fetch = FetchType.EAGER)
