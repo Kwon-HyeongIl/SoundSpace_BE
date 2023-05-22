@@ -13,6 +13,7 @@ import Player from "./Player.js";
 import { Text } from "@react-three/drei";
 import { FPV } from "./FPV";
 import Box from "./musicBox.js";
+import GuestBox from "./guestBox.js";
 
 //바닥
 function PlaneBottom() {
@@ -73,6 +74,8 @@ function PlaneFront() {
 }
 
 export default function GalleryCanvas() {
+  // const cameraPosition = new THREE.Vector3(0, 50, 0);
+
   return (
     <>
       <Canvas shadows={true} camera={{ fov: 45 }}>
@@ -94,6 +97,7 @@ export default function GalleryCanvas() {
           <Player />
           <PlaneBottom />
           <Box />
+          <GuestBox />
           {/* <PlaneLeft />
           <PlaneRight />
           <PlaneFront /> */}
