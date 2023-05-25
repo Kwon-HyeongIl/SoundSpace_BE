@@ -104,7 +104,7 @@ export default function GalleryCanvas() {
               key={index}
               box_position={[
                 initialBoxPosition + index * boxGap,
-                2 + index * 3, // Adjust the height of each box if needed
+                2, // Adjust the height of each box if needed
                 0,
               ]}
               url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
