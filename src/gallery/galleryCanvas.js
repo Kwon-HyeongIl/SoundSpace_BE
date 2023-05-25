@@ -12,76 +12,10 @@ import { Physics, usePlane, useBox } from "@react-three/cannon";
 import Player from "./Player.js";
 import { Text } from "@react-three/drei";
 import { FPV } from "./FPV";
+import Box from "./musicBox.js";
+import GuestBox from "./guestBox.js";
 
-function Box({ position }) {
-  const [ref, api] = useBox(() => ({ mass: 1, position: [0, 0, 0] }));
-
-  useFrame(() => {
-    if (api && api.velocity) {
-      const { forward, backward, left, right } = api.velocity;
-      const speed = 0.2;
-      if (forward && forward[2] > 0)
-        api.velocity.set(forward[0], forward[1], 0);
-      if (backward && backward[2] < 0)
-        api.velocity.set(backward[0], backward[1], 0);
-      if (left && left[0] < 0) api.velocity.set(0, left[1], left[2]);
-      if (right && right[0] > 0) api.velocity.set(0, right[1], right[2]);
-    }
-  });
-
-  return (
-    <group>
-      <mesh ref={ref} position={[0, 2, 0]} castShadow>
-        <boxBufferGeometry attach="geometry" />
-        <meshLambertMaterial attach="material" color="hotpink" />
-      </mesh>
-      <Text
-        position={[0, 1.2, 0.6]} // Position the text slightly in front of the box
-        rotation={[0, 0, 0]} // Adjust the rotation of the text if needed
-        fontSize={0.4} // Adjust the font size of the text
-        color="white" // Set the color of the text
-      >
-        go forward!
-      </Text>
-      <Button />
-    </group>
-  );
-}
-
-const Button = () => {
-  const texture = useLoader(
-    THREE.TextureLoader,
-    "https://cdn-icons-png.flaticon.com/512/149/149125.png"
-  );
-  const buttonRef = useRef();
-  const [isHovered, setHovered] = useState(false);
-
-  const handlePointerOver = () => {
-    setHovered(true);
-  };
-
-  const handlePointerOut = () => {
-    setHovered(false);
-  };
-
-  // useFrame(() => {
-  //   buttonRef.current.rotation.y += 0.01;
-  // });
-
-  return (
-    <mesh
-      ref={buttonRef}
-      onPointerOver={handlePointerOver}
-      onPointerOut={handlePointerOut}
-      position={[-1, 0, 0]}
-      castShadow
-    >
-      <boxBufferGeometry args={[0.2, 0.2, 0.2]} />
-      <meshStandardMaterial map={texture} color={isHovered ? "red" : "blue"} />
-    </mesh>
-  );
-};
-
+//바닥
 function PlaneBottom() {
   const [ref] = usePlane(() => ({
     rotation: [-Math.PI / 2, 0, 0],
@@ -96,66 +30,69 @@ function PlaneBottom() {
   );
 }
 
-function PlaneRight() {
+// Wall
+function PlaneLeft() {
   const [ref] = usePlane(() => ({
-    rotation: [0, Math.PI / 2, 0], // Rotate the plane 90 degrees around the y-axis
-    position: [-10, 0, 0], // Adjust the position to move it to the right side
+    rotation: [0, Math.PI / 2, 0],
+    position: [-10, 0, 0],
   }));
 
   return (
     <mesh ref={ref} receiveShadow>
-      <planeBufferGeometry attach="geometry" args={[10, 10]} />
+      <planeBufferGeometry attach="geometry" args={[100, 100]} />
       <meshLambertMaterial attach="material" color="yellow" />
     </mesh>
   );
 }
 
-function PlaneLeft() {
+function PlaneRight() {
   const [ref] = usePlane(() => ({
-    rotation: [0, 0, Math.PI / 2], // Rotate the plane 90 degrees around the y-axis
-    position: [0, 0, -10], // Adjust the position to move it to the right side
+    rotation: [0, -Math.PI / 2, 0],
+    position: [10, 0, 0],
   }));
 
   return (
     <mesh ref={ref} receiveShadow>
-      <planeBufferGeometry attach="geometry" args={[10, 10]} />
+      <planeBufferGeometry attach="geometry" args={[100, 100]} />
+      <meshLambertMaterial attach="material" color="green" />
+    </mesh>
+  );
+}
+
+function PlaneBack() {
+  const [ref] = usePlane(() => ({
+    rotation: [0, -Math.PI, 0],
+    position: [0, 0, 10],
+  }));
+
+  return (
+    <mesh ref={ref} receiveShadow>
+      <planeBufferGeometry attach="geometry" args={[100, 100]} />
+      <meshLambertMaterial attach="material" color="white" />
+    </mesh>
+  );
+}
+
+function PlaneFront() {
+  const [ref] = usePlane(() => ({
+    rotation: [0, 0, 0],
+    position: [0, 0, -10],
+  }));
+
+  return (
+    <mesh ref={ref} receiveShadow>
+      <planeBufferGeometry attach="geometry" args={[100, 100]} />
       <meshLambertMaterial attach="material" color="purple" />
     </mesh>
   );
 }
 
-//이건 유튭브 예제 + 키보드 컨트롤
-// export default function GalleryCanvas() {
-//   return (
-//     <KeyboardControls
-//       map={[
-//         { name: "forward", keys: ["ArrowUp", "w", "W"] },
-//         { name: "backward", keys: ["ArrowDown", "s", "S"] },
-//         { name: "left", keys: ["ArrowLeft", "a", "A"] },
-//         { name: "right", keys: ["ArrowRight", "d", "D"] },
-//         { name: "jump", keys: ["Space"] },
-//       ]}
-//     >
-//       <Canvas>
-//         {/* <OrbitControls /> */}
-//         <FirstPersonControls
-//           minDistance={0} // 최소 거리
-//           maxDistance={50} // 최대 거리
-//         />
-//         <ambientLight intensity={0.5} />
-//         <Stars />
-//         <spotLight position={[0, 15, 10]} angle={0.3} />
-//         <Physics gravity={[0, -30, 0]}>
-//           <Box />
-//           <PlaneBottom />
-//         </Physics>
-//         <PlaneRight />
-//       </Canvas>
-//     </KeyboardControls>
-//   );
-// }
-
 export default function GalleryCanvas() {
+  // const cameraPosition = new THREE.Vector3(0, 50, 0);
+  const numBoxes = 10; // Number of boxes
+  const boxGap = 2; // Gap between boxes
+  const initialBoxPosition = -((numBoxes - 1) * boxGap) / 2;
+
   return (
     <>
       <Canvas shadows={true} camera={{ fov: 45 }}>
@@ -176,10 +113,22 @@ export default function GalleryCanvas() {
         <Physics gravity={[0, -30, 0]}>
           <Player />
           <PlaneBottom />
-          <Box />
-          {/* <Box position={[-40, 0, -40]} /> */}
-          <PlaneRight />
+          {Array.from({ length: numBoxes }, (_, index) => (
+            <Box
+              key={index}
+              box_position={[
+                initialBoxPosition + index * boxGap,
+                2, // Adjust the height of each box if needed
+                0,
+              ]}
+              url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
+            />
+          ))}
+          <GuestBox />
           <PlaneLeft />
+          <PlaneRight />
+          <PlaneFront />
+          <PlaneBack />
         </Physics>
       </Canvas>
       <div className="absolute centered cursor">+</div>
