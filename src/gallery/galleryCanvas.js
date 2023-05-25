@@ -47,7 +47,7 @@ function PlaneLeft() {
 
 function PlaneRight() {
   const [ref] = usePlane(() => ({
-    rotation: [0, Math.PI / 2, 0],
+    rotation: [0, -Math.PI / 2, 0],
     position: [4, 0, 0],
   }));
 
@@ -111,9 +111,9 @@ export default function GalleryCanvas() {
             />
           ))}
           <GuestBox />
-          {/* <PlaneLeft />
+          <PlaneLeft />
           <PlaneRight />
-          <PlaneFront /> */}
+          <PlaneFront />
         </Physics>
       </Canvas>
       <div className="absolute centered cursor">+</div>
