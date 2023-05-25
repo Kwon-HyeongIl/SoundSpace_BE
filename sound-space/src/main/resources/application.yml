@@ -36,3 +36,9 @@ spring:
   redis:
     host: localhost
     port: 6379
+
+# Genius
+genius:
+  api:
+    base-url: https://api.genius.com
+    access-token: -guqQV5QhBh66KUWje60W43oGNx4_sqCjwdcnW8peflS4usTm4xy6s5BInJDGfmL
