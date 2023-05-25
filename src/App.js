@@ -6,6 +6,7 @@ import RankPage from "./ranking/ranking";
 import BookmarkPage from "./bookmark/bookmark";
 import GalleryPage from "./gallery/gallery";
 import LikePage from "./likeList/like4other";
+import InfoPage from "./user_info/user_info";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
           <Route path={"/bookmark"} element={<BookmarkPage />}></Route>
           <Route path={"/gallery"} element={<GalleryPage />}></Route>
           <Route path={"/Like"} element={<LikePage />}></Route>
+          <Route path={"/info"} element={<InfoPage />}></Route>
         </Routes>
       </BrowserRouter>
     </>

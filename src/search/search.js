@@ -56,5 +56,5 @@ export default function Searching() {
     <div>
       <UserSearch></UserSearch>
     </div>
-  )
+  );
 }
