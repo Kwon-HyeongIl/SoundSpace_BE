@@ -75,6 +75,9 @@ function PlaneFront() {
 
 export default function GalleryCanvas() {
   // const cameraPosition = new THREE.Vector3(0, 50, 0);
+  const numBoxes = 10; // Number of boxes
+  const boxGap = 2; // Gap between boxes
+  const initialBoxPosition = -((numBoxes - 1) * boxGap) / 2;
 
   return (
     <>
@@ -96,7 +99,17 @@ export default function GalleryCanvas() {
         <Physics gravity={[0, -30, 0]}>
           <Player />
           <PlaneBottom />
-          <Box />
+          {Array.from({ length: numBoxes }, (_, index) => (
+            <Box
+              key={index}
+              box_position={[
+                initialBoxPosition + index * boxGap,
+                2 + index * 3, // Adjust the height of each box if needed
+                0,
+              ]}
+              url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
+            />
+          ))}
           <GuestBox />
           {/* <PlaneLeft />
           <PlaneRight />

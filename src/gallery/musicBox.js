@@ -12,12 +12,9 @@ import { Physics, usePlane, useBox } from "@react-three/cannon";
 import { Text } from "@react-three/drei";
 import { useNavigate } from "react-router-dom";
 
-function Box({ position }) {
-  const texture = useLoader(
-    THREE.TextureLoader,
-    "https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
-  );
-  const [ref, api] = useBox(() => ({ mass: 1, position: [0, 0, 0] }));
+function Box({ box_position, url }) {
+  const texture = useLoader(THREE.TextureLoader, url);
+  const [ref, api] = useBox(() => ({ mass: 1, position: box_position }));
 
   const [isHovered, setHovered] = useState(false);
 
@@ -49,11 +46,11 @@ function Box({ position }) {
         onPointerOver={handlePointerOver}
         onPointerOut={handlePointerOut}
         ref={ref}
-        position={[0, 2, 0]}
+        position={box_position}
         castShadow
       >
         <boxBufferGeometry attach="geometry" />
-        <meshLambertMaterial map={texture} attach="material" color="hotpink" />
+        <meshLambertMaterial map={texture} attach="material" color="white" />
       </mesh>
       <Text
         position={[0, 1.2, 0.6]} // Position the text slightly in front of the box
@@ -63,13 +60,13 @@ function Box({ position }) {
       >
         go forward!
       </Text>
-      {isHovered && <Button />}
+      {isHovered && <Button boxPosition={box_position} />}
     </group>
   );
 }
 
 //+버튼
-const Button = () => {
+const Button = ({ boxPosition }) => {
   const texture = useLoader(
     THREE.TextureLoader,
     "https://cdn-icons-png.flaticon.com/512/149/149125.png"
@@ -95,7 +92,7 @@ const Button = () => {
       ref={buttonRef}
       onPointerOver={handlePointerOver}
       onPointerOut={handlePointerOut}
-      position={[0, 0.5, 1]}
+      position={[boxPosition[0], boxPosition[1] - 1.5, boxPosition[2] + 1]}
       castShadow
       onClick={() => navigate("/MusicInfo")} //임시로 /LikePage 넘어가도록
     >
