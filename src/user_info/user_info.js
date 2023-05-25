@@ -25,7 +25,11 @@ function UserInfo () {
             </div>
 
             <div className='change_info'>
-
+              <div className='title_word'><span id="y_word">CHANGE</span> MY INFO</div>
+              <input className='Enter_info' type='text' name='input_new_id' placeholder='ENTER NEW ID'></input>
+              <input className='Enter_info' type='text' name='input_new_pw' placeholder='ENTER NEW PASSWORD'></input>
+              <input className='Enter_info' type='text' name='input_check_pw' placeholder='ONE MORE PASSWORD'></input>
+              <button className="change_button">CHANGE</button>
             </div>
 
         </div>
