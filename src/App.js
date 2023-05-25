@@ -8,6 +8,7 @@ import GalleryPage from "./gallery/gallery";
 import LikePage from "./likeList/like4other";
 import MusicInfoPage from "./musicInfo/musicInfo";
 import GuestPage from "./gallery/guest";
+import InfoPage from "./user_info/user_info";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
           <Route path={"/Like"} element={<LikePage />}></Route>
           <Route path={"/MusicInfo"} element={<MusicInfoPage />}></Route>
           <Route path={"/guest"} element={<GuestPage />}></Route>
+          <Route path={"/info"} element={<InfoPage />}></Route>
         </Routes>
       </BrowserRouter>
     </>
