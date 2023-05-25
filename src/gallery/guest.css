@@ -1,0 +1,90 @@
+.Guest_frame {
+  /* 백그라운드 */
+  height: 98vh;
+  padding: 2vh;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  background: linear-gradient(#282828, #000000);
+}
+.leftBox {
+  margin: auto;
+  padding: 20px;
+  color: #000000;
+  font-size: large;
+}
+.guest_list {
+  margin: auto;
+  padding: 20px;
+  float: top;
+  font-size: large;
+}
+.input-frame {
+  display: grid;
+  grid-template-rows: 1fr 5fr 1fr;
+  padding: 50px;
+  height: 70vh;
+  margin: auto;
+  border: solid #ebff00;
+}
+.user_name {
+  color: #ebff00;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 48px;
+}
+.guest_input {
+  background: transparent;
+  color: #ebff00;
+  border: none;
+}
+.send_button {
+  margin-top: 50px;
+  border: none;
+  color: white;
+  font-size: large;
+  background-color: transparent;
+}
+.send_button:hover {
+  color: black;
+  background-color: #ebff00;
+}
+.list-frame {
+  margin: auto;
+  height: 70vh;
+  padding: 50px;
+  border: solid white;
+  border-radius: 20px;
+  overflow: scroll;
+}
+.list-frame::-webkit-scrollbar {
+  display: none;
+  /*scrollbar 안보이게*/
+}
+.list_content {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 800;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  color: white;
+}
+.list_content_child {
+  width: 200px;
+}
+.guestContainer {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* text-align: center; */
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 800;
+  /* font-size: 30px; */
+  line-height: 35px;
+  color: white;
+}
+.guestItem {
+  /* margin: auto; */
+}

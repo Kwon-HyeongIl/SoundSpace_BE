@@ -79,7 +79,7 @@ const Button = () => {
       onPointerOut={handlePointerOut}
       position={[-5, 0.5, 1]}
       castShadow
-      onClick={() => navigate("/MusicInfo")} //임시로 /LikePage 넘어가도록
+      onClick={() => navigate("/guest")} //임시로 /LikePage 넘어가도록
     >
       <boxBufferGeometry args={[0.2, 0.2, 0.2]} />
       <meshStandardMaterial map={texture} color={isHovered ? "red" : "blue"} />

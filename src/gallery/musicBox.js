@@ -26,20 +26,6 @@ function Box({ box_position, url }) {
     setHovered(false);
   };
 
-  // 상자 움직임 조작(Frame마다)
-  //   useFrame(() => {
-  //     if (api && api.velocity) {
-  //       const { forward, backward, left, right } = api.velocity;
-  //       const speed = 0.2;
-  //       if (forward && forward[2] > 0)
-  //         api.velocity.set(forward[0], forward[1], 0);
-  //       if (backward && backward[2] < 0)
-  //         api.velocity.set(backward[0], backward[1], 0);
-  //       if (left && left[0] < 0) api.velocity.set(0, left[1], left[2]);
-  //       if (right && right[0] > 0) api.velocity.set(0, right[1], right[2]);
-  //     }
-  //   });
-
   return (
     <group>
       <mesh
