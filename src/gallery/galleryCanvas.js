@@ -34,12 +34,12 @@ function PlaneBottom() {
 function PlaneLeft() {
   const [ref] = usePlane(() => ({
     rotation: [0, Math.PI / 2, 0],
-    position: [-4, 0, 0],
+    position: [-10, 0, 0],
   }));
 
   return (
     <mesh ref={ref} receiveShadow>
-      <planeBufferGeometry attach="geometry" args={[10, 10]} />
+      <planeBufferGeometry attach="geometry" args={[100, 100]} />
       <meshLambertMaterial attach="material" color="yellow" />
     </mesh>
   );
@@ -48,13 +48,27 @@ function PlaneLeft() {
 function PlaneRight() {
   const [ref] = usePlane(() => ({
     rotation: [0, -Math.PI / 2, 0],
-    position: [4, 0, 0],
+    position: [10, 0, 0],
   }));
 
   return (
     <mesh ref={ref} receiveShadow>
-      <planeBufferGeometry attach="geometry" args={[10, 10]} />
+      <planeBufferGeometry attach="geometry" args={[100, 100]} />
       <meshLambertMaterial attach="material" color="green" />
+    </mesh>
+  );
+}
+
+function PlaneBack() {
+  const [ref] = usePlane(() => ({
+    rotation: [0, -Math.PI, 0],
+    position: [0, 0, 10],
+  }));
+
+  return (
+    <mesh ref={ref} receiveShadow>
+      <planeBufferGeometry attach="geometry" args={[100, 100]} />
+      <meshLambertMaterial attach="material" color="white" />
     </mesh>
   );
 }
@@ -62,12 +76,12 @@ function PlaneRight() {
 function PlaneFront() {
   const [ref] = usePlane(() => ({
     rotation: [0, 0, 0],
-    position: [0, 0, -5],
+    position: [0, 0, -10],
   }));
 
   return (
     <mesh ref={ref} receiveShadow>
-      <planeBufferGeometry attach="geometry" args={[10, 10]} />
+      <planeBufferGeometry attach="geometry" args={[100, 100]} />
       <meshLambertMaterial attach="material" color="purple" />
     </mesh>
   );
@@ -114,6 +128,7 @@ export default function GalleryCanvas() {
           <PlaneLeft />
           <PlaneRight />
           <PlaneFront />
+          <PlaneBack />
         </Physics>
       </Canvas>
       <div className="absolute centered cursor">+</div>
