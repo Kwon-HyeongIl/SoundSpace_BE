@@ -1,26 +1,21 @@
 package com.example.soundspace.api.v1.controller;
 
-import com.example.soundspace.api.entity.Users;
 import com.example.soundspace.api.jwt.JwtTokenProvider;
 import com.example.soundspace.api.lib.Helper;
 import com.example.soundspace.api.security.SecurityUtil;
 import com.example.soundspace.api.v1.dto.Response;
 import com.example.soundspace.api.v1.dto.request.UserRequestDto;
 import com.example.soundspace.api.v1.service.UsersService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
-
+import springfox.documentation.annotations.ApiIgnore;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -33,7 +28,7 @@ public class UsersController {
     private final Response response;
 
     @PostMapping("/sign-up")
-    public ResponseEntity<?> signUp(@Validated UserRequestDto.SignUp signUp, Errors errors) {
+    public ResponseEntity<?> signUp(@Validated UserRequestDto.SignUp signUp, @ApiIgnore Errors errors) {
         if (errors.hasErrors()) {
             return response.invalidFields(Helper.refineErrors(errors));
         }
@@ -41,7 +36,7 @@ public class UsersController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@Validated UserRequestDto.Login login, Errors errors) {
+    public ResponseEntity<?> login(@Validated UserRequestDto.Login login, @ApiIgnore Errors errors) {
         if (errors.hasErrors()) {
             return response.invalidFields(Helper.refineErrors(errors));
         }
@@ -49,7 +44,7 @@ public class UsersController {
     }
 
     @PostMapping("/reissue")
-        public ResponseEntity<?> reissue(@Validated UserRequestDto.Reissue reissue, Errors errors) {
+        public ResponseEntity<?> reissue(@Validated UserRequestDto.Reissue reissue, @ApiIgnore Errors errors) {
             if (errors.hasErrors()) {
                 return response.invalidFields(Helper.refineErrors(errors));
             }
@@ -57,7 +52,7 @@ public class UsersController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<?> logout(@Validated UserRequestDto.Logout logout, Errors errors) {
+    public ResponseEntity<?> logout(@Validated UserRequestDto.Logout logout, @ApiIgnore Errors errors) {
         if (errors.hasErrors()) {
             return response.invalidFields(Helper.refineErrors(errors));
         }
@@ -83,7 +78,7 @@ public class UsersController {
     }
 
     @PatchMapping("/{username}")
-    public ResponseEntity<?> updateUser(@PathVariable String username, @Validated @RequestBody UserRequestDto.Update update, Errors errors) {
+    public ResponseEntity<?> updateUser(@PathVariable String username, @Validated @RequestBody UserRequestDto.Update update, @ApiIgnore Errors errors) {
         if (errors.hasErrors()) {
             return response.invalidFields(Helper.refineErrors(errors));
         }

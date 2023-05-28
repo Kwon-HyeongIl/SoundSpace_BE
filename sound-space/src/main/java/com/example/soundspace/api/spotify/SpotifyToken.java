@@ -3,12 +3,13 @@ package com.example.soundspace.api.spotify;
 import com.wrapper.spotify.SpotifyApi;
 import com.wrapper.spotify.model_objects.credentials.ClientCredentials;
 import com.wrapper.spotify.requests.authorization.client_credentials.ClientCredentialsRequest;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 
-
+@Slf4j
 public class SpotifyToken {
 
     private static String clientId;
@@ -29,13 +30,13 @@ public class SpotifyToken {
             // Set access token for further "spotifyApi" object usage
             spotifyApi.setAccessToken(clientCredentials.getAccessToken());
 
-            System.out.println("Expires in: " + clientCredentials.getExpiresIn());
+            log.info("Expires in: " + clientCredentials.getExpiresIn());
 
             return spotifyApi.getAccessToken();
         } catch (CompletionException e) {
-            System.out.println("Error: " + e.getCause().getMessage());
+            log.info("Error: " + e.getCause().getMessage());
         } catch (CancellationException e) {
-            System.out.println("Async operation cancelled.");
+            log.info("Async operation cancelled.");
         }
         return "error";
     }

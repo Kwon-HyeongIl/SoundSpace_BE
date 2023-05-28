@@ -40,3 +40,13 @@ spring:
 spotify:
   clientId: f3f0bcf58f5849b0bf5228f10fbf64f3
   clientSecret: 3b93ad6b89764a938a37f1f8b0595ed3
+
+--- # swagger
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+genius:
+  client-id: OprkTW4uD_JUPL7P__xUM-BsOaqANl_NSSTn4PodKFvye0-zC5-ObT68g0ZuqqF3
+  client-secret: Rm7t_SFh9XhKCQFLbf1FpwW5yBnal8fAzbn6GHuC5zTLVykMEFT-ArNLu0mKPR2dox94BHruW4z0uNgZkLAWYg
