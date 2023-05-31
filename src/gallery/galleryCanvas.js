@@ -14,7 +14,17 @@ import { Text } from "@react-three/drei";
 import { FPV } from "./FPV";
 import Box from "./musicBox.js";
 import GuestBox from "./guestBox.js";
+// import Person from "./person.js";
+import { useGLTF, Stage, PresentationControls } from "@react-three/drei";
 
+function Model(props) {
+  const { scene } = useGLTF("/person.glb");
+  return (
+    <group>
+      <primitive object={scene} {...props} />
+    </group>
+  );
+}
 //바닥
 function PlaneBottom() {
   const [ref] = usePlane(() => ({
@@ -167,6 +177,8 @@ export default function GalleryCanvas() {
               url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
             />
           ))} */}
+          {/* <Person /> */}
+          <Model scale={0.01} position={[0, 0, 0]} />
           <GuestBox />
           <PlaneLeft />
           <PlaneRight />
