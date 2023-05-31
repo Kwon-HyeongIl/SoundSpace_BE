@@ -23,8 +23,8 @@ function PlaneBottom() {
   }));
   return (
     // <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-    <mesh position={[0, 0, 0]} rotation-x={-Math.PI / 2} receiveShadow>
-      <planeBufferGeometry attach="geometry" args={[10000, 10000]} />
+    <mesh position={[0, -0.5, 0]} rotation-x={-Math.PI / 2} receiveShadow>
+      <planeBufferGeometry attach="geometry" args={[100, 100]} />
       <meshLambertMaterial attach="material" color="gray" />
     </mesh>
   );
@@ -131,11 +131,11 @@ export default function GalleryCanvas() {
           />
           {/* 왼 */}
           <Box
-            box_position={[-9, 0, -5]}
+            box_position={[-9, 0, -3]}
             url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
           />
           <Box
-            box_position={[-9, 0, 5]}
+            box_position={[-9, 0, 3]}
             url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
           />
           {/* 뒤 */}
@@ -149,11 +149,11 @@ export default function GalleryCanvas() {
           />
           {/* 오 */}
           <Box
-            box_position={[9, 0, -5]}
+            box_position={[9, 0, -3]}
             url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
           />
           <Box
-            box_position={[9, 0, 5]}
+            box_position={[9, 0, 3]}
             url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
           />
           {/* {Array.from({ length: numBoxes }, (_, index) => (
@@ -167,7 +167,7 @@ export default function GalleryCanvas() {
               url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
             />
           ))} */}
-          {/* <GuestBox /> */}
+          <GuestBox />
           <PlaneLeft />
           <PlaneRight />
           <PlaneFront />
