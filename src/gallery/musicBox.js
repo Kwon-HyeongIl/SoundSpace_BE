@@ -39,7 +39,7 @@ function Box({ box_position, url }) {
         <meshLambertMaterial map={texture} attach="material" color="white" />
       </mesh>
       <Text
-        position={[0, 1.2, 0.6]} // Position the text slightly in front of the box
+        position={[0, 1.2, -5]} // Position the text slightly in front of the box
         rotation={[0, 0, 0]} // Adjust the rotation of the text if needed
         fontSize={0.4} // Adjust the font size of the text
         color="white" // Set the color of the text
