@@ -8,6 +8,7 @@ public class PlaylistRequestDto {
     @Getter
     @Setter
     public static class Update {
+        private Long musicId;
         private String trackTitle;
         private String artistName;
         private String albumImageUrl;

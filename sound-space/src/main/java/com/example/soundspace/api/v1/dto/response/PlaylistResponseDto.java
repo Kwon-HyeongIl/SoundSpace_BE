@@ -27,9 +27,11 @@ public class PlaylistResponseDto {
     @Getter
     @AllArgsConstructor
     public static class TrackInfo {
+        private Long musicId;
         private String trackTitle;
         private String artistName;
         private String albumImageUrl;
         private String lyrics;
+        private boolean isBookmarked;
     }
 }

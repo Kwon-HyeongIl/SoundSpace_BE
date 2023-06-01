@@ -1,7 +1,11 @@
 package com.example.soundspace.api.v1.service;
 
+import com.example.soundspace.api.entity.Bookmarks;
+import com.example.soundspace.api.entity.Users;
+import com.example.soundspace.api.security.SecurityUtil;
 import com.example.soundspace.api.v1.dto.Response;
 import com.example.soundspace.api.v1.dto.response.MusicResponseDto;
+import com.example.soundspace.api.v1.repository.BookmarksRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Slf4j
@@ -22,6 +27,9 @@ import java.util.List;
 @Service
 @Transactional
 public class MusicService {
+
+    private final CustomUserDetailsService customUserDetailsService;
+    private final BookmarksRepository bookmarksRepository;
     private final Response response;
 
 //    public ResponseEntity<?> search(String accessToken, String query) {
@@ -73,6 +81,9 @@ public class MusicService {
 //    }
 
     public ResponseEntity<?> search(String accessToken, String query) {
+        String username = SecurityUtil.getCurrentUsername();
+        Users user = (Users) customUserDetailsService.loadUserByUsername(username);
+
         String apiUrl = "https://api.genius.com/search";
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(apiUrl)
@@ -98,16 +109,17 @@ public class MusicService {
                             if (hitNode.has("result")) {
                                 JsonNode resultObj = hitNode.get("result");
 
-                                Long id = Long.parseLong(resultObj.get("id").asText());
+                                Long musicId = Long.parseLong(resultObj.get("id").asText());
                                 String trackTitle = resultObj.get("title_with_featured").asText();
                                 String artistName = resultObj.get("primary_artist").get("name").asText();
                                 String albumImageUrl = resultObj.get("header_image_thumbnail_url").asText();
 
                                 MusicResponseDto.SearchInfo searchInfo = MusicResponseDto.SearchInfo.builder()
-                                        .id(id)
+                                        .musicId(musicId)
                                         .trackTitle(trackTitle)
                                         .artistName(artistName)
                                         .albumImageUrl(albumImageUrl)
+                                        .isBookmarked(bookmarksRepository.existsByMusicIdAndUserId(musicId, user.getId()))
                                         .build();
 
                                 searchInfos.add(searchInfo);
@@ -124,11 +136,11 @@ public class MusicService {
         return response.fail("검색에 실패했습니다.", responseEntity.getStatusCode());
     }
 
-    public ResponseEntity<?> getTrackById(String accessToken, Long id) {
+    public ResponseEntity<?> getMusicById(String accessToken, Long musicId) {
         String apiUrl = "https://api.genius.com/songs";
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(apiUrl)
-                .pathSegment(String.valueOf(id));
+                .pathSegment(String.valueOf(musicId));
 
         ResponseEntity<String> responseEntity = getStringResponseEntity(accessToken, builder);
 
@@ -149,12 +161,12 @@ public class MusicService {
                         String artistName = resultObj.get("primary_artist").get("name").asText();
                         String albumImageUrl = resultObj.get("header_image_thumbnail_url").asText();
 
-                        MusicResponseDto.TrackInfo trackInfo = MusicResponseDto.TrackInfo.builder()
-                                .id(id)
+                        MusicResponseDto.MusicInfo trackInfo = MusicResponseDto.MusicInfo.builder()
+                                .musicId(musicId)
                                 .trackTitle(trackTitle)
                                 .artistName(artistName)
                                 .albumImageUrl(albumImageUrl)
-                                .lyrics(getLyricsById(id))
+                                .lyrics(getLyricsByMusicId(musicId))
                                 .build();
 
                         return response.success(trackInfo, "곡 조회에 성공했습니다.", HttpStatus.OK);
@@ -166,6 +178,29 @@ public class MusicService {
             }
         }
         return response.fail("곡 조회에 실패했습니다.", responseEntity.getStatusCode());
+    }
+
+    public ResponseEntity<?> toggleBookmark(Long musicId) {
+        String username = SecurityUtil.getCurrentUsername();
+        Users user = (Users) customUserDetailsService.loadUserByUsername(username);
+        Long userId = user.getId();
+
+        Optional<Bookmarks> optionalBookmark = bookmarksRepository.findByMusicIdAndUserId(musicId, userId);
+        if (optionalBookmark.isPresent()) {
+            bookmarksRepository.deleteById(optionalBookmark.get().getId());
+
+            return response.success("북마크 해제에 성공했습니다.");
+
+        } else {
+            Bookmarks bookmarks = Bookmarks.builder()
+                    .musicId(musicId)
+                    .user(user)
+                    .build();
+
+            bookmarksRepository.save(bookmarks);
+
+            return response.success("북마크 생성에 성공했습니다.");
+        }
     }
 
     private static ResponseEntity<String> getStringResponseEntity(String accessToken, UriComponentsBuilder builder) {
@@ -183,8 +218,8 @@ public class MusicService {
         return responseEntity;
     }
 
-    private String getLyricsById(Long id) {
-        String url = "https://genius.com/songs/" + id + "/embed.js";
+    private String getLyricsByMusicId(Long musicId) {
+        String url = "https://genius.com/songs/" + musicId + "/embed.js";
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> result = restTemplate.getForEntity(url, String.class);

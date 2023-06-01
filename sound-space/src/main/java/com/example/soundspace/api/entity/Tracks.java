@@ -17,6 +17,9 @@ public class Tracks extends BaseTime {
     private Long id;
 
     @Column
+    private Long musicId;
+
+    @Column
     private Integer trackIndex;
 
     @Column

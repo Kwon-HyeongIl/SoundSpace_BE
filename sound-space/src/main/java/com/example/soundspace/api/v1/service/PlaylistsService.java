@@ -7,6 +7,7 @@ import com.example.soundspace.api.security.SecurityUtil;
 import com.example.soundspace.api.v1.dto.Response;
 import com.example.soundspace.api.v1.dto.request.PlaylistRequestDto;
 import com.example.soundspace.api.v1.dto.response.PlaylistResponseDto;
+import com.example.soundspace.api.v1.repository.BookmarksRepository;
 import com.example.soundspace.api.v1.repository.PlaylistsRepository;
 import com.example.soundspace.api.v1.repository.TracksRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,7 @@ public class PlaylistsService {
     private final CustomUserDetailsService customUserDetailsService;
     private final PlaylistsRepository playlistsRepository;
     private final TracksRepository tracksRepository;
+    private final BookmarksRepository bookmarksRepository;
     private final Response response;
 
     public ResponseEntity<?> getMyPlaylist() {
@@ -58,10 +60,26 @@ public class PlaylistsService {
 
         String username = SecurityUtil.getCurrentUsername();
         Users user = (Users) customUserDetailsService.loadUserByUsername(username);
-
+        Long userId = user.getId();
         Long playlistId = user.getPlaylist().getId();
 
-        return getTrackInfo(playlistId, trackIndex);
+        return getResponseEntity(trackIndex, userId, playlistId);
+    }
+
+    private ResponseEntity<?> getResponseEntity(Integer trackIndex, Long userId, Long playlistId) {
+        Tracks track = tracksRepository.findByPlaylistIdAndTrackIndex(playlistId, trackIndex)
+                .orElseThrow(() -> new RuntimeException("Track not found"));
+
+        PlaylistResponseDto.TrackInfo trackInfo = PlaylistResponseDto.TrackInfo.builder()
+                .musicId(track.getMusicId())
+                .trackTitle(track.getTrackTitle())
+                .artistName(track.getArtistName())
+                .albumImageUrl(track.getAlbumImageUrl())
+                .lyrics(track.getLyrics())
+                .isBookmarked(bookmarksRepository.existsByMusicIdAndUserId(track.getMusicId(), userId))
+                .build();
+
+        return response.success(trackInfo, "곡 정보 조회에 성공했습니다.", HttpStatus.OK);
     }
 
     public ResponseEntity<?> update(Integer trackIndex, PlaylistRequestDto.Update update) {
@@ -74,6 +92,7 @@ public class PlaylistsService {
         Tracks track = tracksRepository.findByPlaylistIdAndTrackIndex(playlistId, trackIndex)
                 .orElseThrow(() -> new RuntimeException("Track not found"));
 
+        track.setMusicId(update.getMusicId());
         track.setTrackTitle(update.getTrackTitle());
         track.setArtistName(update.getArtistName());
         track.setAlbumImageUrl(update.getAlbumImageUrl());
@@ -94,6 +113,7 @@ public class PlaylistsService {
         Tracks track = tracksRepository.findByPlaylistIdAndTrackIndex(playlistId, trackIndex)
                 .orElseThrow(() -> new RuntimeException("Track not found"));
 
+        track.setMusicId(null);
         track.setTrackTitle(null);
         track.setArtistName(null);
         track.setAlbumImageUrl(null);
@@ -120,17 +140,10 @@ public class PlaylistsService {
 
     public ResponseEntity<?> getTrackInfo(Long playlistId, Integer trackIndex) {
 
-        Tracks track = tracksRepository.findByPlaylistIdAndTrackIndex(playlistId, trackIndex)
-                .orElseThrow(() -> new RuntimeException("Track not found"));
+        String username = SecurityUtil.getCurrentUsername();
+        Users user = (Users) customUserDetailsService.loadUserByUsername(username);
 
-        PlaylistResponseDto.TrackInfo trackInfo = PlaylistResponseDto.TrackInfo.builder()
-                .trackTitle(track.getTrackTitle())
-                .artistName(track.getArtistName())
-                .albumImageUrl(track.getAlbumImageUrl())
-                .lyrics(track.getLyrics())
-                .build();
-
-        return response.success(trackInfo, "곡 정보 조회에 성공했습니다.", HttpStatus.OK);
+        return getResponseEntity(trackIndex, user.getId(), playlistId);
     }
 
     private static List<PlaylistResponseDto.TrackSummary> getTrackSummaryList(List<Tracks> tracks) {

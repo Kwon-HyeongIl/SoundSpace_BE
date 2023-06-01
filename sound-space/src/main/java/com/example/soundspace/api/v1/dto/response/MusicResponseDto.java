@@ -11,17 +11,18 @@ public class MusicResponseDto {
     @Getter
     @AllArgsConstructor
     public static class SearchInfo {
-        private Long id;
+        private Long musicId;
         private String artistName;
         private String trackTitle;
         private String albumImageUrl;
+        private boolean isBookmarked;
     }
 
     @Builder
     @Getter
     @AllArgsConstructor
-    public static class TrackInfo {
-        private Long id;
+    public static class MusicInfo {
+        private Long musicId;
         private String trackTitle;
         private String artistName;
         private String albumImageUrl;

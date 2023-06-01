@@ -5,10 +5,7 @@ import com.example.soundspace.api.v1.service.MusicService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -24,9 +21,14 @@ public class MusicController {
         return musicService.search(accessToken, query);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getTrackById(@PathVariable Long id) {
+    @GetMapping("/{musicId}")
+    public ResponseEntity<?> getMusicById(@PathVariable Long musicId) {
         String accessToken = geniusToken.getAccessToken();
-        return musicService.getTrackById(accessToken, id);
+        return musicService.getMusicById(accessToken, musicId);
+    }
+
+    @PostMapping("/{musicId}/bookmarks")
+    public ResponseEntity<?> toggleBookmark(@PathVariable Long musicId) {
+        return musicService.toggleBookmark(musicId);
     }
 }
