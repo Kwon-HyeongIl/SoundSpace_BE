@@ -7,7 +7,44 @@ function Model() {
 
   return (
     <group ref={ref}>
-      <primitive mass={1} position={[-6.7, -0.5, 6]} object={scene} />
+      <primitive
+        rotation={[-0.2, 0, 0]}
+        mass={1}
+        position={[-6.7, -0.45, 6]}
+        object={scene}
+      />
+    </group>
+  );
+}
+
+function Model1() {
+  const { scene } = useGLTF("/person_president.glb");
+  const ref = useRef();
+
+  return (
+    <group ref={ref}>
+      <primitive
+        rotation={[0, -Math.PI, 0]}
+        mass={1}
+        position={[-4, 0.5, -6]}
+        object={scene}
+      />
+    </group>
+  );
+}
+function Model2() {
+  const { scene } = useGLTF("/woman.glb");
+  const ref = useRef();
+
+  return (
+    <group ref={ref}>
+      <primitive
+        scale={[0.001, 0.001, 0.001]}
+        rotation={[0, Math.PI / 2, 0]}
+        mass={1}
+        position={[4, 0.5, -2]}
+        object={scene}
+      />
     </group>
   );
 }
@@ -55,20 +92,20 @@ function EmojiHeart() {
   );
 }
 
-function Crazy() {
-  const { scene } = useGLTF("/crazy.glb");
-  const ref = useRef();
+// function Crazy() {
+//   const { scene } = useGLTF("/crazy.glb");
+//   const ref = useRef();
 
-  return (
-    <group ref={ref}>
-      <primitive
-        scale={[0.5, 0.5, 0.5]}
-        mass={1}
-        position={[-4, 1.5, -15]}
-        object={scene}
-      />
-    </group>
-  );
-}
+//   return (
+//     <group ref={ref}>
+//       <primitive
+//         scale={[0.5, 0.5, 0.5]}
+//         mass={1}
+//         position={[-4, 1.5, -15]}
+//         object={scene}
+//       />
+//     </group>
+//   );
+// }
 
-export { Model, EmojiMusic, Crazy, EmojiHeart };
+export { Model, Model1, Model2, EmojiMusic, EmojiHeart };

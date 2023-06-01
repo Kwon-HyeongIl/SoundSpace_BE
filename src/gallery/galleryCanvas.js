@@ -15,7 +15,14 @@ import { FPV } from "./FPV";
 import Box from "./musicBox.js";
 import GuestBox from "./guestBox.js";
 // import Person from "./person.js";
-import { Model, EmojiMusic, EmojiHeart, Crazy } from "./model.js";
+import {
+  Model,
+  Model1,
+  Model2,
+  EmojiMusic,
+  EmojiHeart,
+  Crazy,
+} from "./model.js";
 
 //바닥
 function PlaneBottom() {
@@ -169,11 +176,14 @@ export default function GalleryCanvas() {
               url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
             />
           ))} */}
+
           <Model />
+          <Model1 />
+          <Model2 />
           <EmojiMusic />
           {/* <EmojiDevil /> */}
           <EmojiHeart />
-          <Crazy />
+          {/* <Crazy /> */}
           <GuestBox />
           <PlaneLeft />
           <PlaneRight />
