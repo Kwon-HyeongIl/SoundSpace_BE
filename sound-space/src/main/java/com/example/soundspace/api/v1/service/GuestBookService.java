@@ -2,6 +2,7 @@ package com.example.soundspace.api.v1.service;
 
 import com.example.soundspace.api.entity.GuestBook;
 import com.example.soundspace.api.entity.Users;
+import com.example.soundspace.api.jwt.JwtTokenProvider;
 import com.example.soundspace.api.v1.dto.request.GuestBookRequestDto;
 import com.example.soundspace.api.v1.dto.response.GuestBookResponseDto;
 import com.example.soundspace.api.v1.repository.GuestBookRepository;
@@ -25,10 +26,34 @@ public class GuestBookService {
 
     private final GuestBookRepository guestBookRepository;
     private final UsersRepository usersRepository;
+    private final JwtTokenProvider jwtTokenProvider;
 
-    public GuestBookService(GuestBookRepository guestBookRepository, UsersRepository usersRepository) {
+    public GuestBookService(GuestBookRepository guestBookRepository,
+                            UsersRepository usersRepository,
+                            JwtTokenProvider jwtTokenProvider) {
         this.guestBookRepository = guestBookRepository;
         this.usersRepository = usersRepository;
+        this.jwtTokenProvider = jwtTokenProvider;
+    }
+
+    private String removeBearerFromToken(String token) {
+        if (token != null && token.startsWith("Bearer ")) {
+            return token.substring("Bearer ".length());
+        }
+        return token;
+    }
+
+    public String getAuthenticatedUsername(String token) {
+        token = removeBearerFromToken(token);
+        if (!jwtTokenProvider.validateToken(token)) {
+            throw new IllegalArgumentException("Invalid token");
+        }
+
+        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+        if(authentication == null) {
+            throw new IllegalArgumentException("Authentication failed. User is not authenticated.");
+        }
+        return authentication.getName();
     }
 
     public GuestBookResponseDto writeGuestBook(String writerUsername, Long targetUserId, GuestBookRequestDto guestBookRequestDto) {
@@ -49,7 +74,7 @@ public class GuestBookService {
 
         GuestBookResponseDto responseDto = new GuestBookResponseDto();
         responseDto.setContent(guestBook.getContent());
-        responseDto.setWriterEmail(writer.getEmail());
+        responseDto.setWriterUsername(writer.getUsername());
 
         return responseDto;
     }

@@ -21,17 +21,13 @@ import java.util.List;
 public class UserLikesController {
 
     private final UserLikesService userLikesService;
-    private final JwtTokenProvider jwtTokenProvider;
-    private final UsersRepository usersRepository;
-    private final Response response; // 추가
+    private final Response response;
 
     @PostMapping("/{likeeId}/likes")
     public ResponseEntity<?> likeUser(@RequestHeader("Authorization") String bearerToken, @PathVariable Long likeeId) {
-        String token = bearerToken.substring(7);
-        String username = jwtTokenProvider.getAuthentication(token).getName();
-        Users liker = usersRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with username : " + username));
         try {
+            String username = userLikesService.getAuthenticatedUsername(bearerToken);
+            Users liker = userLikesService.getUserByUsername(username);
             UserLikesResponseDto userLikesResponseDto = userLikesService.likeUser(liker, likeeId);
             return response.success(userLikesResponseDto);
         } catch (Exception e) {
@@ -41,11 +37,9 @@ public class UserLikesController {
 
     @GetMapping("/likes_given")
     public ResponseEntity<?> getUsersILiked(@RequestHeader("Authorization") String bearerToken) {
-        String token = bearerToken.substring(7);
-        String username = jwtTokenProvider.getAuthentication(token).getName();
-        Users liker = usersRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with username : " + username));
         try {
+            String username = userLikesService.getAuthenticatedUsername(bearerToken);
+            Users liker = userLikesService.getUserByUsername(username);
             List<UserLikesResponseDto> userLikesResponseDtos = userLikesService.getUsersILiked(liker);
             return response.success(userLikesResponseDtos);
         } catch (Exception e) {
@@ -55,11 +49,9 @@ public class UserLikesController {
 
     @GetMapping("/likes_received")
     public ResponseEntity<?> getUsersWhoLikedMe(@RequestHeader("Authorization") String bearerToken) {
-        String token = bearerToken.substring(7);
-        String username = jwtTokenProvider.getAuthentication(token).getName();
-        Users likee = usersRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with username : " + username));
         try {
+            String username = userLikesService.getAuthenticatedUsername(bearerToken);
+            Users likee = userLikesService.getUserByUsername(username);
             List<UserLikesResponseDto> userLikesResponseDtos = userLikesService.getUsersWhoLikedMe(likee);
             return response.success(userLikesResponseDtos);
         } catch (Exception e) {
@@ -67,5 +59,4 @@ public class UserLikesController {
         }
     }
 }
-
 

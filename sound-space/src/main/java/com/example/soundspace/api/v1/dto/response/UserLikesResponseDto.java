@@ -13,15 +13,14 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserLikesResponseDto {
     private String username;
-    private String profilePictureUrl;
-    private Integer totalLikes;
+    private int totalLikesReceived;
 
     public static UserLikesResponseDto fromEntity(Users user) {
         UserLikesResponseDto dto = new UserLikesResponseDto();
         dto.setUsername(user.getUsername());
-        dto.setProfilePictureUrl(user.getProfilePictureUrl());
-        dto.setTotalLikes(user.getLikesReceived().size());
+        dto.setTotalLikesReceived(user.getLikesReceived().size());
         return dto;
     }
 }
+
 

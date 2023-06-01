@@ -2,10 +2,12 @@ package com.example.soundspace.api.v1.service;
 
 import com.example.soundspace.api.entity.UserLikes;
 import com.example.soundspace.api.entity.Users;
+import com.example.soundspace.api.jwt.JwtTokenProvider;
 import com.example.soundspace.api.v1.dto.response.UserLikesResponseDto;
 import com.example.soundspace.api.v1.repository.UserLikesRepository;
 import com.example.soundspace.api.v1.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,32 @@ public class UserLikesService {
 
     private final UsersRepository usersRepository;
     private final UserLikesRepository userLikesRepository;
+    private final JwtTokenProvider jwtTokenProvider;
 
+    private String removeBearerFromToken(String token) {
+        if (token != null && token.startsWith("Bearer ")) {
+            return token.substring("Bearer ".length());
+        }
+        return token;
+    }
+
+    public String getAuthenticatedUsername(String token) {
+        token = removeBearerFromToken(token);
+        if (!jwtTokenProvider.validateToken(token)) {
+            throw new IllegalArgumentException("Invalid token");
+        }
+
+        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+        if(authentication == null) {
+            throw new IllegalArgumentException("Authentication failed. User is not authenticated.");
+        }
+        return authentication.getName();
+    }
+
+    public Users getUserByUsername(String username) {
+        return usersRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username : " + username));
+    }
     @Transactional
     public UserLikesResponseDto likeUser(Users liker, Long likeeId) {
         Users likee = usersRepository.findById(likeeId)

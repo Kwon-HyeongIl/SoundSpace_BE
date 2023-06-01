@@ -25,38 +25,20 @@ import java.util.NoSuchElementException;
 public class GuestBookController {
 
     private final GuestBookService guestBookService;
-    private final JwtTokenProvider jwtTokenProvider;
     private final Response response;
 
-    public GuestBookController(GuestBookService guestBookService, JwtTokenProvider jwtTokenProvider, Response response) {
+    public GuestBookController(GuestBookService guestBookService, Response response) {
         this.guestBookService = guestBookService;
-        this.jwtTokenProvider = jwtTokenProvider;
         this.response = response;
-    }
-
-    private String removeBearerFromToken(String token) {
-        if (token != null && token.startsWith("Bearer ")) {
-            return token.substring("Bearer ".length());
-        }
-        return token;
     }
 
     @PostMapping("/{targetUserId}")
     public ResponseEntity<?> writeGuestBook(@PathVariable Long targetUserId,
                                             @RequestBody GuestBookRequestDto guestBookRequestDto,
                                             @RequestHeader("Authorization") String token) {
-        token = removeBearerFromToken(token);
-        if (!jwtTokenProvider.validateToken(token)) {
-            return response.fail("Invalid token", HttpStatus.UNAUTHORIZED);
-        }
-
-        Authentication authentication = jwtTokenProvider.getAuthentication(token);
         try {
-            GuestBookResponseDto guestBookResponseDto = guestBookService.writeGuestBook(
-                    authentication != null ? authentication.getName() : null,
-                    targetUserId,
-                    guestBookRequestDto
-            );
+            String username = guestBookService.getAuthenticatedUsername(token);
+            GuestBookResponseDto guestBookResponseDto = guestBookService.writeGuestBook(username, targetUserId, guestBookRequestDto);
             return response.success(guestBookResponseDto);
         } catch (Exception e) {
             return response.fail(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -66,14 +48,9 @@ public class GuestBookController {
     @DeleteMapping("/{guestBookId}")
     public ResponseEntity<?> deleteGuestBook(@PathVariable Long guestBookId,
                                              @RequestHeader("Authorization") String token) {
-        token = removeBearerFromToken(token);
-        if (!jwtTokenProvider.validateToken(token)) {
-            return response.fail("Invalid token", HttpStatus.UNAUTHORIZED);
-        }
-
-        Authentication authentication = jwtTokenProvider.getAuthentication(token);
         try {
-            guestBookService.deleteGuestBook(authentication.getName(), guestBookId);
+            String username = guestBookService.getAuthenticatedUsername(token);
+            guestBookService.deleteGuestBook(username, guestBookId);
             return response.success();
         } catch (IllegalArgumentException e) {
             return response.fail(e.getMessage(), HttpStatus.UNAUTHORIZED);
@@ -82,4 +59,3 @@ public class GuestBookController {
         }
     }
 }
-
