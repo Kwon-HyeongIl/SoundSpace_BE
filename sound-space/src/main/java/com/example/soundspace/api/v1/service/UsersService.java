@@ -1,5 +1,6 @@
 package com.example.soundspace.api.v1.service;
 
+import com.example.soundspace.api.entity.Playlists;
 import com.example.soundspace.api.entity.Users;
 import com.example.soundspace.api.enums.Authority;
 import com.example.soundspace.api.jwt.JwtTokenProvider;
@@ -54,8 +55,10 @@ public class UsersService {
                 .email(signUp.getEmail())
                 .password(passwordEncoder.encode(signUp.getPassword()))
                 .likes(0L)
+                .playlist(new Playlists())
                 .roles(Collections.singletonList(Authority.ROLE_USER.name()))
                 .build();
+
         usersRepository.save(user);
 
         return response.success("회원가입에 성공했습니다.");
@@ -133,6 +136,11 @@ public class UsersService {
     }
 
     public ResponseEntity<?> updateUser(String username, UserRequestDto.Update update) {
+        String currentUser = SecurityUtil.getCurrentUsername();
+        if (!currentUser.equals(username)) {
+            return response.fail("접근 권한이 없습니다.", HttpStatus.FORBIDDEN);
+        }
+
         Users user = (Users) customUserDetailsService.loadUserByUsername(username);
 
         if (!passwordEncoder.matches(update.getOldPassword(), user.getPassword())) {

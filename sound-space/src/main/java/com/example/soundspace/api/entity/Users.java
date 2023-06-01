@@ -11,6 +11,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.FetchType.LAZY;
+
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,6 +22,7 @@ import java.util.stream.Collectors;
 @Entity
 public class Users extends BaseTime implements UserDetails {
 
+    @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,8 +39,12 @@ public class Users extends BaseTime implements UserDetails {
     @Column
     private Long likes;
 
+    @OneToOne(cascade = ALL, fetch = LAZY)
+    @JoinColumn
+    private Playlists playlist;
+
     @Column
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = LAZY)
     @Builder.Default
     private List<String> roles = new ArrayList<>();
 

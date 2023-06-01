@@ -4,24 +4,29 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-
-public class MusicResponseDto {
+public class PlaylistResponseDto {
 
     @Builder
     @Getter
     @AllArgsConstructor
-    public static class SearchInfo {
-        private Long id;
-        private String artistName;
-        private String trackTitle;
+    public static class TrackSummary {
+        private Integer trackIndex;
         private String albumImageUrl;
     }
 
     @Builder
     @Getter
     @AllArgsConstructor
+    public static class TrackSummaryForUpdating {
+        private Integer trackIndex;
+        private String trackTitle;
+        private String artistName;
+    }
+
+    @Builder
+    @Getter
+    @AllArgsConstructor
     public static class TrackInfo {
-        private Long id;
         private String trackTitle;
         private String artistName;
         private String albumImageUrl;

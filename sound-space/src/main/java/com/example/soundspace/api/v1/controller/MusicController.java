@@ -1,7 +1,6 @@
 package com.example.soundspace.api.v1.controller;
 
 import com.example.soundspace.api.genius.GeniusToken;
-import com.example.soundspace.api.v1.dto.Response;
 import com.example.soundspace.api.v1.service.MusicService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

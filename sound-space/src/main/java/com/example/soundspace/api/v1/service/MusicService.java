@@ -93,7 +93,7 @@ public class MusicService {
                     if (responseObj.has("hits")) {
                         JsonNode hitsArray = responseObj.get("hits");
 
-                        List<MusicResponseDto.TrackInfo> trackInfos = new ArrayList<>();
+                        List<MusicResponseDto.SearchInfo> searchInfos = new ArrayList<>();
                         for (JsonNode hitNode : hitsArray) {
                             if (hitNode.has("result")) {
                                 JsonNode resultObj = hitNode.get("result");
@@ -103,17 +103,17 @@ public class MusicService {
                                 String artistName = resultObj.get("primary_artist").get("name").asText();
                                 String albumImageUrl = resultObj.get("header_image_thumbnail_url").asText();
 
-                                MusicResponseDto.TrackInfo trackInfo = MusicResponseDto.TrackInfo.builder()
+                                MusicResponseDto.SearchInfo searchInfo = MusicResponseDto.SearchInfo.builder()
                                         .id(id)
                                         .trackTitle(trackTitle)
                                         .artistName(artistName)
                                         .albumImageUrl(albumImageUrl)
                                         .build();
 
-                                trackInfos.add(trackInfo);
+                                searchInfos.add(searchInfo);
                             }
                         }
-                        return response.success(trackInfos, "검색에 성공했습니다.", HttpStatus.OK);
+                        return response.success(searchInfos, "검색에 성공했습니다.", HttpStatus.OK);
                     }
                 }
             } catch (Exception e) {
@@ -203,14 +203,18 @@ public class MusicService {
     }
 
     private static String removePatternsAndReplace(String input) {
-        String pattern1 = "<a href.*?>|<br>|<\\\\/a>|<p>|<\\\\/p>";
+        String pattern1 = "<a href.*?>|<br>|<\\\\/a>|<p>|<\\\\/p>|<i>|<\\\\/i>|<b>|<\\\\/b>";
         String pattern2 = "\\\\\\\\n";
         String pattern3 = "\\\\'";
+        String pattern4 = "\\\\\\\\\\\\\\\"";
+        String pattern5 = "&amp;";
         String replacement = "";
 
         String output = input.replaceAll(pattern1, replacement);
         output = output.replaceAll(pattern2, "\n");
         output = output.replaceAll(pattern3, "\'");
+        output = output.replaceAll(pattern4, "\"");
+        output = output.replaceAll(pattern5, "&");
 
         return output;
     }
