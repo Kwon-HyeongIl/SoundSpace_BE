@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 function Box({ box_position, url }) {
   const texture = useLoader(THREE.TextureLoader, url);
-  const [ref, api] = useBox(() => ({ mass: 1, position: box_position }));
+  const [ref, api] = useBox(() => ({ mass: 30, position: box_position }));
 
   const [isHovered, setHovered] = useState(false);
 

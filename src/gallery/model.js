@@ -55,7 +55,12 @@ function EmojiMusic() {
 
   return (
     <group ref={ref}>
-      <primitive mass={1} position={[0, 0.5, -7]} object={scene} />
+      <primitive
+        rotation={[0.5, 0, 0]}
+        mass={1}
+        position={[0, 1.5, -7]}
+        object={scene}
+      />
     </group>
   );
 }
@@ -92,20 +97,36 @@ function EmojiHeart() {
   );
 }
 
-// function Crazy() {
-//   const { scene } = useGLTF("/crazy.glb");
-//   const ref = useRef();
+function Crazy() {
+  const { scene } = useGLTF("/space_boi.glb");
+  const ref = useRef();
 
-//   return (
-//     <group ref={ref}>
-//       <primitive
-//         scale={[0.5, 0.5, 0.5]}
-//         mass={1}
-//         position={[-4, 1.5, -15]}
-//         object={scene}
-//       />
-//     </group>
-//   );
-// }
+  return (
+    <group ref={ref}>
+      <primitive
+        scale={[1.5, 1.5, 1.5]}
+        mass={5}
+        position={[0, -3, 0]}
+        object={scene}
+      />
+    </group>
+  );
+}
 
-export { Model, Model1, Model2, EmojiMusic, EmojiHeart };
+function SpaceShip() {
+  const { scene } = useGLTF("/space_ship.glb");
+  const ref = useRef();
+
+  return (
+    <group ref={ref}>
+      <primitive
+        scale={[50, 50, 50]}
+        mass={5}
+        position={[4, -4, -11]}
+        object={scene}
+      />
+    </group>
+  );
+}
+
+export { Model, Model1, Model2, EmojiMusic, EmojiHeart, Crazy, SpaceShip };

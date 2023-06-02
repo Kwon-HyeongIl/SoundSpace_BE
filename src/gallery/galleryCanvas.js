@@ -22,6 +22,7 @@ import {
   EmojiMusic,
   EmojiHeart,
   Crazy,
+  SpaceShip,
 } from "./model.js";
 
 //바닥
@@ -33,7 +34,7 @@ function PlaneBottom() {
   return (
     // <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]}>
     <mesh position={[0, -0.5, 0]} rotation-x={-Math.PI / 2} receiveShadow>
-      <planeBufferGeometry attach="geometry" args={[100, 100]} />
+      <planeBufferGeometry attach="geometry" args={[20, 20]} />
       <meshLambertMaterial attach="material" color="gray" />
     </mesh>
   );
@@ -48,7 +49,7 @@ function PlaneLeft() {
 
   return (
     <mesh ref={ref} receiveShadow>
-      <planeBufferGeometry attach="geometry" args={[100, 10]} />
+      <planeBufferGeometry attach="geometry" args={[20, 10]} />
       <meshLambertMaterial attach="material" color="black" />
     </mesh>
   );
@@ -62,7 +63,7 @@ function PlaneRight() {
 
   return (
     <mesh ref={ref} receiveShadow>
-      <planeBufferGeometry attach="geometry" args={[100, 10]} />
+      <planeBufferGeometry attach="geometry" args={[20, 10]} />
       <meshLambertMaterial attach="material" color="black" />
     </mesh>
   );
@@ -76,7 +77,7 @@ function PlaneBack() {
 
   return (
     <mesh ref={ref} receiveShadow>
-      <planeBufferGeometry attach="geometry" args={[100, 10]} />
+      <planeBufferGeometry attach="geometry" args={[20, 10]} />
       <meshLambertMaterial attach="material" color="black" />
     </mesh>
   );
@@ -90,7 +91,7 @@ function PlaneFront() {
 
   return (
     <mesh ref={ref} receiveShadow>
-      <planeBufferGeometry attach="geometry" args={[100, 10]} />
+      <planeBufferGeometry attach="geometry" args={[20, 10]} />
       <meshLambertMaterial attach="material" color="black" />
     </mesh>
   );
@@ -181,14 +182,14 @@ export default function GalleryCanvas() {
           <Model1 />
           <Model2 />
           <EmojiMusic />
-          {/* <EmojiDevil /> */}
-          <EmojiHeart />
-          {/* <Crazy /> */}
+          {/* <EmojiHeart /> */}
+          <Crazy />
           <GuestBox />
           <PlaneLeft />
           <PlaneRight />
           <PlaneFront />
           <PlaneBack />
+          <SpaceShip />
         </Physics>
       </Canvas>
       <div className="absolute centered cursor">+</div>
