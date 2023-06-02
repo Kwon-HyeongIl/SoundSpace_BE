@@ -97,6 +97,22 @@ function PlaneFront() {
   );
 }
 
+// function SmallBox() {
+//   const [ref, api] = useBox(() => ({ mass: 1, position: [0, 0, 0] }));
+
+//   const numBoxes = 10; // Number of boxes
+//   return (
+//     <group>
+//       {Array.from({ length: numBoxes }, (_) => (
+//         <mesh ref={ref} position={[0, 0, 0]} castShadow>
+//           <boxBufferGeometry args={[0.2, 0.2, 0.2]} attach="geometry" />
+//           <meshLambertMaterial attach="material" color="blue" />
+//         </mesh>
+//       ))}
+//     </group>
+//   );
+// }
+
 export default function GalleryCanvas() {
   // const cameraPosition = new THREE.Vector3(0, 50, 0);
   const numBoxes = 10; // Number of boxes
@@ -177,7 +193,7 @@ export default function GalleryCanvas() {
               url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
             />
           ))} */}
-
+          {/* <SmallBox /> */}
           <Model />
           <Model1 />
           <Model2 />
