@@ -24,7 +24,7 @@ function Model1() {
   return (
     <group ref={ref}>
       <primitive
-        rotation={[0, -Math.PI, 0]}
+        rotation={[0.2, -Math.PI, 0]}
         mass={1}
         position={[-4, 0.5, -6]}
         object={scene}
