@@ -39,14 +39,14 @@ function NavBar() {
             {/* <button className="itemContainer" onClick={() => navigate("/")}>RANKING</button> */}
           </div>
         </Sidebar>
-        <a className="logo">
+        <a className="logo" onClick={() => navigate("/gallery")} href="">
           <sapn className="logo_f">S</sapn>OUND{" "}
           <span className="logo_f">S</span>PACE
         </a>
-        <a className="navitem" onClick={() => navigate("/search")} href="#">
+        <a className="navitem" onClick={() => navigate("/search")} href="">
           SEARCH
         </a>
-        <a className="navitem" onClick={() => navigate("/rank")} href="#">
+        <a className="navitem" onClick={() => navigate("/rank")} href="">
           RANKING
         </a>
       </div>
