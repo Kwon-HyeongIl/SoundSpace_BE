@@ -35,15 +35,15 @@ public class PlaylistsController {
         return playlistsService.getMyTrackInfo(trackIndex);
     }
 
-    @PatchMapping("/me/tracks/update/{trackIndex}")
+    @PatchMapping("/me/tracks/{trackIndex}/update")
     public ResponseEntity<?> updateMyTrackInfo(@PathVariable @Min(1) @Max(10) Integer trackIndex,
                                               @RequestBody PlaylistRequestDto.Update update) {
-        return playlistsService.update(trackIndex, update);
+        return playlistsService.updateMyTrackInfo(trackIndex, update);
     }
 
-    @PatchMapping("/me/tracks/clear/{trackIndex}")
+    @PatchMapping("/me/tracks/{trackIndex}/clear")
     public ResponseEntity<?> clearMyTrackInfo(@PathVariable @Min(1) @Max(10) Integer trackIndex) {
-        return playlistsService.clear(trackIndex);
+        return playlistsService.clearMyTrackInfo(trackIndex);
     }
 
     @GetMapping("/{playlistId}")

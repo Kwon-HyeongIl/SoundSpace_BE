@@ -65,7 +65,6 @@ public class UsersService {
     }
 
     public ResponseEntity<?> login(UserRequestDto.Login login) {
-
         if (usersRepository.findByUsername(login.getUsername()).orElse(null) == null) {
             return response.fail("해당하는 유저가 존재하지 않습니다.", HttpStatus.BAD_REQUEST);
         }
@@ -98,7 +97,7 @@ public class UsersService {
             return response.fail("Refresh Token 정보가 일치하지 않습니다.", HttpStatus.BAD_REQUEST);
         }
 
-        UserResponseDto.TokenInfo tokenInfo = jwtTokenProvider.generateAccessToken(authentication, reissue.getRefreshToken());
+        UserResponseDto.TokenInfo tokenInfo = jwtTokenProvider.reissueAccessToken(authentication, reissue.getRefreshToken());
 
         redisTemplate.opsForValue()
                 .set("RT:" + authentication.getName(), tokenInfo.getRefreshToken(), tokenInfo.getRefreshTokenExpirationTime(), TimeUnit.MILLISECONDS);
@@ -135,12 +134,8 @@ public class UsersService {
         return response.success();
     }
 
-    public ResponseEntity<?> updateUser(String username, UserRequestDto.Update update) {
-        String currentUser = SecurityUtil.getCurrentUsername();
-        if (!currentUser.equals(username)) {
-            return response.fail("접근 권한이 없습니다.", HttpStatus.FORBIDDEN);
-        }
-
+    public ResponseEntity<?> updateMyInfo(UserRequestDto.Update update) {
+        String username = SecurityUtil.getCurrentUsername();
         Users user = (Users) customUserDetailsService.loadUserByUsername(username);
 
         if (!passwordEncoder.matches(update.getOldPassword(), user.getPassword())) {
@@ -154,7 +149,8 @@ public class UsersService {
         return response.success("회원 정보가 변경 되었습니다.");
     }
 
-    public ResponseEntity<?> profiles(String username) {
+    public ResponseEntity<?> getMyInfo() {
+        String username = SecurityUtil.getCurrentUsername();
         Users user = (Users) customUserDetailsService.loadUserByUsername(username);
 
         UserResponseDto.UserInfo userInfo = UserResponseDto.UserInfo.builder()
@@ -166,17 +162,17 @@ public class UsersService {
         return response.success(userInfo, "회원 프로필 조회에 성공했습니다.", HttpStatus.OK);
     }
 
-    public ResponseEntity<?> search(String query) {
+    public ResponseEntity<?> searchUsers(String query) {
         List<Users> users = usersRepository.findByUsernameContaining(query);
         if (users.isEmpty())
             return response.success("'" + query + "'에 대한 검색결과가 없습니다.");
         else {
-            List<UserResponseDto.UserInfo> userInfos = new ArrayList<>();
+            List<UserResponseDto.UserInfoForSearching> userInfos = new ArrayList<>();
             for (Users user : users) {
-                UserResponseDto.UserInfo userInfo = UserResponseDto.UserInfo.builder()
+                UserResponseDto.UserInfoForSearching userInfo = UserResponseDto.UserInfoForSearching.builder()
                         .username(user.getUsername())
-                        .email(user.getEmail())
                         .likes(user.getLikes())
+                        .playlistId(user.getPlaylist().getId())
                         .build();
 
                 userInfos.add(userInfo);

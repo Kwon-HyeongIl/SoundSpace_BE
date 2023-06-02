@@ -2,6 +2,7 @@ package com.example.soundspace.api.v1.service;
 
 import com.example.soundspace.api.entity.Bookmarks;
 import com.example.soundspace.api.entity.Users;
+import com.example.soundspace.api.genius.GeniusToken;
 import com.example.soundspace.api.security.SecurityUtil;
 import com.example.soundspace.api.v1.dto.Response;
 import com.example.soundspace.api.v1.dto.response.MusicResponseDto;
@@ -28,61 +29,19 @@ import java.util.Optional;
 @Transactional
 public class MusicService {
 
+    private final GeniusToken geniusToken;
     private final CustomUserDetailsService customUserDetailsService;
     private final BookmarksRepository bookmarksRepository;
     private final Response response;
 
-//    public ResponseEntity<?> search(String accessToken, String query) {
-//
-//        String apiUrl = "https://api.spotify.com/v1/search";
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//        headers.setBearerAuth(accessToken);
-//
-//        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(apiUrl)
-//                .queryParam("type", "track")
-//                .queryParam("q", query);
-//
-//        RestTemplate restTemplate = new RestTemplate();
-//        RequestEntity<?> requestEntity = new RequestEntity<>(headers, HttpMethod.GET, uriBuilder.build().toUri());
-//        ResponseEntity<String> responseEntity = restTemplate.exchange(requestEntity, String.class);
-//
-//        if (responseEntity.getStatusCode() == HttpStatus.OK) {
-//            String responseBody = responseEntity.getBody();
-//
-//            try {
-//                ObjectMapper objectMapper = new ObjectMapper();
-//                JsonNode root = objectMapper.readTree(responseBody);
-//                JsonNode tracksNode = root.path("tracks");
-//                JsonNode itemsNode = tracksNode.path("items");
-//
-//                List<MusicResponseDto.TrackInfo> trackInfos = new ArrayList<>();
-//                for (JsonNode trackNode : itemsNode) {
-//                    String artistName = trackNode.path("artists").get(0).path("name").asText();
-//                    String trackTitle = trackNode.path("name").asText();
-//                    String albumImageUrl = trackNode.path("album").path("images").get(0).path("url").asText();
-//
-//                    MusicResponseDto.TrackInfo trackInfo = MusicResponseDto.TrackInfo.builder()
-//                            .artistName(artistName)
-//                            .trackTitle(trackTitle)
-//                            .albumImageUrl(albumImageUrl)
-//                            .build();
-//
-//                    trackInfos.add(trackInfo);
-//                }
-//                return response.success(trackInfos, "검색에 성공했습니다.", HttpStatus.OK);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                throw new RuntimeException("API 응답 처리 중 오류가 발생했습니다.");
-//            }
-//        }
-//        return response.fail("검색에 실패했습니다.", responseEntity.getStatusCode());
-//    }
-
-    public ResponseEntity<?> search(String accessToken, String query) {
+    public ResponseEntity<?> searchMusic(String query) {
         String username = SecurityUtil.getCurrentUsername();
         Users user = (Users) customUserDetailsService.loadUserByUsername(username);
+
+        String accessToken = geniusToken.getAccessToken();
+        if (accessToken == null) {
+            return response.fail("genius accessToken 발급에 실패했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
         String apiUrl = "https://api.genius.com/search";
 
@@ -130,13 +89,18 @@ public class MusicService {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                throw new RuntimeException("API 응답 처리 중 오류가 발생했습니다.");
+                return response.fail("API 응답 처리 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
         return response.fail("검색에 실패했습니다.", responseEntity.getStatusCode());
     }
 
-    public ResponseEntity<?> getMusicById(String accessToken, Long musicId) {
+    public ResponseEntity<?> getMusicById(Long musicId) {
+        String accessToken = geniusToken.getAccessToken();
+        if (accessToken == null) {
+            return response.fail("genius accessToken 발급에 실패했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
         String apiUrl = "https://api.genius.com/songs";
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(apiUrl)
@@ -190,7 +154,6 @@ public class MusicService {
             bookmarksRepository.deleteById(optionalBookmark.get().getId());
 
             return response.success("북마크 해제에 성공했습니다.");
-
         } else {
             Bookmarks bookmarks = Bookmarks.builder()
                     .musicId(musicId)

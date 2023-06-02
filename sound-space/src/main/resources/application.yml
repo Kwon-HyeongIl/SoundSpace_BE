@@ -29,7 +29,7 @@ spring:
 
 # jwt
 jwt:
-  secret: VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHN
+  secret: aW1wb3NzaWJsZXdpbmFwcGxpZWRkaXNobmVhcmVzdHBvb2xob3dyZWFsZGFuZ2Vyb3U
 
 --- # redis
 spring:
@@ -38,8 +38,8 @@ spring:
     port: 6379
 
 spotify:
-  clientId: f3f0bcf58f5849b0bf5228f10fbf64f3
-  clientSecret: 3b93ad6b89764a938a37f1f8b0595ed3
+
+
 
 --- # swagger
 spring:

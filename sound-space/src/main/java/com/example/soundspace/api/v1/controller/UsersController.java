@@ -49,7 +49,8 @@ public class UsersController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<?> logout(@Validated UserRequestDto.Logout logout, @ApiIgnore Errors errors) {
+    public ResponseEntity<?> logout(@Validated UserRequestDto.Logout logout,
+                                    @ApiIgnore Errors errors) {
         if (errors.hasErrors()) {
             return response.invalidFields(Helper.refineErrors(errors));
         }
@@ -62,6 +63,25 @@ public class UsersController {
         return usersService.authority();
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<?> getMyInfo() {
+        return usersService.getMyInfo();
+    }
+
+    @PatchMapping("/me/update")
+    public ResponseEntity<?> updateMyInfo(@Validated @RequestBody UserRequestDto.Update update,
+                                          @ApiIgnore Errors errors) {
+        if (errors.hasErrors()) {
+            return response.invalidFields(Helper.refineErrors(errors));
+        }
+        return usersService.updateMyInfo(update);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> searchUsers(String query) {
+        return usersService.searchUsers(query);
+    }
+
     @GetMapping("/userTest")
     public ResponseEntity<?> userTest() {
         log.info("ROLE_USER");
@@ -72,23 +92,5 @@ public class UsersController {
     public ResponseEntity<?> adminTest() {
         log.info("ROLE_ADMIN TEST");
         return response.success();
-    }
-
-    @PatchMapping("/{username}")
-    public ResponseEntity<?> update(@PathVariable String username, @Validated @RequestBody UserRequestDto.Update update, @ApiIgnore Errors errors) {
-        if (errors.hasErrors()) {
-            return response.invalidFields(Helper.refineErrors(errors));
-        }
-        return usersService.updateUser(username, update);
-    }
-
-    @GetMapping("/{username}")
-    public ResponseEntity<?> profiles(@PathVariable String username) {
-        return usersService.profiles(username);
-    }
-
-    @GetMapping("/search")
-    public ResponseEntity<?> search(String query) {
-        return usersService.search(query);
     }
 }

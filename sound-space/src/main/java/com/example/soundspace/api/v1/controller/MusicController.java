@@ -12,19 +12,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/music")
 @RestController
 public class MusicController {
-    private final GeniusToken geniusToken;
+
     private final MusicService musicService;
 
     @GetMapping("/search")
-    public ResponseEntity<?> search(String query) {
-        String accessToken = geniusToken.getAccessToken();
-        return musicService.search(accessToken, query);
+    public ResponseEntity<?> searchMusic(String query) {
+        return musicService.searchMusic(query);
     }
 
     @GetMapping("/{musicId}")
     public ResponseEntity<?> getMusicById(@PathVariable Long musicId) {
-        String accessToken = geniusToken.getAccessToken();
-        return musicService.getMusicById(accessToken, musicId);
+        return musicService.getMusicById(musicId);
     }
 
     @PostMapping("/{musicId}/bookmarks")

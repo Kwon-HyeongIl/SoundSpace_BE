@@ -82,7 +82,7 @@ public class PlaylistsService {
         return response.success(trackInfo, "곡 정보 조회에 성공했습니다.", HttpStatus.OK);
     }
 
-    public ResponseEntity<?> update(Integer trackIndex, PlaylistRequestDto.Update update) {
+    public ResponseEntity<?> updateMyTrackInfo(Integer trackIndex, PlaylistRequestDto.Update update) {
 
         String username = SecurityUtil.getCurrentUsername();
         Users user = (Users) customUserDetailsService.loadUserByUsername(username);
@@ -103,7 +103,7 @@ public class PlaylistsService {
         return response.success("곡 업데이트에 성공했습니다.");
     }
 
-    public ResponseEntity<?> clear(Integer trackIndex) {
+    public ResponseEntity<?> clearMyTrackInfo(Integer trackIndex) {
 
         String username = SecurityUtil.getCurrentUsername();
         Users user = (Users) customUserDetailsService.loadUserByUsername(username);

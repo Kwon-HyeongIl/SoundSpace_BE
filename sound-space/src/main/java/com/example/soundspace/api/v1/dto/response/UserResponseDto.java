@@ -24,4 +24,13 @@ public class UserResponseDto {
         private String email;
         private Long likes;
     }
+
+    @Builder
+    @Getter
+    @AllArgsConstructor
+    public static class UserInfoForSearching {
+        private String username;
+        private Long likes;
+        private Long playlistId;
+    }
 }
