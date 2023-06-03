@@ -55,5 +55,18 @@ public class UserRequestDto {
     public static class Logout {
         @NotEmpty(message = "잘못된 요청입니다.")
         private String accessToken;
+
+        @NotEmpty(message = "잘못된 요청입니다.")
+        private String refreshToken;
+    }
+
+    @Getter
+    @Setter
+    public static class Update {
+        @NotEmpty(message = "기존 패스워드를 입력해 주세요.")
+        private String oldPassword;
+        @NotEmpty(message = "새로운 패스워드를 입력해 주세요.")
+        @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,16}$", message = "비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.")
+        private String newPassword;
     }
 }

@@ -1,0 +1,80 @@
+.MusicInfo_frame {
+  /* 백그라운드 */
+  height: 98vh;
+  padding: 2vh;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  background: linear-gradient(#282828, #000000);
+}
+.leftBox {
+  margin: auto;
+  padding: 20px;
+  color: #000000;
+  font-size: large;
+}
+.albumBox {
+  margin: auto;
+  padding: 20px;
+  float: top;
+  color: pink;
+  font-size: large;
+}
+.music-frame {
+  display: grid;
+  grid-template-rows: 1fr 1fr 5fr;
+  padding: 50px;
+  height: 70vh;
+  margin: auto;
+  border: solid #ebff00;
+}
+.music-title {
+  color: #ebff00;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 48px;
+}
+.cancle-button {
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
+  font-size: 30px;
+  background-color: transparent;
+  border: none;
+  color: #ebff00;
+}
+.music-artist {
+  color: white;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 30px;
+}
+.music-lyrics {
+  margin-top: 50px;
+  /* width: 500px;
+  height: 500px; */
+  overflow: scroll;
+  color: white;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+}
+.music-lyrics::-webkit-scrollbar {
+  display: none;
+  /*scrollbar 안보이게*/
+}
+.album-frame {
+  margin: auto;
+  border: solid #ebff00;
+  padding: 20px;
+}
+#bookmark-icon {
+  position: absolute;
+  z-index: 1;
+  fill: black;
+}

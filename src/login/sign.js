@@ -1,6 +1,15 @@
 import './login_sign.css';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 function SignLogo () {
+
+  const [click, setClick] = useState(false);
+
+  const Clicked = () => {
+    setClick(true);
+  }
+
   return (
 
     <div className='back_color'>
@@ -40,7 +49,14 @@ function SignLogo () {
         <div className='signtext'>SIGN IN</div>
         <input className='Enter_info' type='text' placeholder='TYPING YOUR ID...'></input>
         <input className='Enter_info' type='password' placeholder='TYPING YOUR PASSWORD...'></input>
-        <button className="login_button" id='sign_check'> CHECK </button>
+        <Link to={"/"} className='no_line'>
+          <button
+            className={`login_button ${click ? 'check_click' : ''}`}
+            onClick={Clicked}
+            id='sign_check'
+          >
+            CHECK </button>
+        </Link>
       </div>
 
     </div>
