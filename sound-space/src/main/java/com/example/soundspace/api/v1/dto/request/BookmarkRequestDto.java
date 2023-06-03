@@ -9,7 +9,7 @@ public class BookmarkRequestDto {
 
     @Getter
     @Setter
-    public static class BookmarkInfo {
+    public static class toggleBookmarkAtMusic {
 
         @NotEmpty(message = "곡 제목은 필수 입력값입니다.")
         private String trackTitle;

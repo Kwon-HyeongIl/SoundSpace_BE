@@ -3,8 +3,6 @@ package com.example.soundspace.api.v1.controller;
 import com.example.soundspace.api.lib.Helper;
 import com.example.soundspace.api.v1.dto.Response;
 import com.example.soundspace.api.v1.dto.request.BookmarkRequestDto;
-import com.example.soundspace.api.v1.dto.response.BookmarkResponseDto;
-import com.example.soundspace.api.v1.dto.response.MusicResponseDto;
 import com.example.soundspace.api.v1.service.BookmarksService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +28,7 @@ public class BookmarksController {
 
     @PostMapping("/music/{musicId}/bookmarks")
     public ResponseEntity<?> toggleBookmarkAtMusic(@PathVariable Long musicId,
-                                                   @Validated @RequestBody BookmarkRequestDto.BookmarkInfo bookmarkInfo,
+                                                   @Validated @RequestBody BookmarkRequestDto.toggleBookmarkAtMusic bookmarkInfo,
                                                    @ApiIgnore Errors errors) {
         if (errors.hasErrors()) {
             return response.invalidFields(Helper.refineErrors(errors));

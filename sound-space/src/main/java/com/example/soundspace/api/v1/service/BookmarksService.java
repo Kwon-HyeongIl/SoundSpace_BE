@@ -51,7 +51,7 @@ public class BookmarksService {
         }
     }
 
-    public ResponseEntity<?> toggleBookmarkAtMusic(Long musicId, BookmarkRequestDto.BookmarkInfo bookmarkInfo) {
+    public ResponseEntity<?> toggleBookmarkAtMusic(Long musicId, BookmarkRequestDto.toggleBookmarkAtMusic bookmarkInfo) {
         String username = SecurityUtil.getCurrentUsername();
         Users user = (Users) customUserDetailsService.loadUserByUsername(username);
         Long userId = user.getId();
