@@ -29,7 +29,7 @@ spring:
 
 # jwt
 jwt:
-  secret: VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHN
+  secret: aW1wb3NzaWJsZXdpbmFwcGxpZWRkaXNobmVhcmVzdHBvb2xob3dyZWFsZGFuZ2Vyb3U
 
 --- # redis
 spring:
@@ -37,8 +37,12 @@ spring:
     host: localhost
     port: 6379
 
-# Genius
+--- # swagger
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
 genius:
-  api:
-    base-url: https://api.genius.com
-    access-token: -guqQV5QhBh66KUWje60W43oGNx4_sqCjwdcnW8peflS4usTm4xy6s5BInJDGfmL
+  client-id: OprkTW4uD_JUPL7P__xUM-BsOaqANl_NSSTn4PodKFvye0-zC5-ObT68g0ZuqqF3
+  client-secret: Rm7t_SFh9XhKCQFLbf1FpwW5yBnal8fAzbn6GHuC5zTLVykMEFT-ArNLu0mKPR2dox94BHruW4z0uNgZkLAWYg

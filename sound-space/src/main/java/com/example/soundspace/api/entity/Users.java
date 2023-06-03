@@ -11,6 +11,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.FetchType.LAZY;
+
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,9 +22,10 @@ import java.util.stream.Collectors;
 @Entity
 public class Users extends BaseTime implements UserDetails {
 
+    @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idx;
+    private Long id;
 
     @Column
     private String username;
@@ -39,7 +43,14 @@ public class Users extends BaseTime implements UserDetails {
     private List<UserLikes> likesReceived = new ArrayList<>();
 
     @Column
-    @ElementCollection(fetch = FetchType.EAGER)
+    private Long likes;
+
+    @OneToOne(cascade = ALL, fetch = LAZY)
+    @JoinColumn
+    private Playlists playlist;
+
+    @Column
+    @ElementCollection(fetch = LAZY)
     @Builder.Default
     private List<String> roles = new ArrayList<>();
 
@@ -53,6 +64,11 @@ public class Users extends BaseTime implements UserDetails {
     @Override
     public String getUsername() {
         return username;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
     }
 
     @Override
@@ -74,4 +90,5 @@ public class Users extends BaseTime implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }
