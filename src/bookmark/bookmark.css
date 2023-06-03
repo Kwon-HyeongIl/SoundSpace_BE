@@ -6,12 +6,16 @@
   grid-template-columns: 1fr 1fr 1fr;
 }
 #bookmark-icon {
+  color: #ebff00;
+  font-size: 80px;
+}
+#bookmark-icon1 {
   margin: auto;
   color: #ebff00;
   font-size: 80px;
 }
 .bookmark {
-  margin: auto;
+  /* margin: auto; */
   width: 450px;
   text-align: center;
   color: white;
@@ -25,10 +29,10 @@
 .rankingBackground {
   /* 백그라운드 */
   height: 100%;
-  padding-top: 50px;
-  padding-bottom: 10px;
-  padding-left: 150px;
-  padding-right: 150px;
+  /* padding-top: 50px; */
+  /* padding-bottom: 10px; */
+  /* padding-left: 150px; */
+  /* padding-right: 150px; */
   background: linear-gradient(#282828, #000000);
 }
 .rankingFrame {
@@ -80,4 +84,8 @@
   border: none;
   color: white;
   margin-right: 10px;
+}
+.album_cover {
+  margin: auto;
+  width: 100px;
 }

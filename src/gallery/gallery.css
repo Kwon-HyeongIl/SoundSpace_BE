@@ -1,4 +1,15 @@
+.centered {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.cursor {
+  color: pink;
+}
 .navbar {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
   display: grid;
   grid-template-columns: 0.25fr 2fr 0.25fr 0.25fr;
   background-color: #000000;
@@ -50,6 +61,7 @@
 }
 
 .logo {
+  text-decoration-line: none;
   text-align: center;
   color: white;
   font-size: 30px;
