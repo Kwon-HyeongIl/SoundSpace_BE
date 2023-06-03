@@ -1,5 +1,5 @@
 import "./login_sign.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { React, useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthProvider";
 
@@ -37,6 +37,7 @@ const LOGIN_URL = "/api/v1/users/login";
 function CenterLogo() {
   // const [id, setID] = React.useState("");
   // const [pwd, setPwd] = React.useSteate("");
+  const navigate = useNavigate();
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
@@ -74,6 +75,9 @@ function CenterLogo() {
       setUser("");
       setPwd("");
       setSuccess(true);
+
+      //로그인 성공 후 페이지 이동
+      navigate("/gallery");
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
