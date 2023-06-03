@@ -13,22 +13,22 @@ function Ranking() {
   return (
     <div className="rankingBackground">
       <div className="bookmark-title">
-        <span className="favorite material-icons" id="bookmark-icon">
+        <div className="favorite material-icons" id="bookmark-icon">
           bookmark_border
-        </span>
-        <span className="bookmark">BookMark</span>
-        <span className="favorite material-icons" id="bookmark-icon">
+        </div>
+        <div className="bookmark">BookMark</div>
+        <div className="favorite material-icons" id="bookmark-icon1">
           bookmark_border
-        </span>
+        </div>
       </div>
       <div className="rankingFrame">
         <div className="rankingGrid">
           <div className="rankContainer_head">
-            <div className="rankingItem_head">Music</div>
+            <div className="rankingItem_head">Album Cover</div>
+            <div className="rankingItem_head">Title</div>
             <div className="rankingItem_head">Artist</div>
-            <div className="rankingItem_head">By</div>
           </div>
-          <div className="rankContainer">
+          {/* <div className="rankContainer">
             <link
               href="https://fonts.googleapis.com/icon?family=Material+Icons"
               rel="stylesheet"
@@ -45,24 +45,28 @@ function Ranking() {
             </span>
             <span className="rankingItem">Newjeans</span>
             <span className="rankingItem">PKNU</span>
-          </div>
+          </div> */}
           {Array.from({ length: 10 }, (_, i) => (
             <div className="rankContainer" key={i}>
               <link
                 href="https://fonts.googleapis.com/icon?family=Material+Icons"
                 rel="stylesheet"
               />
-              <span className="music">
-                <input
+              {/* <span className="music"> */}
+              {/* <input
                   id="play-icon-button"
                   type="button"
                   className="material-icons"
                   value="play_arrow"
-                />
-                <span className="rankingItem">Attention</span>
-              </span>
+                /> */}
+              <img
+                alt=""
+                src="https://image.bugsm.co.kr/album/images/500/40780/4078016.jpg"
+                className="album_cover"
+              />
+              <span className="rankingItem">Attention</span>
+              {/* </span> */}
               <span className="rankingItem">Newjeans</span>
-              <span className="rankingItem">PKNU</span>
             </div>
           ))}
         </div>
