@@ -36,6 +36,12 @@ public class Users extends BaseTime implements UserDetails {
     @Column
     private String password;
 
+    @OneToMany(mappedBy = "liker")
+    private List<UserLikes> likesGiven = new ArrayList<>();
+
+    @OneToMany(mappedBy = "likee")
+    private List<UserLikes> likesReceived = new ArrayList<>();
+
     @Column
     private Long likes;
 
