@@ -45,4 +45,4 @@ spring:
 
 genius:
   client-id: OprkTW4uD_JUPL7P__xUM-BsOaqANl_NSSTn4PodKFvye0-zC5-ObT68g0ZuqqF3
-  client-secret: Rm7t_SFh9XhKCQFLbf1FpwW5yBnal8fAzbn6GHuC5zTLVykMEFT-ArNLu0mKPR2dox94BHruW4z0uNgZkLAWYg
+#  client-secret: Rm7t_SFh9XhKCQFLbf1FpwW5yBnal8fAzbn6GHuC5zTLVykMEFT-ArNLu0mKPR2dox94BHruW4z0uNgZkLAWYg
