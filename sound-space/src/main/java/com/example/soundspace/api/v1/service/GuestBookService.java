@@ -86,7 +86,7 @@ public class GuestBookService {
         GuestBook guestBook = guestBookRepository.findById(guestBookId)
                 .orElseThrow(() -> new NoSuchElementException("id로 방명록을 찾을 수 없습니다. : " + guestBookId));
 
-        if (!requester.getIdx().equals(guestBook.getWriter().getIdx())) {
+        if (!requester.getId().equals(guestBook.getWriter().getId())) {
             throw new IllegalArgumentException("요청자는 방명록의 작성자가 아닙니다.");
         }
 
