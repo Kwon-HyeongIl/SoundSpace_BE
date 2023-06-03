@@ -42,8 +42,8 @@ function CenterLogo() {
   const userRef = useRef();
   const errRef = useRef();
 
-  const [user, setUser] = useState("");
-  const [pwd, setPwd] = useState("");
+  const [username, setUser] = useState("");
+  const [password, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
@@ -53,46 +53,72 @@ function CenterLogo() {
 
   useEffect(() => {
     setErrMsg("");
-  }, [user, pwd]);
+  }, [username, password]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
-    try {
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify({ user, pwd }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-      console.log(JSON.stringify(response?.data));
-      // console.log(JSON.stringify(response));
-      const accessToken = response?.data?.accessToken;
-      // const roles = response?.data?.roles;
-      setAuth({ user, pwd, accessToken });
-      setUser("");
-      setPwd("");
-      setSuccess(true);
+  //   try {
+  //     const response = await axios.post(
+  //       LOGIN_URL,
+  //       {
+  //         username: username,
+  //         password: password,
+  //       },
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         withCredentials: true,
+  //       }
+  //     );
 
-      //로그인 성공 후 페이지 이동
-      navigate("/gallery");
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg("No Server Response");
-      } else if (err.response?.status === 400) {
-        setErrMsg("Missing Username or Password");
-      } else if (err.response?.status === 401) {
-        setErrMsg("Unautorized");
-      } else {
-        setErrMsg("Login Failed");
-      }
-      errRef.current.focues();
-    }
-    // console.log(user, pwd);
+  //     console.log(JSON.stringify(response?.data));
+  //     // console.log(JSON.stringify(response));
+  //     const accessToken = response?.data?.accessToken;
+  //     // const roles = response?.data?.roles;
+  //     setAuth({ username, password, accessToken });
+  //     setUser("");
+  //     setPwd("");
+  //     setSuccess(true);
+
+  //     //로그인 성공 후 페이지 이동
+  //     navigate("/gallery");
+  //   } catch (err) {
+  //     if (!err?.response) {
+  //       setErrMsg("No Server Response");
+  //     } else if (err.response?.status === 400) {
+  //       setErrMsg("Missing Username or Password");
+  //     } else if (err.response?.status === 401) {
+  //       setErrMsg("Unautorized");
+  //     } else {
+  //       setErrMsg("Login Failed");
+  //     }
+  //     errRef.current.focues();
+  //   }
+  //   console.log(username, password);
+  //   console.log("user:", username);
+  //   console.log("pwd:", password);
+  // };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("password", password);
+    axios({
+      method: "post",
+      url: "http://localhost:3000/api/v1/users/login",
+      data: formData,
+    })
+      .then((result) => {
+        console.log("요청성공");
+        console.log(result?.data);
+      })
+      .catch((error) => {
+        console.log("요청실패");
+        console.log(error);
+      });
   };
-
   return (
     <>
       {success ? (
@@ -145,7 +171,7 @@ function CenterLogo() {
                   ref={userRef}
                   // autoComplete="off" 자동완성 일단 주석처리
                   onChange={(e) => setUser(e.target.value)}
-                  value={user}
+                  value={username}
                   required
                   // name="user_input_id"
                   placeholder="TYPING YOUR ID..."
@@ -156,7 +182,7 @@ function CenterLogo() {
                   type="password"
                   id="password"
                   onChange={(e) => setPwd(e.target.value)}
-                  value={pwd}
+                  value={password}
                   required
                   // name="user_input_password"
                   placeholder="TYPING YOUR PASSWORD..."
