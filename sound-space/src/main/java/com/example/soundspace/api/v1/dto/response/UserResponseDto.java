@@ -22,7 +22,6 @@ public class UserResponseDto {
     public static class UserInfo {
         private String username;
         private String email;
-        private Long likes;
     }
 
     @Builder
@@ -30,7 +29,5 @@ public class UserResponseDto {
     @AllArgsConstructor
     public static class UserInfoForSearching {
         private String username;
-        private Long likes;
-        private Long playlistId;
     }
 }

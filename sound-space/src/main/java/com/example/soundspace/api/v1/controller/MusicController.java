@@ -24,9 +24,4 @@ public class MusicController {
     public ResponseEntity<?> getMusicById(@PathVariable Long musicId) {
         return musicService.getMusicById(musicId);
     }
-
-    @PostMapping("/{musicId}/bookmarks")
-    public ResponseEntity<?> toggleBookmark(@PathVariable Long musicId) {
-        return musicService.toggleBookmark(musicId);
-    }
 }
