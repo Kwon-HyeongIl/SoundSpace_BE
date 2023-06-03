@@ -5,10 +5,16 @@ import GalleryCanvas from "./galleryCanvas";
 import NavBar from "./topNaviBar.js";
 
 function Heart() {
+  const [heartNum, setHeartNum] = useState(1004);
+
+  const increaseHeartNum = () => {
+    setHeartNum(heartNum + 1);
+  };
+
   return (
     <div className="like">
-      <img alt="" id="heart" src="heart1.png"></img>
-      <div className="like-num">1000</div>
+      <img alt="" id="heart" src="heart1.png" onClick={increaseHeartNum}></img>
+      <div className="like-num">{heartNum}</div>
     </div>
   );
 }
