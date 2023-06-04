@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a42fb7bd-a22c-4fdb-a8ad-fea274b6cf7d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sound-space/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/sound-space/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/axios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/login/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setupProxy.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/setupProxy.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,6 +146,7 @@
       <workItem from="1685900432414" duration="1071000" />
       <workItem from="1685904183267" duration="136000" />
       <workItem from="1685909554626" duration="90000" />
+      <workItem from="1685912336084" duration="1051000" />
     </task>
     <servers />
   </component>
