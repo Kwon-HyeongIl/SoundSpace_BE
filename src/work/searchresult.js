@@ -7,7 +7,7 @@ function SearchResult({ musicInput, searchResult }) {
       <div className="music_album"></div>
       <div className="music_title">| {musicInput} |</div>
       <div className="music_artist">{searchResult}</div>
-      <button className="add_music">+</button>
+      <button className="plus_music">+</button>
     </div>
   );
 }

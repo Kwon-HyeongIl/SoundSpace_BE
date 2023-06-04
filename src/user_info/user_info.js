@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './user_info.css';
+import NavBar from "../gallery/topNaviBar.js";
 
 function UserInfo() {
   const [showEnterEmail, setShowEnterEmail] = useState(false);
@@ -9,6 +10,7 @@ function UserInfo() {
     setShowEnterEmail(true);
     setShowEnterPW(false);
   }
+
   function handleFixPWClick() {
     setShowEnterPW(true);
     setShowEnterEmail(false);
@@ -46,11 +48,11 @@ function UserInfo() {
             <input className='Enter_info' type='text' name='input_new_id' placeholder='ENTER NEW E-MAIL'></input>
           )}
           {showEnterPW && (
-          <>
-          <input className='Enter_info' type='password' name='input_new_pw' placeholder='NOW PASSWORD'></input>
-            <input className='Enter_info' type='password' name='input_new_pw' placeholder='NEW PASSWORD'></input>
-            <input className='Enter_info' type='password' name='input_check_pw' placeholder='ONE MORE PASSWORD'></input>
-          </>
+            <>
+              <input className='Enter_info' type='password' name='input_now_pw' placeholder='NOW PASSWORD'></input>
+              <input className='Enter_info' type='password' name='input_new_pw' placeholder='NEW PASSWORD'></input>
+              <input className='Enter_info' type='password' name='input_check_pw' placeholder='ONE MORE PASSWORD'></input>
+            </>
           )}
           <button className="change_button">CHANGE</button>
         </div>
@@ -62,7 +64,8 @@ function UserInfo() {
 export default function UserInformation() {
   return (
     <div>
+      <NavBar></NavBar>
       <UserInfo></UserInfo>
-    </div>
-  )
+      </div>
+  );
 }
