@@ -67,13 +67,13 @@ function CenterLogo() {
   //       },
   //       {
   //         headers: {
-  //           "Content-Type": "application/json",
+  //           "Content-Type": "multipart/form-data",
   //         },
   //         withCredentials: true,
   //       }
   //     );
 
-  //     console.log(JSON.stringify(response?.data));
+  //     console.log(JSON.stringify(response?.data?.message));
   //     // console.log(JSON.stringify(response));
   //     const accessToken = response?.data?.accessToken;
   //     // const roles = response?.data?.roles;
@@ -100,6 +100,7 @@ function CenterLogo() {
   //   console.log("user:", username);
   //   console.log("pwd:", password);
   // };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -110,15 +111,30 @@ function CenterLogo() {
       url: "http://localhost:3000/api/v1/users/login",
       data: formData,
     })
-      .then((result) => {
+      .then((response) => {
         console.log("요청성공");
-        console.log(result?.data);
+        console.log(response?.data);
+        if (response.data.result === "fail") {
+          alert(response.data.message);
+        } else {
+          alert(response.data.message);
+          navigate("/gallery");
+        }
+
+        // if (response.data.message === "") {
+        //   alert(JSON.stringify(response.data.error[0]));
+        //   navigate("/gallery");
+        // } else {
+        //   alert(response.data.message);
+        // }
       })
       .catch((error) => {
         console.log("요청실패");
         console.log(error);
+        alert(error.message);
       });
   };
+
   return (
     <>
       {success ? (
