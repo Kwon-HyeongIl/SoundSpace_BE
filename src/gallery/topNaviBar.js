@@ -20,8 +20,8 @@ function NavBar() {
             <div className="itemContainer" onClick={() => navigate("/info")}>
               CHANGE INFO
             </div>
-            <div className="itemContainer" onClick={() => navigate("/")}>
-              WORK MANAGER
+            <div className="itemContainer" onClick={() => navigate("/edit")}>
+              MY PLAYLIST
             </div>
             <div className="itemContainer">
               LIKE
@@ -34,12 +34,12 @@ function NavBar() {
               className="itemContainer"
               onClick={() => navigate("/bookmark")}
             >
-              BOOK MARK
+            BOOK MARK
             </button>
             {/* <button className="itemContainer" onClick={() => navigate("/")}>RANKING</button> */}
           </div>
         </Sidebar>
-        <a className="logo" onClick={() => navigate("/gallery")} href="">
+        <a className="logo" id="center_fix" onClick={() => navigate("/gallery")} href="">
           <sapn className="logo_f">S</sapn>OUND{" "}
           <span className="logo_f">S</span>PACE
         </a>

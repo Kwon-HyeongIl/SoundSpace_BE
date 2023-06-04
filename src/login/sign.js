@@ -36,18 +36,17 @@ function SignLogo () {
         </div>
       </div>
 
-      <div className="main_logo">
-        <div id='f_r'>
+      <div className="main_logo" id="sign">
+        <div>
           <sapn className="main_logo_p">S</sapn>ound
-        </div>
-        <div id='s_r'>
-          <span className="main_logo_p">S</span>pace
+          <span className="main_logo_p">  S</span>pace
         </div>
       </div>
 
       <div>
         <div className='signtext'>SIGN IN</div>
         <input className='Enter_info' type='text' placeholder='TYPING YOUR ID...'></input>
+        <input className='Enter_info' type='text' placeholder='TYPING YOUR E-MAIL...'></input>
         <input className='Enter_info' type='password' placeholder='TYPING YOUR PASSWORD...'></input>
         <Link to={"/"} className='no_line'>
           <button
