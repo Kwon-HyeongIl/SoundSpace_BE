@@ -48,10 +48,10 @@ function UserSearch() {
         </div>
 
         {searchResult !== null && (
-          <div className="search_result">
+          <div className="user_search_result">
             <div className="user_UI"></div>
             <div className="user_ID">{userInput}</div>
-            <div className="heart"></div>
+            <div className="s_heart"></div>
             <div className="user_like">{searchResult}</div>
           </div>
         )}
