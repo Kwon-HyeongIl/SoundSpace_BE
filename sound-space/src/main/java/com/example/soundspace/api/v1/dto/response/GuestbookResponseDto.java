@@ -10,6 +10,8 @@ public class GuestbookResponseDto {
     @Getter
     @AllArgsConstructor
     public static class GuestbookInfo {
+        private Long id;
+        private Long writerId;
         private String writerName;
         private String content;
     }

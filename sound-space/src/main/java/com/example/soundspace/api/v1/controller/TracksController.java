@@ -43,7 +43,7 @@ public class TracksController {
         return tracksService.updateMyTrackInfo(userId, trackIndex, update);
     }
 
-    @PatchMapping("/me/tracks/{trackIndex}/clear")
+    @PatchMapping("/{trackIndex}/clear")
     public ResponseEntity<?> clearMyTrackInfo(@PathVariable String userId,
                                               @PathVariable @Min(1) @Max(10) Integer trackIndex) {
         return tracksService.clearMyTrackInfo(userId, trackIndex);

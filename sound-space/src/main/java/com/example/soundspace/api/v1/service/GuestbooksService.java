@@ -52,6 +52,8 @@ public class GuestbooksService {
             List<GuestbookResponseDto.GuestbookInfo> guestbookInfos = new ArrayList<>();
             for (Guestbooks guestbook : guestbooks) {
                 GuestbookResponseDto.GuestbookInfo guestbookInfo = GuestbookResponseDto.GuestbookInfo.builder()
+                        .id(guestbook.getId())
+                        .writerId(guestbook.getWriter().getId())
                         .writerName(guestbook.getWriter().getUsername())
                         .content(guestbook.getContent())
                         .build();

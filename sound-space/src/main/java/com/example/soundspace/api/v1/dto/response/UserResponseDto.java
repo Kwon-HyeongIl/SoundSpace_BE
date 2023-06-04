@@ -28,6 +28,7 @@ public class UserResponseDto {
     @Getter
     @AllArgsConstructor
     public static class UserInfoForSearching {
+        private Long id;
         private String username;
     }
 }

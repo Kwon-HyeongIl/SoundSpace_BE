@@ -177,6 +177,7 @@ public class UsersService {
             List<UserResponseDto.UserInfoForSearching> userInfos = new ArrayList<>();
             for (Users user : users) {
                 UserResponseDto.UserInfoForSearching userInfo = UserResponseDto.UserInfoForSearching.builder()
+                        .id(user.getId())
                         .username(user.getUsername())
                         .build();
 
