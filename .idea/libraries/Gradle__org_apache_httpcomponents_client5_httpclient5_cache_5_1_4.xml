@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.httpcomponents.client5:httpclient5-cache:5.1.4" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="org.apache.httpcomponents.client5" artifactId="httpclient5-cache" version="5.1.4" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents.client5/httpclient5-cache/5.1.4/33d8eee888bcdc8676017bb9c6b0aaf6b98d9200/httpclient5-cache-5.1.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents.client5/httpclient5-cache/5.1.4/a59b7111f5fcd820c818647cd00cbaf8d6d10275/httpclient5-cache-5.1.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.scribejava:scribejava-core:8.3.3" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="com.github.scribejava" artifactId="scribejava-core" version="8.3.3" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.github.scribejava/scribejava-core/8.3.3/4a9b4ed9a6367f95945eb30382a1cc647b390bd5/scribejava-core-8.3.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.github.scribejava/scribejava-core/8.3.3/57ef2ddce6440f21b72da9bce4a7b0c436a641e9/scribejava-core-8.3.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

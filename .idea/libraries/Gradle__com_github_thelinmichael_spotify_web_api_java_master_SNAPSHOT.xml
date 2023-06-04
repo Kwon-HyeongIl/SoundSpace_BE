@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.thelinmichael:spotify-web-api-java:master-SNAPSHOT" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="com.github.thelinmichael" artifactId="spotify-web-api-java" version="master-SNAPSHOT" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.github.thelinmichael/spotify-web-api-java/master-SNAPSHOT/c4998ad3c3f8653b3c6ac67c444ea7d3203c732b/spotify-web-api-java-master-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.github.thelinmichael/spotify-web-api-java/master-SNAPSHOT/a7559b33fc64f756d9df738d476d571fbd495f5e/spotify-web-api-java-master-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
