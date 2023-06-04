@@ -17,7 +17,7 @@
 
 .main_logo {
 
-  padding-top: 40px;
+  padding-top: 20px;
   padding-bottom: 10px;
   text-shadow: 0px 0px 10px #282828;
 
@@ -28,6 +28,10 @@
   font-size: 220px;
   color: white;
   
+}
+
+#sign{
+  font-size: 180px;
 }
 
 .main_logo_p {
@@ -55,25 +59,25 @@
   font-size: 32px;
   font-weight: 750;
   color: white;
-  margin-top: 5px;
   text-shadow: 0px 0px 10px #282828;
 }
 
-.Enter_info{
+.Enter_info {
   position: relative;
   display: block;
-  margin: 0 auto;
-  margin-top: 25px;
   padding-left: 30px;
   padding-right: 30px;
   border-color: black;
   border-width: 4px;
-
   width: 400px;
   height: 60px;
   border-radius: 50px;
-
   font-size: 24px;
+  margin-top: 0px;
+}
+
+form input.Enter_info {
+  margin-top: 3px;
 }
 
 .login_button {
@@ -104,29 +108,26 @@
 }
 
 #sign_check {
-  
   margin-top: 20px;
-
 }
 
 .login_to_sign{
 
   position: absolute;
   
-  height: 180px;
-  width: 180px;
+  height: 130px;
+  width: 130px;
   border-radius: 50%;
   background-color: #828D8D;
   border-color: black;
   border-width: 4px;
 
   display :block;
-  margin-left: 61%;
-  margin-top: -8.5%;
+  margin-left: 67%;
+  margin-top: -8%;
   
   color: white;
-  font-size: 32px;
-  font-weight: 700;
+  font-size: 25px;
 
 }
 

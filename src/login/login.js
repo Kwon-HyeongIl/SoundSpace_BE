@@ -4,12 +4,39 @@ import { React, useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthProvider";
 
 import axios from "../api/axios";
-const LOGIN_URL = "api/v1/users/login";
+const LOGIN_URL = "/api/v1/users/login";
+
+// const loginDB = (id, password) => {
+//   return function (dispatch, getState, { history }) {
+//     axios({
+//       method: "post",
+//       url: "/api/v1/users/login",
+//       data: {
+//         emial: id,
+//         password: password,
+//       },
+//     })
+//       .then((res) => {
+//         console.log(res);
+//         dispatch(
+//           setUser({
+//             email: res.data.email,
+//           })
+//         );
+//         const accessToken = res.data.token;
+//         //쿠키에 토큰 저장
+//         setCookie("is_login", "${accessToken}");
+//         document.location.href = "/";
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   };
+// };
 
 function CenterLogo() {
   // const [id, setID] = React.useState("");
   // const [pwd, setPwd] = React.useSteate("");
-  //
   const navigate = useNavigate();
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
@@ -28,6 +55,51 @@ function CenterLogo() {
     setErrMsg("");
   }, [username, password]);
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const response = await axios.post(
+  //       LOGIN_URL,
+  //       {
+  //         username: username,
+  //         password: password,
+  //       },
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         withCredentials: true,
+  //       }
+  //     );
+
+  //     console.log(JSON.stringify(response?.data));
+  //     // console.log(JSON.stringify(response));
+  //     const accessToken = response?.data?.accessToken;
+  //     // const roles = response?.data?.roles;
+  //     setAuth({ username, password, accessToken });
+  //     setUser("");
+  //     setPwd("");
+  //     setSuccess(true);
+
+  //     //로그인 성공 후 페이지 이동
+  //     navigate("/gallery");
+  //   } catch (err) {
+  //     if (!err?.response) {
+  //       setErrMsg("No Server Response");
+  //     } else if (err.response?.status === 400) {
+  //       setErrMsg("Missing Username or Password");
+  //     } else if (err.response?.status === 401) {
+  //       setErrMsg("Unautorized");
+  //     } else {
+  //       setErrMsg("Login Failed");
+  //     }
+  //     errRef.current.focues();
+  //   }
+  //   console.log(username, password);
+  //   console.log("user:", username);
+  //   console.log("pwd:", password);
+  // };
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -38,34 +110,15 @@ function CenterLogo() {
       url: "http://localhost:3000/api/v1/users/login",
       data: formData,
     })
-      .then((response) => {
+      .then((result) => {
         console.log("요청성공");
-        console.log(response.data);
-
-        if (response.data.state === 200) {
-          // alert(response.data.message);
-          console.log(username, password);
-          localStorage.setItem("accessToken", response.data.data.accessToken);
-          localStorage.setItem("refreshToken", response.data.data.refreshToken);
-          // setAuth({ username, password, accessToken });
-          navigate("/gallery");
-        } else {
-          alert(response.data.message);
-        }
-        // if (response.data.message === "") {
-        //   alert(JSON.stringify(response.data.error[0]));
-        //   navigate("/gallery");
-        // } else {
-        //   alert(response.data.message);
-        // }
+        console.log(result?.data);
       })
       .catch((error) => {
         console.log("요청실패");
         console.log(error);
-        alert(error.message);
       });
   };
-
   return (
     <>
       {success ? (
@@ -126,7 +179,7 @@ function CenterLogo() {
                 <label htmlFor="password">Password:</label>
                 <input
                   className="Enter_info"
-                  // type="password"
+                  type="password"
                   id="password"
                   onChange={(e) => setPwd(e.target.value)}
                   value={password}
