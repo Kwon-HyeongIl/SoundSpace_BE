@@ -32,10 +32,10 @@ function UserSearch() {
     <>
       <NavBar></NavBar>
       <div className="search_back_color">
-        <div className="search_random">
-          <div className="search_box">
+        <div className="user_search_random">
+          <div className="user_search_box">
             <input
-              className="Searching"
+              className="user_Searching"
               type="text"
               name="searching"
               placeholder="Search for User_Name"

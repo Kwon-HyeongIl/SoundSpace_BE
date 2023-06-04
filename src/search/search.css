@@ -1,48 +1,77 @@
 
 
 .search_back_color {
+    align-items: center;
     text-align: center;
     overflow: hidden;
     background-color: #282828;
     height: 100vh;
 }
 
-.search_random{
+.user_search_random {
     width: 1050px;
     text-align: center;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 120px; /* Add this line to create two columns */
+    grid-gap: 10px; /* Add some gap between the columns */
     padding-top: 250px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 100px;
-}
-
-.search_box {
+  }
+  
+  .user_search_box {
     position: relative;
     display: flex;
     background-color: #282828;
-    width: 900px;
+    width: 100%;
     height: 110px;
-
-    margin-right: 10px;
-
-    border: solid 5px white;
-    border-radius: 10px;
-}
-
-.Searching {
+  }
+  
+.user_Searching {
     text-decoration: none;
     position: absolute;
     background-color: #282828;
-    width: 751px;
+    width: 84.6%;
     height: 105px;
     padding-left: 25px;
-    padding-right: 120px;
-
+    padding-right: 100px;
+    border: solid 5px white;
     border-radius: 6px;
     color: white;
     font-size: 45px;
     font-weight: 700;
+}
+  
+@media (max-width: 1200px) {
+    .user_search_random {
+      width: 90%;
+    }
+  
+    .user_search_box {
+      width: 85%;
+    }
+  
+    .user_Searching {
+      width: 90%;
+      padding-right: 80px;
+    }
+}
+  
+@media (max-width: 600px) {
+    .user_search_random {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .user_search_box {
+      width: 95%;
+    }
+  
+    .user_Searching {
+      width: 100%;
+      padding-right: 50px;
+    }
 }
 
 .find_user {
@@ -53,7 +82,7 @@
     margin-top: auto;
     margin-bottom: auto;
     margin-left: auto;
-    margin-right: 13px;
+    margin-right: 3%;
     width: 60px;
     height: 60px;
 
@@ -70,12 +99,10 @@
     background-repeat: no-repeat;
     width: 120px;
     height: 120px;
-    margin-left: 10px;
-    border: solid 5px #EBFF00;
+    border: solid 5px #ebff00;
     border-radius: 10px;
-
     cursor: pointer;
-}
+  }
 
 .word {
     display: inline;
