@@ -2,7 +2,7 @@ import axios from "axios";
 import { refresh, refreshErrorHandle } from "../context/refresh";
 
 export default axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/",
   params: {},
 });
 
