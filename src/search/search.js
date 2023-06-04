@@ -23,6 +23,16 @@ function UserSearch() {
     setShowResult(true);
   }
 
+  function randomButtonClick() {
+    if (idList.length > 0) {
+      const randomIndex = Math.floor(Math.random() * idList.length);
+      setSearchResult(idList[randomIndex].like);
+      setUserInput(idList[randomIndex].id);
+      setShowResult(true);
+    }
+  }
+  
+
   function findInputChange(event) {
     setUserInput(event.target.value);
     setSearchResult(null); // 검색어가 변경될 때마다 결과 초기화
@@ -44,7 +54,7 @@ function UserSearch() {
             ></input>
             <button className="find_user" onClick={findButtonClick}></button>
           </div>
-          <button className="random_dice"></button>
+          <button className="random_dice" onClick={randomButtonClick}></button>
         </div>
 
         {searchResult !== null && (
