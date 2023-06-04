@@ -378,3 +378,5 @@ export default GalleryCanvas;
 //     </group>
 //   );
 // }
+
+test

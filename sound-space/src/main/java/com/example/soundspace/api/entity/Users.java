@@ -36,18 +36,8 @@ public class Users extends BaseTime implements UserDetails {
     @Column
     private String password;
 
-    @OneToMany(mappedBy = "liker")
-    private List<UserLikes> likesGiven = new ArrayList<>();
-
-    @OneToMany(mappedBy = "likee")
-    private List<UserLikes> likesReceived = new ArrayList<>();
-
-    @Column
-    private Long likes;
-
-    @OneToOne(cascade = ALL, fetch = LAZY)
-    @JoinColumn
-    private Playlists playlist;
+    @OneToMany(mappedBy = "user", cascade = ALL, fetch = LAZY)
+    private List<Tracks> tracks;
 
     @Column
     @ElementCollection(fetch = LAZY)

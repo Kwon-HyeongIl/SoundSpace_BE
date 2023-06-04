@@ -1,6 +1,5 @@
 package com.example.soundspace.api.v1.service;
 
-import com.example.soundspace.api.entity.Bookmarks;
 import com.example.soundspace.api.entity.Users;
 import com.example.soundspace.api.genius.GeniusToken;
 import com.example.soundspace.api.security.SecurityUtil;
@@ -20,8 +19,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 
 @Slf4j
 @RequiredArgsConstructor
@@ -142,28 +139,6 @@ public class MusicService {
             }
         }
         return response.fail("곡 조회에 실패했습니다.", responseEntity.getStatusCode());
-    }
-
-    public ResponseEntity<?> toggleBookmark(Long musicId) {
-        String username = SecurityUtil.getCurrentUsername();
-        Users user = (Users) customUserDetailsService.loadUserByUsername(username);
-        Long userId = user.getId();
-
-        Optional<Bookmarks> optionalBookmark = bookmarksRepository.findByMusicIdAndUserId(musicId, userId);
-        if (optionalBookmark.isPresent()) {
-            bookmarksRepository.deleteById(optionalBookmark.get().getId());
-
-            return response.success("북마크 해제에 성공했습니다.");
-        } else {
-            Bookmarks bookmarks = Bookmarks.builder()
-                    .musicId(musicId)
-                    .user(user)
-                    .build();
-
-            bookmarksRepository.save(bookmarks);
-
-            return response.success("북마크 생성에 성공했습니다.");
-        }
     }
 
     private static ResponseEntity<String> getStringResponseEntity(String accessToken, UriComponentsBuilder builder) {

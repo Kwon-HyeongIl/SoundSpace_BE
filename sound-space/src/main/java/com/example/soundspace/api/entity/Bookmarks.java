@@ -19,6 +19,12 @@ public class Bookmarks {
     @Column
     private Long musicId;
 
+    @Column
+    private String trackTitle;
+
+    @Column
+    private String artistName;
+
     @ManyToOne
     @JoinColumn
     private Users user;

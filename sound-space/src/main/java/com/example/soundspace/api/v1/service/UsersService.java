@@ -1,6 +1,6 @@
 package com.example.soundspace.api.v1.service;
 
-import com.example.soundspace.api.entity.Playlists;
+import com.example.soundspace.api.entity.Tracks;
 import com.example.soundspace.api.entity.Users;
 import com.example.soundspace.api.enums.Authority;
 import com.example.soundspace.api.jwt.JwtTokenProvider;
@@ -54,14 +54,22 @@ public class UsersService {
                 .username(signUp.getUsername())
                 .email(signUp.getEmail())
                 .password(passwordEncoder.encode(signUp.getPassword()))
-                .likes(0L)
-                .playlist(new Playlists())
                 .roles(Collections.singletonList(Authority.ROLE_USER.name()))
                 .build();
+        user.setTracks(initTracks(user));
 
         usersRepository.save(user);
 
         return response.success("회원가입에 성공했습니다.");
+    }
+
+    private static List<Tracks> initTracks(Users user) {
+        List<Tracks> tracks = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            Tracks track = new Tracks(user, i);
+            tracks.add(track);
+        }
+        return tracks;
     }
 
     public ResponseEntity<?> login(UserRequestDto.Login login) {
@@ -156,7 +164,6 @@ public class UsersService {
         UserResponseDto.UserInfo userInfo = UserResponseDto.UserInfo.builder()
                 .username(user.getUsername())
                 .email(user.getEmail())
-                .likes(user.getLikes())
                 .build();
 
         return response.success(userInfo, "회원 프로필 조회에 성공했습니다.", HttpStatus.OK);
@@ -170,9 +177,8 @@ public class UsersService {
             List<UserResponseDto.UserInfoForSearching> userInfos = new ArrayList<>();
             for (Users user : users) {
                 UserResponseDto.UserInfoForSearching userInfo = UserResponseDto.UserInfoForSearching.builder()
+                        .id(user.getId())
                         .username(user.getUsername())
-                        .likes(user.getLikes())
-                        .playlistId(user.getPlaylist().getId())
                         .build();
 
                 userInfos.add(userInfo);

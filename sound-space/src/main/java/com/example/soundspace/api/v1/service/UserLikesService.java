@@ -2,16 +2,18 @@ package com.example.soundspace.api.v1.service;
 
 import com.example.soundspace.api.entity.UserLikes;
 import com.example.soundspace.api.entity.Users;
-import com.example.soundspace.api.jwt.JwtTokenProvider;
-import com.example.soundspace.api.v1.dto.response.UserLikesResponseDto;
+import com.example.soundspace.api.security.SecurityUtil;
+import com.example.soundspace.api.v1.dto.Response;
+import com.example.soundspace.api.v1.dto.response.UserLikeResponseDto;
 import com.example.soundspace.api.v1.repository.UserLikesRepository;
 import com.example.soundspace.api.v1.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,74 +23,74 @@ import java.util.stream.Collectors;
 @Transactional
 public class UserLikesService {
 
+    private final CustomUserDetailsService customUserDetailsService;
     private final UsersRepository usersRepository;
     private final UserLikesRepository userLikesRepository;
-    private final JwtTokenProvider jwtTokenProvider;
+    private final Response response;
 
-    private String removeBearerFromToken(String token) {
-        if (token != null && token.startsWith("Bearer ")) {
-            return token.substring("Bearer ".length());
-        }
-        return token;
-    }
+    public ResponseEntity<?> toggleLikeByUserId(Long userId) {
+        String username = SecurityUtil.getCurrentUsername();
+        Users liker = (Users) customUserDetailsService.loadUserByUsername(username);
 
-    public String getAuthenticatedUsername(String token) {
-        token = removeBearerFromToken(token);
-        if (!jwtTokenProvider.validateToken(token)) {
-            throw new IllegalArgumentException("Invalid token");
-        }
-
-        Authentication authentication = jwtTokenProvider.getAuthentication(token);
-        if(authentication == null) {
-            throw new IllegalArgumentException("Authentication failed. User is not authenticated.");
-        }
-        return authentication.getName();
-    }
-
-    public Users getUserByUsername(String username) {
-        return usersRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with username : " + username));
-    }
-    @Transactional
-    public UserLikesResponseDto likeUser(Users liker, Long likeeId) {
-        Users likee = usersRepository.findById(likeeId)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with id : " + likeeId));
+        Users likee = usersRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found."));
 
         Optional<UserLikes> optionalUserLike = userLikesRepository.findByLikerAndLikee(liker, likee);
-        UserLikes userLike;
-
         if (optionalUserLike.isPresent()) {
-            // User has already liked this other user, so unlike.
-            userLike = optionalUserLike.get();
-            liker.getLikesGiven().remove(userLike);
-            likee.getLikesReceived().remove(userLike);
+            UserLikes userLike = optionalUserLike.get();
             userLikesRepository.delete(userLike);
-            userLike = null;  // Because the like has been removed, set userLike to null
+            return response.success("좋아요 해제에 성공했습니다.");
         } else {
-            // User has not yet liked this other user, so like.
-            userLike = UserLikes.builder().liker(liker).likee(likee).build();
-            liker.getLikesGiven().add(userLike);
-            likee.getLikesReceived().add(userLike);
+            UserLikes userLike = UserLikes.builder()
+                    .liker(liker)
+                    .likee(likee)
+                    .build();
             userLikesRepository.save(userLike);
+            return response.success("좋아요 설정에 성공했습니다.");
         }
-
-        usersRepository.save(liker);
-        usersRepository.save(likee);
-
-        // Now create a DTO from the user that received the like/unlike
-        return UserLikesResponseDto.fromEntity(likee);
     }
 
+    public ResponseEntity<?> getAllMyLikesGiven() {
+        String username = SecurityUtil.getCurrentUsername();
+        Users user = (Users) customUserDetailsService.loadUserByUsername(username);
 
-    public List<UserLikesResponseDto> getUsersILiked(Users liker) {
-        return liker.getLikesGiven().stream()
-                .map(userLike -> UserLikesResponseDto.fromEntity(userLike.getLikee()))
-                .collect(Collectors.toList());
+        List<UserLikes> userLikes = userLikesRepository.findAllByLiker(user);
+        if (userLikes.isEmpty()) {
+            return response.success("아직 내가 좋아요한 유저가 없습니다.");
+        } else {
+            List<UserLikeResponseDto.UserLikeInfo> userLikeInfos = new ArrayList<>();
+            for (UserLikes userLike : userLikes) {
+                UserLikeResponseDto.UserLikeInfo userLikeInfo = UserLikeResponseDto.UserLikeInfo.builder()
+                        .id(userLike.getId())
+                        .username(userLike.getLikee().getUsername())
+                        .userId(userLike.getLikee().getId())
+                        .build();
+
+                userLikeInfos.add(userLikeInfo);
+            }
+            return response.success(userLikeInfos, "좋아요 목록 조회에 성공했습니다.", HttpStatus.OK);
+        }
     }
 
-    public List<UserLikesResponseDto> getUsersWhoLikedMe(Users likee) {
-        return likee.getLikesReceived().stream()
-                .map(userLike -> UserLikesResponseDto.fromEntity(userLike.getLiker()))
-                .collect(Collectors.toList());
+    public ResponseEntity<?> getAllMyLikesReceived() {
+        String username = SecurityUtil.getCurrentUsername();
+        Users user = (Users) customUserDetailsService.loadUserByUsername(username);
+
+        List<UserLikes> userLikes = userLikesRepository.findAllByLikee(user);
+        if (userLikes.isEmpty()) {
+            return response.success("아직 받은 좋아요가 없습니다.");
+        } else {
+            List<UserLikeResponseDto.UserLikeInfo> userLikeInfos = new ArrayList<>();
+            for (UserLikes userLike : userLikes) {
+                UserLikeResponseDto.UserLikeInfo userLikeInfo = UserLikeResponseDto.UserLikeInfo.builder()
+                        .id(userLike.getId())
+                        .username(userLike.getLiker().getUsername())
+                        .userId(userLike.getLiker().getId())
+                        .build();
+
+                userLikeInfos.add(userLikeInfo);
+            }
+            return response.success(userLikeInfos, "좋아요 목록 조회에 성공했습니다.", HttpStatus.OK);
+        }
     }
 }
