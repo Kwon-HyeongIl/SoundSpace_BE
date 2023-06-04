@@ -20,8 +20,8 @@ function NavBar() {
             <div className="itemContainer" onClick={() => navigate("/info")}>
               CHANGE INFO
             </div>
-            <div className="itemContainer" onClick={() => navigate("/")}>
-              WORK MANAGER
+            <div className="itemContainer" onClick={() => navigate("/edit")}>
+              MY PLAYLIST
             </div>
             <div className="itemContainer">
               LIKE

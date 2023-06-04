@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './user_info.css';
 import NavBar from "../gallery/topNaviBar.js";
 
+
 function UserInfo() {
+  {/*
   const [showEnterEmail, setShowEnterEmail] = useState(false);
   const [showEnterPW, setShowEnterPW] = useState(false);
 
@@ -15,7 +18,7 @@ function UserInfo() {
     setShowEnterPW(true);
     setShowEnterEmail(false);
   }
-
+*/}
   return (
     <div className='back_info'>
       <div className='all_element'>
