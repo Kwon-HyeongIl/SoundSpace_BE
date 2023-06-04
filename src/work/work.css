@@ -42,6 +42,16 @@
     font-weight: 700;
 }
 
+.music_info {
+    margin-top: -10px;
+    margin-left: 2%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 80%;
+}
+
 .find_music {
     background-image: url("./search_lens.png");
     background-size: cover;
@@ -96,6 +106,7 @@
     background-color: #282828;
     margin-top: auto;
     margin-bottom: auto;
+    margin-left: auto;
     width: 60px;
     height: 60px;
 
