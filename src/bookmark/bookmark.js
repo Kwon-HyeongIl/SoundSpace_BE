@@ -4,7 +4,7 @@ import Sidebar from "../sidebar/newSidebar";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavBar from "../gallery/topNaviBar.js";
 
-function Ranking() {
+function Bookmarking() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const togglePlay = () => {
@@ -13,13 +13,9 @@ function Ranking() {
   return (
     <div className="rankingBackground">
       <div className="bookmark-title">
-        <div className="favorite material-icons" id="bookmark-icon">
-          bookmark_border
-        </div>
+        <div className="favorite material-icons" id="bookmark-icon">bookmark_border</div>
         <div className="bookmark">BookMark</div>
-        <div className="favorite material-icons" id="bookmark-icon1">
-          bookmark_border
-        </div>
+        <div className="favorite material-icons" id="bookmark-icon1">bookmark_border</div>
       </div>
       <div className="rankingFrame">
         <div className="rankingGrid">
@@ -79,7 +75,7 @@ export default function Gallery() {
   return (
     <div className="gallery">
       <NavBar></NavBar>
-      <Ranking></Ranking>
+      <Bookmarking></Bookmarking>
     </div>
   );
 }
