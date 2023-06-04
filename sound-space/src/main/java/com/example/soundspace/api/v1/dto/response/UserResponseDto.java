@@ -22,15 +22,13 @@ public class UserResponseDto {
     public static class UserInfo {
         private String username;
         private String email;
-        private Long likes;
     }
 
     @Builder
     @Getter
     @AllArgsConstructor
     public static class UserInfoForSearching {
+        private Long id;
         private String username;
-        private Long likes;
-        private Long playlistId;
     }
 }

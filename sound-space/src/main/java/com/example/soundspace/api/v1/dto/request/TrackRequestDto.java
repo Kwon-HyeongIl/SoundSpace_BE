@@ -3,7 +3,7 @@ package com.example.soundspace.api.v1.dto.request;
 import lombok.Getter;
 import lombok.Setter;
 
-public class PlaylistRequestDto {
+public class TrackRequestDto {
 
     @Getter
     @Setter

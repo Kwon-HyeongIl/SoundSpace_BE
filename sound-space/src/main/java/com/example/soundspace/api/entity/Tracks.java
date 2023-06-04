@@ -35,11 +35,12 @@ public class Tracks extends BaseTime {
     @Lob
     private String lyrics;
 
-    @ManyToOne
-    @JoinColumn(name = "playlist_id")
-    private Playlists playlist;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private Users user;
 
-    public Tracks(int index) {
+    public Tracks(Users user, int index) {
+        this.user = user;
         trackIndex = index;
     }
 }
