@@ -89,6 +89,20 @@
     font-weight: 700;
   }
 
+.find_music_bookmark {
+    background-image: url("./bookmark.png");
+    background-size: cover;
+    position: relative;
+    background-color: #282828;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 60px;
+    height: 60px;
+
+    border: solid 3px #282828;
+    cursor: pointer;
+}
+
 .results {
     max-height: 700px;
     overflow-y: auto;

@@ -76,8 +76,8 @@ function UserInfo() {
 export default function UserInformation() {
   return (
     <div>
-      <NavBar></NavBar>
-      <UserInfo></UserInfo>
+      <NavBar />
+      <UserInfo />
     </div>
   );
 }
