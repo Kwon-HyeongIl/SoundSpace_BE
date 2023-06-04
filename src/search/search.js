@@ -23,6 +23,16 @@ function UserSearch() {
     setShowResult(true);
   }
 
+  function randomButtonClick() {
+    if (idList.length > 0) {
+      const randomIndex = Math.floor(Math.random() * idList.length);
+      setSearchResult(idList[randomIndex].like);
+      setUserInput(idList[randomIndex].id);
+      setShowResult(true);
+    }
+  }
+  
+
   function findInputChange(event) {
     setUserInput(event.target.value);
     setSearchResult(null); // 검색어가 변경될 때마다 결과 초기화
@@ -32,10 +42,10 @@ function UserSearch() {
     <>
       <NavBar></NavBar>
       <div className="search_back_color">
-        <div className="search_random">
-          <div className="search_box">
+        <div className="user_search_random">
+          <div className="user_search_box">
             <input
-              className="Searching"
+              className="user_Searching"
               type="text"
               name="searching"
               placeholder="Search for User_Name"
@@ -44,14 +54,14 @@ function UserSearch() {
             ></input>
             <button className="find_user" onClick={findButtonClick}></button>
           </div>
-          <button className="random_dice"></button>
+          <button className="random_dice" onClick={randomButtonClick}></button>
         </div>
 
         {searchResult !== null && (
-          <div className="search_result">
+          <div className="user_search_result">
             <div className="user_UI"></div>
             <div className="user_ID">{userInput}</div>
-            <div className="heart"></div>
+            <div className="s_heart"></div>
             <div className="user_like">{searchResult}</div>
           </div>
         )}
