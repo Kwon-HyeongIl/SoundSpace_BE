@@ -3,22 +3,25 @@ import { useNavigate } from 'react-router-dom';
 import './user_info.css';
 import NavBar from "../gallery/topNaviBar.js";
 
-
 function UserInfo() {
-  {/*
-  const [showEnterEmail, setShowEnterEmail] = useState(false);
-  const [showEnterPW, setShowEnterPW] = useState(false);
+  const [nowPassword, setNowPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
 
-  function handleFixEmailClick() {
-    setShowEnterEmail(true);
-    setShowEnterPW(false);
-  }
+  const userList = [
+    { id: "WAP", nowPW: "wap1234!" },
+    { id: "PKNU_WAP", nowPW: "pknuwap1234!" },
+    { id: "Hongju", nowPW: "hongju123*" },
+  ];
 
-  function handleFixPWClick() {
-    setShowEnterPW(true);
-    setShowEnterEmail(false);
-  }
-*/}
+
+  const handleNowPasswordChange = (event) => {
+    setNowPassword(event.target.value);
+  };
+
+  const handleNewPasswordChange = (event) => {
+    setNewPassword(event.target.value);
+  };
+
   return (
     <div className='back_info'>
       <div className='all_element'>
@@ -43,23 +46,26 @@ function UserInfo() {
 
         <div className='change_info'>
           <div className='title_word'><span id="y_word">CHANGE</span> MY INFO</div>
-          {/*
-          <span>
-            <button className='fix_button' onClick={handleFixEmailClick}>E-MAIL</button>
-            <button className='fix_button' onClick={handleFixPWClick}>PASSWORD</button>
-          </span>
-          {showEnterEmail && (
-            <input className='Enter_info' type='text' name='input_new_id' placeholder='ENTER NEW E-MAIL'></input>
-          )}
-          
-          {showEnterPW && (
-            <>
-            */}
-              <input className='Enter_info' type='password' name='input_now_pw' placeholder='NOW PASSWORD'></input>
-              <input className='Enter_info' type='password' name='input_new_pw' placeholder='NEW PASSWORD'></input>
-            {/*<input className='Enter_info' type='password' name='input_check_pw' placeholder='ONE MORE PASSWORD'></input>
-            </div></>
-          )}*/}
+          <input
+            className='Enter_info'
+            type='password'
+            name='input_now_pw'
+            placeholder='NOW PASSWORD'
+            value={nowPassword}
+            onChange={handleNowPasswordChange}
+          ></input>
+          <input
+            className='Enter_info'
+            type='password'
+            name='input_new_pw'
+            placeholder='NEW PASSWORD'
+            value={newPassword}
+            onChange={handleNewPasswordChange}
+          ></input>
+          <div className="password_values">
+            <div>Now Password: {nowPassword}</div>
+            <div>New Password: {newPassword}</div>
+          </div>
           <button className="change_button">CHANGE</button>
         </div>
       </div>
@@ -72,6 +78,6 @@ export default function UserInformation() {
     <div>
       <NavBar></NavBar>
       <UserInfo></UserInfo>
-      </div>
+    </div>
   );
 }
