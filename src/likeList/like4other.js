@@ -2,8 +2,10 @@ import { React, useState, useEffect, useRef } from "react";
 import "./likeList.css";
 import Sidebar from "../sidebar/newSidebar";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import NavBar from "../gallery/topNaviBar.js";
 
 //상단네비게이션바
+/*
 function NavBar() {
   const [workOpen, setWork] = useState(false);
   const [likeOpen, setLike] = useState(false);
@@ -64,8 +66,9 @@ function NavBar() {
     </nav>
   );
 }
+*/
 
-function Ranking() {
+function Likeother() {
   return (
     <div className="rankingBackground">
       <div className="likeforme">
@@ -116,7 +119,7 @@ export default function Gallery() {
   return (
     <div className="gallery">
       <NavBar></NavBar>
-      <Ranking></Ranking>
+      <Likeother></Likeother>
     </div>
   );
 }

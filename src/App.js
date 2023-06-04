@@ -6,7 +6,7 @@ import RankPage from "./ranking/ranking";
 import BookmarkPage from "./bookmark/bookmark";
 import GalleryPage from "./gallery/gallery";
 import LikeoPage from "./likeList/like4other";
-import LikemPage from "./likeList/like4other";
+import LikemPage from "./likeList/like4me";
 import MusicInfoPage from "./musicInfo/musicInfo";
 import GuestPage from "./gallery/guest";
 import InfoPage from "./user_info/user_info";
