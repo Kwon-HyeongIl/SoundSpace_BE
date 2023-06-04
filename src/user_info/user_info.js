@@ -40,6 +40,7 @@ function UserInfo() {
 
         <div className='change_info'>
           <div className='title_word'><span id="y_word">CHANGE</span> MY INFO</div>
+          {/*
           <span>
             <button className='fix_button' onClick={handleFixEmailClick}>E-MAIL</button>
             <button className='fix_button' onClick={handleFixPWClick}>PASSWORD</button>
@@ -47,13 +48,15 @@ function UserInfo() {
           {showEnterEmail && (
             <input className='Enter_info' type='text' name='input_new_id' placeholder='ENTER NEW E-MAIL'></input>
           )}
+          
           {showEnterPW && (
             <>
+            */}
               <input className='Enter_info' type='password' name='input_now_pw' placeholder='NOW PASSWORD'></input>
               <input className='Enter_info' type='password' name='input_new_pw' placeholder='NEW PASSWORD'></input>
-              <input className='Enter_info' type='password' name='input_check_pw' placeholder='ONE MORE PASSWORD'></input>
-            </>
-          )}
+            {/*<input className='Enter_info' type='password' name='input_check_pw' placeholder='ONE MORE PASSWORD'></input>
+            </div></>
+          )}*/}
           <button className="change_button">CHANGE</button>
         </div>
       </div>
