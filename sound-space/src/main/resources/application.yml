@@ -12,11 +12,11 @@ server:
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://awseb-e-jcydina8ej-stack-awsebrdsdatabase-5pybl6doytbf.c3ifgvbvwxyj.ap-northeast-2.rds.amazonaws.com:3306/ebdb?useSSL=true&serverTimezone=UTC&useLegacyDatetimeCode=false
+    url: jdbc:mariadb://db.c3ifgvbvwxyj.ap-northeast-2.rds.amazonaws.com:3306/innodb
     username: root
     password: 123456789a
 
-# jpa setting
+  # jpa setting
   jpa:
     generate-ddl: false
     hibernate:
@@ -34,8 +34,8 @@ jwt:
 --- # redis
 spring:
   redis:
-    host: localhost
-    port: 6379
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
 
 --- # swagger
 spring:
