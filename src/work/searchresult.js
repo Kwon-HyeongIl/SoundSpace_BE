@@ -1,7 +1,13 @@
-import "./work.css";
-import React from "react";
+import React, { useState } from 'react';
+import './work.css';
 
 function SearchResult({ musicInput, searchResult }) {
+  const [onBookmark, setOnBookmark] = useState(false);
+
+  const handleBookmarkClick = () => {
+    setOnBookmark(!onBookmark);
+  };
+
   return (
     <div className="search_result">
       <div className="music_album"></div>
@@ -9,7 +15,7 @@ function SearchResult({ musicInput, searchResult }) {
         <div className="music_title">| {musicInput} |</div>
         <div className="music_artist">{searchResult}</div>
       </div>
-      <button className="find_music_bookmark"></button>
+      <button className={`music_bookmark ${onBookmark ? 'on_bookmark' : ''}`} onClick={handleBookmarkClick}></button>
       <button className="plus_music">+</button>
     </div>
   );
