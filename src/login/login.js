@@ -2,7 +2,7 @@ import "./login_sign.css";
 import { Link, useNavigate } from "react-router-dom";
 import { React, useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthProvider";
-
+import handleTokenRefresh from "../hooks/useRefreshToken";
 import axios from "../api/axios";
 const LOGIN_URL = "api/v1/users/login";
 
@@ -46,8 +46,8 @@ function CenterLogo() {
           console.log(username, password);
           localStorage.setItem("accessToken", response.data.data.accessToken);
           localStorage.setItem("refreshToken", response.data.data.refreshToken);
-          // setAuth({ username, password, accessToken });
-          navigate("/gallery");
+          setAuth({ username, password });
+          // navigate("/gallery");
         } else {
           alert(response.data.message);
         }
@@ -62,7 +62,16 @@ function CenterLogo() {
         console.log("요청실패");
         console.log(error);
         alert(error.message);
+        if (error.response && error.response.status === 401) {
+          // Attempt to refresh the access token
+          // handleTokenRefresh();
+        }
       });
+  };
+
+  //click시 refresh 되는지 확인하기 위함.
+  const handleRefreshClick = () => {
+    handleTokenRefresh();
   };
 
   return (
@@ -133,6 +142,7 @@ function CenterLogo() {
                   // name="user_input_password"
                   placeholder="TYPING YOUR PASSWORD..."
                 />
+                <button onClick={handleRefreshClick}>refresh</button>
 
                 <div>
                   {/* <Link to={"./gallery"} className="no_line"> */}
