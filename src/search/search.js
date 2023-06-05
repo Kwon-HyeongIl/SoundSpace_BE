@@ -1,10 +1,12 @@
 import "./search.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "../gallery/topNaviBar.js";
+import axios from "../api/axios";
 
 function UserSearch() {
   const [showResult, setShowResult] = useState(false);
   const [userInput, setUserInput] = useState("");
+
   const idList = [
     { id: "PKNU_WAP", like: 1004 },
     { id: "Hongju", like: 9413 },
@@ -21,6 +23,21 @@ function UserSearch() {
       setSearchResult(null);
     }
     setShowResult(true);
+
+    // 서버로 GET
+    axios
+      .get("http://localhost:8080/api/v1/users/search", {
+        params: { query: userInput },
+      })
+      .then((response) => {
+        console.log("1");
+        console.log(response.data);
+      })
+      .catch((error) => {
+        //CORS 오류로 여기로 넘어감 ..
+        console.log("2");
+        console.error(error);
+      });
   }
 
   function randomButtonClick() {
@@ -31,7 +48,6 @@ function UserSearch() {
       setShowResult(true);
     }
   }
-  
 
   function findInputChange(event) {
     setUserInput(event.target.value);
