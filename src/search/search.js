@@ -23,11 +23,13 @@ function UserSearch() {
       setSearchResult(null);
     }
     setShowResult(true);
-
+    const accessToken = localStorage.getItem("accessToken");
     // 서버로 GET
     axios
-      .get("http://localhost:8080/api/v1/users/search", {
-        params: { query: userInput },
+      .get("http://localhost:3000/api/v1/music/search", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       })
       .then((response) => {
         console.log("1");
