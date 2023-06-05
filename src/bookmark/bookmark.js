@@ -3,6 +3,7 @@ import "./bookmark.css";
 import Sidebar from "../sidebar/newSidebar";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavBar from "../gallery/topNaviBar.js";
+import axios from "../api/axios";
 
 function Bookmarking() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -10,12 +11,48 @@ function Bookmarking() {
   const togglePlay = () => {
     setIsPlaying((prevState) => !prevState);
   };
+  const [bookmarks, setBookmarks] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const accessToken = localStorage.getItem("accessToken"); // 실제 액세스 토큰으로 대체해야 함
+
+        const response = await axios.get(
+          "http://localhost:3000/api/v1/users/me/bookmarks",
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          console.log(response.data.message);
+          console.log(response.data.data);
+
+          setBookmarks(response.data.data);
+        } else {
+          // 처리할 오류에 대한 코드
+        }
+      } catch (error) {
+        // 오류 처리
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="rankingBackground">
       <div className="bookmark-title">
-        <div className="favorite material-icons" id="bookmark-icon">bookmark_border</div>
+        <div className="favorite material-icons" id="bookmark-icon">
+          bookmark_border
+        </div>
         <div className="bookmark">BookMark</div>
-        <div className="favorite material-icons" id="bookmark-icon1">bookmark_border</div>
+        <div className="favorite material-icons" id="bookmark-icon1">
+          bookmark_border
+        </div>
       </div>
       <div className="rankingFrame">
         <div className="rankingGrid">
@@ -42,8 +79,8 @@ function Bookmarking() {
             <span className="rankingItem">Newjeans</span>
             <span className="rankingItem">PKNU</span>
           </div> */}
-          {Array.from({ length: 10 }, (_, i) => (
-            <div className="rankContainer" key={i}>
+          {bookmarks.map((bookmark, index) => (
+            <div className="rankContainer" key={index}>
               <link
                 href="https://fonts.googleapis.com/icon?family=Material+Icons"
                 rel="stylesheet"
@@ -60,9 +97,11 @@ function Bookmarking() {
                 src="https://image.bugsm.co.kr/album/images/500/40780/4078016.jpg"
                 className="album_cover"
               />
-              <span className="rankingItem">Attention</span>
+              <span className="rankingItem">
+                {bookmark.trackTitle.slice(0, 20)}
+              </span>
               {/* </span> */}
-              <span className="rankingItem">Newjeans</span>
+              <span className="rankingItem">{bookmark.artistName}</span>
             </div>
           ))}
         </div>
