@@ -24,6 +24,7 @@ import {
   Crazy,
   SpaceShip,
 } from "./model.js";
+import axios from "../api/axios";
 
 //바닥
 function PlaneBottom() {
@@ -118,6 +119,39 @@ export default function GalleryCanvas() {
   const numBoxes = 10; // Number of boxes
   const boxGap = 2; // Gap between boxes
   const initialBoxPosition = -((numBoxes - 1) * boxGap) / 2;
+
+  const [albumUrl, setAlbumUrl] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const accessToken = localStorage.getItem("accessToken"); // 실제 액세스 토큰으로 대체해야 함
+
+        const response = await axios.get(
+          "http://localhost:3000/api/v1/${users}/tracks",
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+
+        if (response.data.state === 200) {
+          console.log(response.data.message);
+          console.log(response.data.data);
+          const { albumUrl } = response.data.data;
+          setAlbumUrl(albumUrl);
+          console.log(albumUrl);
+        } else {
+          // 처리할 오류에 대한 코드
+        }
+      } catch (error) {
+        // 오류 처리
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
