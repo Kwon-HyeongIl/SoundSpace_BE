@@ -11,6 +11,7 @@ public class BookmarkResponseDto {
     @AllArgsConstructor
     public static class BookmarkInfo {
         private Long musicId;
+        private String albumImageUrl;
         private String trackTitle;
         private String artistName;
     }
