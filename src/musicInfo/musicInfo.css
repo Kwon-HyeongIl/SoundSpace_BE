@@ -3,12 +3,40 @@
   height: 98vh;
   padding: 2vh;
   display: grid;
-  grid-template-columns: 2fr 3fr;
+  grid-template-columns: 4fr 5fr;
   background: linear-gradient(#282828, #000000);
+
+}
+.music_bmark {
+    background-image: url("./bookmark.png");
+    background-size: cover;
+    background-color: #0f0f0f;
+    margin-top: -100px;
+    margin-left: 85%;
+    width: 60px;
+    height: 60px;
+
+    border: solid 3px #0f0f0f;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.on_bmark{
+    background-image: url("./bookmarkOn.png");
+    background-size: cover;
+    background-color:#0f0f0f;
+    margin-top: -100px;
+    margin-left: 85%;
+    width: 60px;
+    height: 60px;
+
+    border: solid 3px #0f0f0f;
+    cursor: pointer;
+    z-index: 2;
 }
 .leftBox {
   margin: auto;
-  padding: 20px;
+  padding: 50px;
   color: #000000;
   font-size: large;
 }
@@ -20,6 +48,7 @@
   font-size: large;
 }
 .music-frame {
+  border-radius: 40px;
   display: grid;
   grid-template-rows: 1fr 1fr 5fr;
   padding: 50px;
@@ -28,18 +57,20 @@
   border: solid #ebff00;
 }
 .music-title {
+  margin-top: -10px;
   color: #ebff00;
   font-family: "Inter";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 40px;
   line-height: 48px;
 }
 .cancle-button {
   float: right;
-  margin-top: 10px;
+  margin-top: -38px;
   margin-right: 10px;
   font-size: 30px;
+  font-weight: 700;
   background-color: transparent;
   border: none;
   color: #ebff00;
@@ -48,21 +79,21 @@
   color: white;
   font-family: "Inter";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 25px;
   line-height: 30px;
 }
 .music-lyrics {
   margin-top: 50px;
-  /* width: 500px;
-  height: 500px; */
+  width: 450px;
+  height: 550px;
   overflow: scroll;
   color: white;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
-  font-size: 15px;
-  line-height: 18px;
+  font-size: 18px;
+  line-height: 30px;
 }
 .music-lyrics::-webkit-scrollbar {
   display: none;
@@ -70,11 +101,20 @@
 }
 .album-frame {
   margin: auto;
+  width: auto;
+  height: auto;
   border: solid #ebff00;
   padding: 20px;
+  border-radius: 40px;
+  z-index: 1;
 }
 #bookmark-icon {
   position: absolute;
   z-index: 1;
   fill: black;
+}
+
+.album-image{
+  margin-top: -3px;
+  border-radius: 20px;
 }
