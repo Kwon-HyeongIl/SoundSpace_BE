@@ -23,6 +23,10 @@ function Editing() {
     setEditmode(true);
   }
 
+  function handleOffEditmode() {
+    setEditmode(false);
+  }
+
   function handleRemoveMusic(index) {
     const updatedPlaylist = [...my_playlist];
     updatedPlaylist[index] = { title: "", artist: "" };
@@ -86,6 +90,14 @@ function Editing() {
               <hr className="edit-hr" />
               <div className="add_music" onClick={handleOnEditmode}>
                 EDIT PLAYLIST
+              </div>
+            </div>
+          )}
+          {editmode && (
+            <div>
+              <hr className="edit-hr" />
+              <div className="save_music" onClick={handleOffEditmode}>
+                SAVE
               </div>
             </div>
           )}

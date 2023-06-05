@@ -67,6 +67,23 @@
     font-size: 30px;
 }
 
+.save_music{
+    padding: 15px;
+    text-align: center;
+    color: yellow;
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+#color_set{
+    color: white;
+}
+
 .editItem {
     margin: auto;
 }
