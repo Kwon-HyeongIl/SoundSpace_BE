@@ -2,7 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.11'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-	id "com.github.node-gradle.node" version "3.0.1"
+	id "com.github.node-gradle.node" version "3.1.1"
 }
 
 group = 'com.example'
@@ -61,43 +61,25 @@ tasks.named('test') {
 
 
 
-def frontendDir = "$projectDir/src/main/front"
-
-sourceSets {
-	main {
-		resources { srcDirs = ["$projectDir/src/main/resources"]
-		}
-	}
+// npm install
+task appNpmInstall(type: NpmTask) {
+	workingDir = file("${project.projectDir}/src/main/front")
+	args = ["install"]
 }
 
-processResources { dependsOn "copyReactBuildFiles" }
-
-task installReact(type: Exec) {
-	workingDir "$frontendDir"
-	inputs.dir "$frontendDir"
-	group = BasePlugin.BUILD_GROUP
-	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
-		commandLine "npm.cmd", "audit", "fix"
-		commandLine 'npm.cmd', 'install' }
-	else {
-		commandLine "npm", "audit", "fix" commandLine 'npm', 'install'
-	}
+// npm build
+task npmBuild(type: NpmTask) {
+	workingDir = file("${project.projectDir}/src/main/front")
+	args = ["run", "build"]
 }
 
-task buildReact(type: Exec) {
-	dependsOn "installReact"
-	workingDir "$frontendDir"
-	inputs.dir "$frontendDir"
-	group = BasePlugin.BUILD_GROUP
-	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
-		commandLine "npm.cmd", "run-script", "build"
-	} else {
-		commandLine "npm", "run-script", "build"
-	}
+// 빌드된 결과 이동
+task copyWebApp(type: Copy) {
+	from "${project.projectDir}/src/main/front/build"
+	into "${project.projectDir}/src/main/resources/static/"
 }
 
-task copyReactBuildFiles(type: Copy) {
-	dependsOn "buildReact"
-	from "$frontendDir/build"
-	into "$projectDir/src/main/resources/static"
-}
+
+npmBuild.dependsOn appNpmInstall
+copyWebApp.dependsOn npmBuild
+compileJava.dependsOn copyWebApp

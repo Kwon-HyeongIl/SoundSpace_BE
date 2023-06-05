@@ -34,7 +34,7 @@ function CenterLogo() {
     formData.append("password", password);
     axios({
       method: "post",
-      url: "http://localhost:3000/api/v1/users/login",
+      url: "http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/login",
       data: formData,
     })
       .then((response) => {
