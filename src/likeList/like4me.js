@@ -96,6 +96,9 @@ function Likeme() {
           } else {
             // 처리할 오류에 대한 코드
           }
+          if (response.data.data.length === 0) {
+            alert(response.data.message);
+          }
         } else {
           // 처리할 오류에 대한 코드
         }
