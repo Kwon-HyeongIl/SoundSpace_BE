@@ -3,6 +3,7 @@ import "./likeList.css";
 import Sidebar from "../sidebar/newSidebar";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavBar from "../gallery/topNaviBar.js";
+import axios from "../api/axios";
 
 //상단네비게이션바
 /*
@@ -69,6 +70,45 @@ function NavBar() {
 */
 
 function Likeother() {
+  const [username, setUsername] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const accessToken = localStorage.getItem("accessToken");
+
+        const response = await axios.get(
+          "http://localhost:3000/api/v1/users/me/likes-given",
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          console.log(response.data.message);
+          console.log(response.data.data);
+
+          if (Array.isArray(response.data.data)) {
+            setUsername(response.data.data);
+          } else {
+            // 처리할 오류에 대한 코드
+          }
+
+          if (response.data.data.length === 0) {
+            alert(response.data.message);
+          }
+        } else {
+          // 처리할 오류에 대한 코드
+        }
+      } catch (error) {
+        // 오류 처리
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <div className="rankingBackground">
       <div className="likeforme">
@@ -90,16 +130,16 @@ function Likeother() {
             <div className="rankingItem_head">User Name</div>
             <div className="rankingItem_head">Like</div>
           </div>
-          {Array.from({ length: 10 }, (i) => (
+          {username.map((user) => (
             <div>
               <hr className="like-hr" />
-              <div className="rankContainer" key={i}>
+              <div className="rankContainer">
                 <link
                   href="https://fonts.googleapis.com/icon?family=Material+Icons"
                   rel="stylesheet"
                 />
                 <div className="rankingItem" id="profile-like"></div>
-                <span className="rankingItem">User_Name</span>
+                <span className="rankingItem">{user.username}</span>
                 <span className="rankingItem">
                   <span className="favorite material-icons" id="like-icon">
                     favorite
