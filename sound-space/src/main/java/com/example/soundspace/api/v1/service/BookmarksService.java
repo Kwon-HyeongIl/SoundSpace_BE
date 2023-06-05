@@ -64,6 +64,7 @@ public class BookmarksService {
         } else {
             Bookmarks bookmarks = Bookmarks.builder()
                     .musicId(musicId)
+                    .albumImageUrl(bookmarkInfo.getAlbumImageUrl())
                     .trackTitle(bookmarkInfo.getTrackTitle())
                     .artistName(bookmarkInfo.getArtistName())
                     .user(user)
