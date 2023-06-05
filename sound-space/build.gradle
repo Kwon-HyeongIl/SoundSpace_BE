@@ -61,25 +61,23 @@ tasks.named('test') {
 
 
 
-// npm install
+// 스프링부트 빌드시 리액트 빌드를 함께 수행 -start
 task appNpmInstall(type: NpmTask) {
 	workingDir = file("${project.projectDir}/src/main/front")
 	args = ["install"]
 }
 
-// npm build
 task npmBuild(type: NpmTask) {
 	workingDir = file("${project.projectDir}/src/main/front")
 	args = ["run", "build"]
 }
 
-// 빌드된 결과 이동
 task copyWebApp(type: Copy) {
 	from "${project.projectDir}/src/main/front/build"
 	into "${project.projectDir}/src/main/resources/static/"
 }
 
-
 npmBuild.dependsOn appNpmInstall
 copyWebApp.dependsOn npmBuild
 compileJava.dependsOn copyWebApp
+// -end
