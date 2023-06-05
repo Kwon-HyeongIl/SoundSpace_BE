@@ -118,7 +118,7 @@ function CenterLogo() {
 
             <div>
               <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username:</label>
+                <label htmlFor="username"></label>
                 <input
                   className="Enter_info"
                   type="text"
@@ -131,7 +131,7 @@ function CenterLogo() {
                   // name="user_input_id"
                   placeholder="TYPING YOUR ID..."
                 />
-                <label htmlFor="password">Password:</label>
+                <label htmlFor="password"></label>
                 <input
                   className="Enter_info"
                   // type="password"
