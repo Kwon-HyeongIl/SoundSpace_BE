@@ -1,0 +1,103 @@
+.rankingBackground {
+  /* 백그라운드 */
+  height: 100%;
+  padding-top: 50px;
+  padding-bottom: 10px;
+  padding-left: 150px;
+  padding-right: 150px;
+  background: linear-gradient(#282828, #000000);
+}
+.likeforme {
+  margin-top: 50px;
+  border: solid white;
+  border-radius: 50px;
+  color: white;
+  padding-left: 10px;
+  position: relative;
+}
+.likeforme-title {
+  color: #ebff00;
+  margin-left: 20px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 61px;
+}
+#like-icon-title {
+  position: absolute; /* 자식 요소를 absolute로 지정 */
+  top: 50%; /* 상단 위치를 50%로 조정 */
+  right: 40px; /* 우측 위치를 20px로 조정 */
+  transform: translateY(-50%); /* 수직 중앙 정렬 */
+  opacity: 30%;
+}
+#like-icon-title1 {
+  position: absolute; /* 자식 요소를 absolute로 지정 */
+  top: 50%; /* 상단 위치를 50%로 조정 */
+  right: 30px; /* 우측 위치를 20px로 조정 */
+  transform: translateY(-50%);
+  opacity: 50%; /* 수직 중앙 정렬 */
+}
+#like-icon-title2 {
+  position: absolute; /* 자식 요소를 absolute로 지정 */
+  top: 50%; /* 상단 위치를 50%로 조정 */
+  right: 20px; /* 우측 위치를 20px로 조정 */
+  transform: translateY(-50%); /* 수직 중앙 정렬 */
+}
+.rankingFrame {
+  margin-top: 50px;
+  /* 랭킹 프레임 */
+  border: solid white;
+  border-radius: 20px;
+}
+.rankingGrid {
+  display: grid;
+  /* grid 행 */
+  grid-template-rows: repeat(1, 1fr);
+}
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@800&display=swap");
+
+.rankContainer_head {
+  margin: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  font-family: "Abhaya Libre", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 25px;
+  line-height: 29px;
+  color: white;
+}
+.rankContainer {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  font-family: "Abhaya Libre", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 35px;
+  color: white;
+}
+.like-hr {
+  margin: auto;
+}
+.rankContainer:hover {
+  background-color: #ebff00;
+  color: #000000;
+}
+.rankingItem {
+  margin: auto;
+}
+#profile-like {
+  background-color: #03fff0;
+  width: 50px;
+  height: 50px;
+  border-radius: 70%;
+  margin: auto;
+}
+#like-icon {
+  margin-right: 10px;
+}

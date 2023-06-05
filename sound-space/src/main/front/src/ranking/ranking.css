@@ -1,0 +1,70 @@
+.rankingBackground {
+  /* 백그라운드 */
+  height: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 150px;
+  padding-right: 150px;
+  background: linear-gradient(#282828, #000000);
+}
+.rank-title {
+  text-align: center;
+  margin: auto;
+  color: white;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 61px;
+}
+.rankingFrame {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  /* 랭킹 프레임 */
+  border: solid white;
+  border-radius: 20px;
+}
+.rankingGrid {
+  display: grid;
+  /* grid 행 */
+  grid-template-rows: repeat(1, 1fr);
+}
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@800&display=swap");
+
+.rankContainer_head {
+  margin: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  font-family: "Abhaya Libre", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 25px;
+  line-height: 29px;
+  color: white;
+}
+.rank-hr {
+  margin: auto;
+}
+.rankContainer {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  font-family: "Abhaya Libre", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 35px;
+  color: white;
+}
+/* .rankContainer:hover {
+  background-color: #ebff00;
+  color: black;
+} */
+/* .rankContainer:hover {
+  color: black;
+} */
+.rankingItem {
+  margin: auto;
+}
