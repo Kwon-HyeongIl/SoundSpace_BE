@@ -8,6 +8,11 @@ import { useNavigate } from "react-router-dom";
 export default function MusicInfo() {
   const bookmark = true;
   const navigate = useNavigate;
+  const [onBookmark, setOnBookmark] = useState(false);
+
+  const handleBookmarkClick = () => {
+    setOnBookmark(!onBookmark);
+  };
   return (
     <>
       <NavBar />
@@ -83,32 +88,18 @@ export default function MusicInfo() {
           </div>
         </div>
         <div className="albumBox">
+         
           <div className="album-frame">
-            <link
-              rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
-            />
-            {bookmark ? (
-              <a href="https://fonts.google.com/icons?selected=Material+Icons+Outlined:bookmark:&icon.query=bookmark&icon.set=Material+Icons">
-                <span className="material-symbols-outlined" id="bookmark-icon">
-                  bookmark
-                </span>
-              </a>
-            ) : (
-              <a href="https://fonts.google.com/icons?selected=Material+Icons+Outlined:bookmark_border:&icon.query=bookmark&icon.set=Material+Icons">
-                <span className="material-symbols-outlined" id="bookmark-icon">
-                  bookmark_border
-                </span>
-              </a>
-            )}
-
-            <img
+          <img
               alt=""
               src="https://image.bugsm.co.kr/album/images/500/40780/4078016.jpg"
               className="album-image"
             ></img>
             <div>Play바 위치</div>
           </div>
+           
+          <button className={`music_bmark ${onBookmark ? 'on_bmark' : ''}`} onClick={handleBookmarkClick}></button>
+            
         </div>
       </div>
     </>
