@@ -31,6 +31,7 @@ function Editing() {
 
   return (
     <div className="Background_edit">
+      <div className="edit_title">MY <span id="yellow">PLAY</span>LIST</div>
       <div className="Frame">
         <div className="Grid">
           <div className="edit_head">
