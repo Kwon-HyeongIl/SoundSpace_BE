@@ -99,9 +99,9 @@ function UserInfo() {
           <div className="info_back">
             <div className="user_img"></div>
             {/* <div className="now_id">PKNU_WAP</div> */}
-            <div className="now_id">id{username}</div>
+            <div className="now_id">{username}</div>
             {/* <div className="info">HONG GIL DONG</div> */}
-            <div className="info">mail@naver.com{email}</div>
+            <div className="info">{email}</div>
             <div className="heart"></div>
             {/* <div className="heart">1004</div> */}
           </div>
