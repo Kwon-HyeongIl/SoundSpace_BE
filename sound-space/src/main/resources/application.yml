@@ -1,6 +1,6 @@
 # change port
 server:
-  port: 5000
+  port: ${SERVER_PORT}
   servlet:
     context-path: /
     encoding:
@@ -12,9 +12,9 @@ server:
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://db.c3ifgvbvwxyj.ap-northeast-2.rds.amazonaws.com:3306/innodb
-    username: root
-    password: 123456789a
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
   # jpa setting
   jpa:
@@ -29,7 +29,7 @@ spring:
 
 # jwt
 jwt:
-  secret: aW1wb3NzaWJsZXdpbmFwcGxpZWRkaXNobmVhcmVzdHBvb2xob3dyZWFsZGFuZ2Vyb3U
+  secret: ${JWT_SECRET}
 
 --- # redis
 spring:
@@ -50,5 +50,5 @@ spring:
       matching-strategy: ant_path_matcher
 
 genius:
-  client-id: OprkTW4uD_JUPL7P__xUM-BsOaqANl_NSSTn4PodKFvye0-zC5-ObT68g0ZuqqF3
-  client-secret: Rm7t_SFh9XhKCQFLbf1FpwW5yBnal8fAzbn6GHuC5zTLVykMEFT-ArNLu0mKPR2dox94BHruW4z0uNgZkLAWYg
+  client-id: ${GENIUS_CLIENT_ID}
+  client-secret: ${GENIUS_CLIENT_SECRET}
