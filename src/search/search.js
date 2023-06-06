@@ -7,68 +7,126 @@ function UserSearch() {
   const [showResult, setShowResult] = useState(false);
   const [userInput, setUserInput] = useState("");
 
-  const idList = [
-    { id: "PKNU_WAP", like: 1004 },
-    { id: "Hongju", like: 9413 },
-    { id: "WAP", like: 2365 },
-  ];
+  const idList = [];
 
   const [searchResult, setSearchResult] = useState(null);
+  const [username, setUsername] = useState("");
+
+  // function callAPI(userInput) {
+  //   const accessToken = localStorage.getItem("accessToken");
+  //   const refreshToken = localStorage.getItem("refreshToken");
+  //   const params = new URLSearchParams();
+  //   params.append("username", username);
+  //   const url = `http://localhost:3000/api/v1/users/search`;
+
+  //   axios
+  //     .get(url, {
+  //       headers: {
+  //         Authorization: `Bearer ${accessToken}`,
+  //       },
+  //       params: { query: userInput },
+  //     })
+  //     .then((response) => {
+  //       console.log("1");
+  //       console.log(username);
+  //       console.log(response.data);
+  //       setSearchResult(response.data.data);
+  //       if (searchResult && searchResult.length === 0) {
+  //         alert("검색 결과가 없습니다.");
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       //CORS 오류로 여기로 넘어감 ..
+  //       // console.log("2");
+  //       // console.error(error);
+  //       if (error.response.status === 403) {
+  //         // 서버로부터의 응답을 받은 경우
+  //         console.log("sfesl");
+  //         const formData = new FormData();
+  //         formData.append("accessToken", accessToken);
+  //         formData.append("refreshToken", refreshToken);
+  //         axios({
+  //           method: "post",
+  //           url: "http://localhost:3000/api/v1/users/reissue",
+  //           data: formData,
+  //         })
+  //           .then((response) => {
+  //             console.log("12");
+  //             console.log(response.data);
+  //           })
+  //           .catch((error) => {
+  //             if (error.response.status === 403) {
+  //               console.log("Token reissue failed.");
+  //             }
+  //           });
+  //       }
+  //     });
+  // }
 
   function findButtonClick() {
     const index = idList.findIndex((item) => item.id === userInput);
     if (index !== -1) {
-      setSearchResult(idList[index].like);
+      setSearchResult([{ id: userInput, username: userInput }]);
+      setShowResult(true);
     } else {
-      setSearchResult(null);
-    }
-    setShowResult(true);
-    const accessToken = localStorage.getItem("accessToken");
-    const refreshToken = localStorage.getItem("refreshToken");
-    // 서버로 GET
-    axios
-      .get("http://localhost:3000/api/v1/music/search", {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then((response) => {
-        console.log("1");
-        console.log(response.data);
-      })
-      .catch((error) => {
-        //CORS 오류로 여기로 넘어감 ..
-        // console.log("2");
-        // console.error(error);
-        if (error.response.status === 403) {
-          // 서버로부터의 응답을 받은 경우
-          console.log("sfesl");
-          const formData = new FormData();
-          formData.append("accessToken", accessToken);
-          formData.append("refreshToken", refreshToken);
-          axios({
-            method: "post",
-            url: "http://localhost:3000/api/v1/users/reissue",
-            data: formData,
-          })
-            .then((response) => {
-              console.log("12");
-              console.log(response.data);
+      const accessToken = localStorage.getItem("accessToken");
+      const refreshToken = localStorage.getItem("refreshToken");
+      const params = new URLSearchParams();
+      params.append("username", username);
+      const url = `http://localhost:3000/api/v1/users/search`;
+
+      axios
+        .get(url, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          params: { query: userInput },
+        })
+        .then((response) => {
+          console.log("1");
+          console.log(username);
+          console.log(response.data);
+          setSearchResult(response.data.data);
+          setShowResult(true);
+          if (response.data.data.length === 0) {
+            alert("검색 결과가 없습니다.");
+          }
+        })
+        .catch((error) => {
+          //CORS 오류로 여기로 넘어감 ..
+          // console.log("2");
+          // console.error(error);
+          if (error.response.status === 403) {
+            // 서버로부터의 응답을 받은 경우
+            console.log("sfesl");
+            const formData = new FormData();
+            formData.append("accessToken", accessToken);
+            formData.append("refreshToken", refreshToken);
+            axios({
+              method: "post",
+              url: "http://localhost:3000/api/v1/users/reissue",
+              data: formData,
             })
-            .catch((error) => {
-              if (error.response.status === 403) {
-                // 서버로부터의 응답을 받은 경우
-                console.log("sfesl");
-              }
-            });
-        }
-      });
+              .then((response) => {
+                console.log("12");
+                console.log(response.data);
+              })
+              .catch((error) => {
+                if (error.response.status === 403) {
+                  console.log("Token reissue failed.");
+                }
+              });
+          }
+        });
+    }
   }
 
   function randomButtonClick() {
     if (idList.length > 0) {
       const randomIndex = Math.floor(Math.random() * idList.length);
-      setSearchResult(idList[randomIndex].like);
+      setSearchResult([
+        { id: idList[randomIndex].id, username: idList[randomIndex].id },
+      ]);
       setUserInput(idList[randomIndex].id);
       setShowResult(true);
     }
@@ -76,7 +134,8 @@ function UserSearch() {
 
   function findInputChange(event) {
     setUserInput(event.target.value);
-    setSearchResult(null); // 검색어가 변경될 때마다 결과 초기화
+    setUsername(event.target.value);
+    setSearchResult([]);
   }
 
   return (
@@ -98,12 +157,16 @@ function UserSearch() {
           <button className="random_dice" onClick={randomButtonClick}></button>
         </div>
 
-        {searchResult !== null && (
+        {showResult && searchResult.length > 0 && (
           <div className="user_search_result">
-            <div className="user_UI"></div>
-            <div className="user_ID">{userInput}</div>
-            <div className="s_heart"></div>
-            <div className="user_like">{searchResult}</div>
+            {searchResult.map((user) => (
+              <div className="user_result" key={user.id}>
+                <div className="user_UI"></div>
+                <div className="user_ID">{user.username}</div>
+                <div className="s_heart"></div>
+                {/* <div className="user_like">3</div> */}
+              </div>
+            ))}
           </div>
         )}
       </div>
