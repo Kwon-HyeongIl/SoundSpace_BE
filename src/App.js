@@ -30,7 +30,7 @@ export default function App() {
           <Route path={"/MusicInfo"} element={<MusicInfoPage />}></Route>
           <Route path={"/guest"} element={<GuestPage />}></Route>
           <Route path={"/info"} element={<InfoPage />}></Route>
-          <Route path={"/work"} element={<WorkPage />}></Route>
+          <Route path={"/work/:id"} element={<WorkPage />}></Route>
           <Route path={"/edit"} element={<EditPage />}></Route>
         </Routes>
       </BrowserRouter>
