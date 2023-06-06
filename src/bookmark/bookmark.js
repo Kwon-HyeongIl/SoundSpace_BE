@@ -47,11 +47,11 @@ function Bookmarking() {
     <div className="rankingBackground">
       <div className="bookmark-title">
         <div className="favorite material-icons" id="bookmark-icon">
-          bookmark_border
+          {bookmarks.length > 0 ? "bookmark_border" : ""}
         </div>
         <div className="bookmark">BookMark</div>
         <div className="favorite material-icons" id="bookmark-icon1">
-          bookmark_border
+          {bookmarks.length > 0 ? "bookmark_border" : ""}
         </div>
       </div>
       <div className="rankingFrame">
