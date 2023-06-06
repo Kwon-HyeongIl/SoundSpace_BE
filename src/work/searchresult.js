@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./work.css";
 import axios from "../api/axios";
+import { useNavigate } from "react-router-dom";
 
 function SearchResult({
   musicId,
@@ -14,6 +15,7 @@ function SearchResult({
 
   const accessToken = localStorage.getItem("accessToken");
   const refreshToken = localStorage.getItem("refreshToken");
+  const navigate = useNavigate();
 
   const handleBookmarkClick = () => {
     // 북마크 상태를 토글
@@ -81,6 +83,7 @@ function SearchResult({
       .catch((error) => {
         console.error(error);
       });
+    navigate("/edit");
   }
 
   return (
