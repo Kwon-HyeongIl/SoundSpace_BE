@@ -126,29 +126,42 @@
   line-height: 36px;
   margin: 20px;
 }
-#heart {
-  /* background-image: url("./heart.png"); */
+.heart_on {
+  background-repeat: no-repeat;
   bottom: 10px;
   right: 10px;
-  width: 65px;
-  height: 55px;
-  /* background-size: cover;
-  background-position: center; */
+  width: 90px;
+  height: 80px;
+  background-size: 100%;
+  /*background-position: center; */
   /* 이미지 태그 경계선 없애기 */
   border: none;
 }
+
+.heart_off {
+  background-repeat: no-repeat;
+  filter: brightness(0) invert(1) grayscale(1);
+  bottom: 10px;
+  right: 10px;
+  width: 90px;
+  height: 80px;
+  background-size: 100%;
+  /*background-position: center; */
+  /* 이미지 태그 경계선 없애기 */
+  border: none;
+}
+
 .like {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   color: white;
   position: fixed;
   bottom: 10px;
-  right: 10px;
-  font-family: "Inter";
+  right: 50px;
+  /*font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 30px;
   line-height: 61px;
+  */
 }
 .like-num {
   text-align: center;
