@@ -115,43 +115,51 @@ function PlaneFront() {
 // }
 
 export default function GalleryCanvas() {
+  const [albumUrlList, setAlbumUrlList] = useState([]);
+
   // const cameraPosition = new THREE.Vector3(0, 50, 0);
   const numBoxes = 10; // Number of boxes
   const boxGap = 2; // Gap between boxes
   const initialBoxPosition = -((numBoxes - 1) * boxGap) / 2;
 
   const [albumUrl, setAlbumUrl] = useState("");
+  const accessToken = localStorage.getItem("accessToken");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const accessToken = localStorage.getItem("accessToken"); // 실제 액세스 토큰으로 대체해야 함
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       // Replace with your actual access token
 
-        const response = await axios.get(
-          "http://localhost:3000/api/v1/${users}/tracks",
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
+  //       const response = await axios.get(
+  //         "http://localhost:3000/api/v1/users/me/tracks",
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${accessToken}`,
+  //           },
+  //         }
+  //       );
 
-        if (response.data.state === 200) {
-          console.log(response.data.message);
-          console.log(response.data.data);
-          const { albumUrl } = response.data.data;
-          setAlbumUrl(albumUrl);
-          console.log(albumUrl);
-        } else {
-          // 처리할 오류에 대한 코드
-        }
-      } catch (error) {
-        // 오류 처리
-      }
-    };
+  //       if (response.data.state === 200) {
+  //         console.log(response.data.message);
+  //         console.log(response.data.data);
+  //         const { data } = response.data;
+  //         const albumUrlList = data.map((item) =>
+  //           item.albumImageUrl
+  //             ? item.albumImageUrl
+  //             : "https://cdn-icons-png.flaticon.com/512/109/109602.png"
+  //         );
+  //         setAlbumUrlList(albumUrlList);
+  //         console.log(albumUrlList);
+  //       } else {
+  //         // Handle error response
+  //       }
+  //     } catch (error) {
+  //       // Handle error
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   return (
     <>
@@ -173,10 +181,21 @@ export default function GalleryCanvas() {
         <Physics gravity={[0, -30, 0]}>
           <Player />
           <PlaneBottom />
-          <Box
+          {/* {albumUrlList.map((albumUrl, index) => (
+            <Box
+              key={index}
+              box_position={[
+                initialBoxPosition + index * boxGap,
+                2, // Adjust the height of each box if needed
+                0,
+              ]}
+              url={albumUrl}
+            />
+          ))} */}
+          {/* <Box
             box_position={[-7.5, 0, -9]}
-            url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
-          />
+            url="https://images.genius.com/12350206ae2ebb69d2289908e1acf86f.300x300x1.jpg"
+          /> */}
           <Box
             box_position={[-2.5, 0, -9]}
             url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
@@ -190,32 +209,32 @@ export default function GalleryCanvas() {
             url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
           />
           {/* 왼 */}
-          <Box
+          {/* <Box
             box_position={[-9, 0, -3]}
             url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
           />
           <Box
             box_position={[-9, 0, 3]}
             url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
-          />
+          /> */}
           {/* 뒤 */}
-          <Box
+          {/* <Box
             box_position={[-6.7, 0, 9]}
             url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
           />
           <Box
             box_position={[6.7, 0, 9]}
             url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
-          />
+          /> */}
           {/* 오 */}
-          <Box
+          {/* <Box
             box_position={[9, 0, -3]}
             url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
           />
           <Box
             box_position={[9, 0, 3]}
             url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
-          />
+          /> */}
           {/* {Array.from({ length: numBoxes }, (_, index) => (
             <Box
               key={index}
