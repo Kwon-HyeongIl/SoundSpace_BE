@@ -94,7 +94,7 @@ function Bookmarking() {
                 /> */}
               <img
                 alt=""
-                src="https://image.bugsm.co.kr/album/images/500/40780/4078016.jpg"
+                src={bookmark.albumImageUrl}
                 className="album_cover"
               />
               <span className="rankingItem">
