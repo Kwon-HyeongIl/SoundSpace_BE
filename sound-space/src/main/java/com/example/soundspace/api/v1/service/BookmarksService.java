@@ -41,6 +41,7 @@ public class BookmarksService {
             for (Bookmarks bookmark : bookmarks) {
                 BookmarkResponseDto.BookmarkInfo bookmarkInfo = BookmarkResponseDto.BookmarkInfo.builder()
                         .musicId(bookmark.getMusicId())
+                        .albumImageUrl(bookmark.getAlbumImageUrl())
                         .trackTitle(bookmark.getTrackTitle())
                         .artistName(bookmark.getArtistName())
                         .build();
@@ -64,6 +65,7 @@ public class BookmarksService {
         } else {
             Bookmarks bookmarks = Bookmarks.builder()
                     .musicId(musicId)
+                    .albumImageUrl(bookmarkInfo.getAlbumImageUrl())
                     .trackTitle(bookmarkInfo.getTrackTitle())
                     .artistName(bookmarkInfo.getArtistName())
                     .user(user)

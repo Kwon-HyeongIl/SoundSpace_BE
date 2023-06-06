@@ -11,6 +11,9 @@ public class BookmarkRequestDto {
     @Setter
     public static class toggleBookmarkAtMusic {
 
+        @NotEmpty(message = "앨범 이미지 Url은 필수 입력값입니다.")
+        private String albumImageUrl;
+
         @NotEmpty(message = "곡 제목은 필수 입력값입니다.")
         private String trackTitle;
 

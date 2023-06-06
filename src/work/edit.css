@@ -1,12 +1,21 @@
 .Background_edit {
     align-items: center;
     text-align: center;
+    font-weight: 100;
     height: 100%;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 100px;
+    padding-bottom: 30px;
     padding-left: 150px;
     padding-right: 150px;
     background: linear-gradient(#282828, #000000);
+  }
+  #yellow{
+    color: yellow;
+  }
+  .edit_title{
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
   }
 .Frame {
     background-color: #282828;
@@ -23,7 +32,7 @@
 .edit_head {
     margin-top: 20px;
     margin-bottom: 10px;
-    margin-left: 110px;
+    margin-left: 11%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     text-align: center;
@@ -58,6 +67,23 @@
     font-size: 30px;
 }
 
+.save_music{
+    padding: 15px;
+    text-align: center;
+    color: yellow;
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+#color_set{
+    color: white;
+}
+
 .editItem {
     margin: auto;
 }
@@ -83,13 +109,13 @@
 }
 
 .sub{
-    background-color: orangered;
+    background-color: black;
     font-size: 27px;
     font-weight: 700;
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    color: white;
+    color: yellow;
 }
 
 .music_edit_on{
