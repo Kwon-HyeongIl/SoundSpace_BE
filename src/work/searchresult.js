@@ -53,11 +53,12 @@ function SearchResult({
     axios
       .get(`http://localhost:3000/api/v1/music/${musicId}`)
       .then((response) => {
-        console.log("here");
+        console.log("add 이전");
         const update = response.data.data;
+        console.log(response.data.data);
         axios
           .patch(
-            `http://localhost:3000/api/v1/users/{userId}/tracks/${trackIndex}/update`,
+            `http://localhost:3000/api/v1/users/me/tracks/${trackIndex}/update`,
             {
               update,
               trackIndex,
@@ -65,11 +66,12 @@ function SearchResult({
             {
               headers: {
                 Authorization: `Bearer ${accessToken}`,
+                "Content-Type": "application/json",
               },
             }
           )
           .then((response) => {
-            console.log("there");
+            console.log("add 이후");
             console.log(response.data);
           })
           .catch((error) => {
