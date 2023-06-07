@@ -47,7 +47,7 @@ function CenterLogo() {
           localStorage.setItem("accessToken", response.data.data.accessToken);
           localStorage.setItem("refreshToken", response.data.data.refreshToken);
           setAuth({ username, password });
-          // navigate("/gallery");
+          navigate("/gallery/me");
         } else {
           alert(response.data.message);
         }
@@ -142,7 +142,7 @@ function CenterLogo() {
                   // name="user_input_password"
                   placeholder="TYPING YOUR PASSWORD..."
                 />
-                <button onClick={handleRefreshClick}>refresh</button>
+                {/* <button onClick={handleRefreshClick}>refresh</button> */}
 
                 <div>
                   {/* <Link to={"./gallery"} className="no_line"> */}

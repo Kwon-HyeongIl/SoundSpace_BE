@@ -1,9 +1,11 @@
 import "./search.css";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import NavBar from "../gallery/topNaviBar.js";
 import axios from "../api/axios";
 
 function UserSearch() {
+  const navigate = useNavigate();
   const [showResult, setShowResult] = useState(false);
   const [userInput, setUserInput] = useState("");
 
@@ -11,6 +13,7 @@ function UserSearch() {
 
   const [searchResult, setSearchResult] = useState(null);
   const [username, setUsername] = useState("");
+  const [selectedUserId, setSelectedUserId] = useState(null); // 추가: 선택된 사용자의 ID 저장
 
   // function callAPI(userInput) {
   //   const accessToken = localStorage.getItem("accessToken");
@@ -138,6 +141,11 @@ function UserSearch() {
     setSearchResult([]);
   }
 
+  function handleUserClick(userId) {
+    // setSelectedUserId(userId); // 선택된 사용자의 ID 설정
+    navigate(`/gallery/${userId}`);
+  }
+
   return (
     <>
       <NavBar></NavBar>
@@ -160,7 +168,11 @@ function UserSearch() {
         {showResult && searchResult.length > 0 && (
           <div className="user_search_result">
             {searchResult.map((user) => (
-              <div className="user_result" key={user.id}>
+              <div
+                className="user_result"
+                key={user.id}
+                onClick={() => handleUserClick(user.id)}
+              >
                 <div className="user_UI"></div>
                 <div className="user_ID">{user.username}</div>
                 <div className="s_heart"></div>

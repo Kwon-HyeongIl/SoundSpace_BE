@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState, useContext, useRef } from "react";
 import AuthContext from "../context/AuthProvider";
 import axios from "../api/axios";
+import { useNavigate } from "react-router-dom";
 
 function SignLogo() {
   const [click, setClick] = useState(false);
@@ -14,6 +15,7 @@ function SignLogo() {
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
+  const navigate = useNavigate();
 
   const [username, setUser] = useState("");
   const [email, setEmail] = useState("");
@@ -42,7 +44,13 @@ function SignLogo() {
           localStorage.setItem("accessToken", response.data.data.accessToken);
           localStorage.setItem("refreshToken", response.data.data.refreshToken);
           setAuth({ username, password });
-          // navigate("/gallery");
+          navigate("/");
+        } else if (response.data.state === 400) {
+          let errorMessage = "";
+          response.data.error.forEach((error) => {
+            errorMessage += `${error.message}\n`;
+          });
+          alert(errorMessage);
         } else {
           alert(response.data.message);
         }

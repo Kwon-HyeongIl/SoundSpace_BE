@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./edit.css";
 import NavBar from "../gallery/topNaviBar.js";
 import axios from "../api/axios";
 
 function Editing() {
   const [my_playlist, setMyPlaylist] = useState([]);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { state: parsedIndex } = location;
 
   const [editmode, setEditmode] = useState(false);
   const accessToken = localStorage.getItem("accessToken");
@@ -23,7 +26,16 @@ function Editing() {
     const updatedPlaylist = [...my_playlist];
     updatedPlaylist[index] = { title: "", artist: "" };
     setMyPlaylist(updatedPlaylist);
+    // const value = index + 1;
+    // navigate("/work", { state: value });
   }
+
+  function handleAddMusic(index) {
+    var parsedIndex = index + 1;
+    console.log("handelAddMusic", parsedIndex);
+    navigate(`/work/${index + 1}`, { state: parsedIndex });
+  }
+
   useEffect(() => {
     axios
       .get("http://localhost:3000/api/v1/users/me/tracks/edit", {
@@ -156,15 +168,16 @@ function Editing() {
                 {editmode && (
                   <div className="edit_actions">
                     {item.title === "" ? (
-                      <Link to={`/work/${index + 1}`} className="no_line">
-                        <button
-                          className="add"
-                          onClick={() => handleRemoveMusic(index)}
-                        >
-                          +
-                        </button>
-                      </Link>
+                      // <Link to={`/work/${index + 1}`} className="no_line">
+                      <button
+                        className="add"
+                        onClick={() => handleAddMusic(index)}
+                        // value={index}
+                      >
+                        +
+                      </button>
                     ) : (
+                      // </Link>
                       <button
                         className="sub"
                         onClick={() => {
