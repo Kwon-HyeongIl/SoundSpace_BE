@@ -98,7 +98,7 @@ function SearchResult({
           .patch(
             `http://localhost:3000/api/v1/users/me/tracks/${trackIndex}/update`,
 
-            { update: updateWithoutId },
+            updateWithoutId,
 
             {
               headers: {
