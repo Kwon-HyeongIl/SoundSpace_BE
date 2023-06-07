@@ -94,26 +94,26 @@ function Editing() {
       });
   }
 
-  function addTrack(trackIndex) {
-    axios
-      .patch(
-        `http://localhost:3000/api/v1/users/me/tracks/${trackIndex}/clear`,
-        {
-          trackIndex,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      )
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
+  // function addTrack(trackIndex) {
+  //   axios
+  //     .patch(
+  //       `http://localhost:3000/api/v1/users/me/tracks/${trackIndex}/clear`,
+  //       {
+  //         trackIndex,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${accessToken}`,
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       console.log(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }
 
   return (
     <div className="Background_edit">
@@ -171,7 +171,6 @@ function Editing() {
                           clearTrack(index + 1);
                           handleRemoveMusic(index);
                         }}
-                        // // onClick={() => handleRemoveMusic(index)}
                       >
                         -
                       </button>

@@ -32,9 +32,9 @@ function PlaneBottom() {
     rotation: [-Math.PI / 2, 0, 0],
     position: [0, 0, 0],
   }));
+
   return (
-    // <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-    <mesh position={[0, -0.5, 0]} rotation-x={-Math.PI / 2} receiveShadow>
+    <mesh ref={ref} receiveShadow>
       <planeBufferGeometry attach="geometry" args={[20, 20]} />
       <meshLambertMaterial attach="material" color="gray" />
     </mesh>
@@ -198,7 +198,7 @@ export default function GalleryCanvas() {
           /> */}
           <Box
             box_position={[-2.5, 0, -9]}
-            url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
+            url="https://images.genius.com/960edcb36156c3aed9cb70ede250780a.300x300x1.jpg"
           />
           <Box
             box_position={[2.5, 0, -9]}
