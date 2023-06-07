@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import NavBar from "../gallery/topNaviBar.js";
 import SearchResult from "./searchresult.js";
 import axios from "../api/axios.js";
+import { useLocation, useParams } from "react-router-dom";
 import "./work.css";
 
 function MusicSearch() {
+  const location = useLocation();
+  // const index = location.state;
+  const { index } = useParams();
   const [showResult, setShowResult] = useState(false);
   const [musicInput, setMusicInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [index, setIndex] = useState(0);
 
   const musicList = [
     { title: "Love dive", artist: "New jeans" },
@@ -20,7 +23,6 @@ function MusicSearch() {
   const refreshToken = localStorage.getItem("refreshToken");
 
   function findButtonClick() {
-    setIndex(index + 1);
     const inputWithoutSpaces = musicInput.replace(/\s/g, "");
 
     axios
@@ -32,6 +34,7 @@ function MusicSearch() {
       })
       .then((response) => {
         console.log("1");
+        console.log(index);
         // console.log(username);
         console.log(response.data);
         setSearchResults(response.data.data);

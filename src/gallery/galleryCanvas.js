@@ -145,7 +145,7 @@ export default function GalleryCanvas() {
           const { data } = response.data;
           const albumUrlList = data.map((item) =>
             item.albumImageUrl
-              ? item.albumImageUrl
+              ? item.albumImageUrl + "?t=" + Date.now()
               : "https://cdn-icons-png.flaticon.com/512/109/109602.png"
           );
           setAlbumUrlList(albumUrlList);
@@ -192,7 +192,7 @@ export default function GalleryCanvas() {
               url={albumUrl}
             />
           ))} */}
-          <Box
+          {/* <Box
             box_position={[-7.5, 0, -9]}
             url="https://images.genius.com/12350206ae2ebb69d2289908e1acf86f.300x300x1.jpg"
           />
@@ -207,7 +207,7 @@ export default function GalleryCanvas() {
           <Box
             box_position={[7.5, 0, -9]}
             url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
-          />
+          /> */}
           {/* 왼 */}
           {/* <Box
             box_position={[-9, 0, -3]}
@@ -235,18 +235,36 @@ export default function GalleryCanvas() {
             box_position={[9, 0, 3]}
             url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
           /> */}
-          {/* {Array.from({ length: numBoxes }, (_, index) => (
-            <Box
-              key={index}
-              box_position={[
-                initialBoxPosition + index * boxGap,
-                2, // Adjust the height of each box if needed
-                0,
-              ]}
-              url="https://www.akbobada.com/home/akbobada/archive/akbo/img/202208031533045.jpg"
-            />
-          ))} */}
-          {/* <SmallBox /> */}
+          {albumUrlList.map((albumUrl, index) => {
+            // 계산된 위치를 설정하기 위한 변수
+            let boxPosition = [0, 0, 0];
+
+            if (index === 0) {
+              boxPosition = [-7.5, 0, -9];
+            } else if (index === 1) {
+              boxPosition = [-2.5, 0, -9];
+            } else if (index === 2) {
+              boxPosition = [2.5, 0, -9];
+            } else if (index === 3) {
+              boxPosition = [7.5, 0, -9];
+            } else if (index === 4) {
+              boxPosition = [-9, 0, -3];
+            } else if (index === 5) {
+              boxPosition = [-9, 0, 3];
+            } else if (index === 6) {
+              boxPosition = [-6.7, 0, 9];
+            } else if (index === 7) {
+              boxPosition = [6.7, 0, 9];
+            } else if (index === 8) {
+              boxPosition = [9, 0, -3];
+            } else if (index === 9) {
+              boxPosition = [9, 0, 3];
+            }
+            return (
+              <Box trackKey={index} box_position={boxPosition} url={albumUrl} />
+            );
+          })}
+          {/* <SmallBox />
           <Model />
           <Model1 />
           <Model2 />

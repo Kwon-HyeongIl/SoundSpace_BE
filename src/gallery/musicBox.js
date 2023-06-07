@@ -10,9 +10,9 @@ import {
 } from "@react-three/drei";
 import { Physics, usePlane, useBox } from "@react-three/cannon";
 import { Text } from "@react-three/drei";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-function Box({ box_position, url }) {
+function Box({ trackKey, box_position, url }) {
   const texture = useLoader(THREE.TextureLoader, url);
   const [ref, api] = useBox(() => ({ mass: 30, position: box_position }));
 
@@ -27,6 +27,10 @@ function Box({ box_position, url }) {
   };
   const navigate = useNavigate();
 
+  const handleBoxClick = () => {
+    navigate("/MusicInfo", { state: { trackKey } });
+  };
+
   return (
     <group>
       <mesh
@@ -36,10 +40,11 @@ function Box({ box_position, url }) {
         position={box_position}
         castShadow
         // className={isHovered ? "hovered" : ""}
-        onClick={() => navigate("/MusicInfo")}
+        onClick={handleBoxClick}
       >
         <boxBufferGeometry attach="geometry" args={[2, 2, 2]} />
         <meshLambertMaterial map={texture} attach="material" color="white" />
+        {/* <Link to={{ pathname: "/MusicInfo", state: { trackKey } }} /> */}
       </mesh>
       <Text
         position={[0, 1.5, -5]} // Position the text slightly in front of the box

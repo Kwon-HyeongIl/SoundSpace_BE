@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./edit.css";
 import NavBar from "../gallery/topNaviBar.js";
 import axios from "../api/axios";
 
 function Editing() {
   const [my_playlist, setMyPlaylist] = useState([]);
+  const navigate = useNavigate();
 
   const [editmode, setEditmode] = useState(false);
   const accessToken = localStorage.getItem("accessToken");
@@ -23,6 +24,8 @@ function Editing() {
     const updatedPlaylist = [...my_playlist];
     updatedPlaylist[index] = { title: "", artist: "" };
     setMyPlaylist(updatedPlaylist);
+    const value = index + 1;
+    navigate("/work", { state: value });
   }
   useEffect(() => {
     axios
@@ -160,6 +163,7 @@ function Editing() {
                         <button
                           className="add"
                           onClick={() => handleRemoveMusic(index)}
+                          value={index}
                         >
                           +
                         </button>
