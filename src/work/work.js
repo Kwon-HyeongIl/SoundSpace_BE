@@ -7,8 +7,10 @@ import "./work.css";
 
 function MusicSearch() {
   const location = useLocation();
+  const { state: parsedIndex } = location;
   // const index = location.state;
-  const { index } = useParams();
+  // const { index } = useParams();
+  // const parsedIndex = parseInt(index);
   const [showResult, setShowResult] = useState(false);
   const [musicInput, setMusicInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -34,7 +36,7 @@ function MusicSearch() {
       })
       .then((response) => {
         console.log("1");
-        console.log(index);
+        console.log("p는", parsedIndex);
         // console.log(username);
         console.log(response.data);
         setSearchResults(response.data.data);
@@ -118,7 +120,7 @@ function MusicSearch() {
                 musicInput={track.trackTitle}
                 searchResult={track.artistName}
                 bookmark={track.bookmarked}
-                index={index}
+                index={parsedIndex}
               />
             ))}
           {/*  이전코드 */}
