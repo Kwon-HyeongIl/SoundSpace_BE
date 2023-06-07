@@ -34,12 +34,17 @@ function NavBar() {
               className="itemContainer"
               onClick={() => navigate("/bookmark")}
             >
-            BOOK MARK
+              BOOK MARK
             </button>
             {/* <button className="itemContainer" onClick={() => navigate("/")}>RANKING</button> */}
           </div>
         </Sidebar>
-        <a className="logo" id="center_fix" onClick={() => navigate("/gallery")} href="">
+        <a
+          className="logo"
+          id="center_fix"
+          onClick={() => navigate(`/gallery/me`, { state: { userType: "me" } })}
+          href=""
+        >
           <sapn className="logo_f">S</sapn>OUND{" "}
           <span className="logo_f">S</span>PACE
         </a>

@@ -47,7 +47,7 @@ function CenterLogo() {
           localStorage.setItem("accessToken", response.data.data.accessToken);
           localStorage.setItem("refreshToken", response.data.data.refreshToken);
           setAuth({ username, password });
-          // navigate("/gallery");
+          navigate("/gallery/me");
         } else {
           alert(response.data.message);
         }

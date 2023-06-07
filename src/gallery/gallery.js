@@ -14,11 +14,12 @@ function Heart() {
   };*/
 
   const [onHeart, setOnHeart] = useState(false);
+  const { userId } = useParams();
 
   const handleHeart = () => {
     setOnHeart(!onHeart);
   };
-
+  console.log("Heart 속", userId);
   return (
     <div className="like">
       <img
