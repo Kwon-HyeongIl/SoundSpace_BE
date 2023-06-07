@@ -13,7 +13,7 @@ public class UserLikesController {
     private final UserLikesService userLikesService;
 
     @PostMapping("/{userId}/likes")
-    public ResponseEntity<?> toggleLikeByUserId(@PathVariable Long userId) {
+    public ResponseEntity<?> toggleLikeByUserId(@PathVariable String userId) {
         return userLikesService.toggleLikeByUserId(userId);
     }
 
