@@ -32,9 +32,9 @@ function PlaneBottom() {
     rotation: [-Math.PI / 2, 0, 0],
     position: [0, 0, 0],
   }));
-
   return (
-    <mesh ref={ref} receiveShadow>
+    // <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+    <mesh position={[0, -0.5, 0]} rotation-x={-Math.PI / 2} receiveShadow>
       <planeBufferGeometry attach="geometry" args={[20, 20]} />
       <meshLambertMaterial attach="material" color="gray" />
     </mesh>
