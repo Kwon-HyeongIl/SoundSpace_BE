@@ -51,20 +51,55 @@ function SearchResult({
   };
 
   function addMusicClick() {
+    // const trackIndex = 6;
+    // const update = {
+    //   trackTitle: "Sorry",
+    //   artistName: "Justin Bieber",
+    //   albumImageUrl:
+    //     "https://images.genius.com/ff429a6c7bf8e73717ad263f800f1cf7.300x300x1.jpg",
+    //   lyrics:
+    //     "[Written by Julia Michaels, Justin Tranter, and Justin Bieber]\n\n[Verse 1]...",
+    // };
+
+    // axios
+    //   .patch(
+    //     `http://localhost:3000/api/v1/users/me/tracks/${trackIndex}/update`,
+    //     update,
+    //     {
+    //       headers: {
+    //         Authorization: `Bearer ${accessToken}`,
+    //       },
+    //     }
+    //   )
+    //   .then((response) => {
+    //     // 성공적인 응답 처리
+    //     console.log(response.data);
+    //   })
+    //   .catch((error) => {
+    //     // 에러 처리
+    //     console.error(error);
+    //   });
     const trackIndex = index;
     axios
       .get(`http://localhost:3000/api/v1/music/${musicId}`)
       .then((response) => {
         console.log("add 이전");
         const update = response.data.data;
+        const { musicId, ...updateWithoutId } = update;
+
         console.log(response.data.data);
+
+        console.log("here");
+
+        console.log("update는", update);
+        console.log("updateWithoutId는 ", updateWithoutId);
+        console.log(trackIndex);
         axios
           .patch(
             `http://localhost:3000/api/v1/users/me/tracks/${trackIndex}/update`,
-            {
-              update,
-              trackIndex,
-            },
+
+            updateWithoutId,
+
             {
               headers: {
                 Authorization: `Bearer ${accessToken}`,
@@ -83,7 +118,7 @@ function SearchResult({
       .catch((error) => {
         console.error(error);
       });
-    navigate("/edit");
+    // navigate("/edit");
   }
 
   return (
