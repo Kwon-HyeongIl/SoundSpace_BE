@@ -46,8 +46,30 @@ function SearchResult({
         console.log(response.data);
       })
       .catch((error) => {
-        console.log("error");
-        console.error(error);
+        //CORS 오류로 여기로 넘어감 ..
+        // console.log("2");
+        // console.error(error);
+        if (error.response.status === 403) {
+          // 서버로부터의 응답을 받은 경우
+          console.log("sfesl");
+          const formData = new FormData();
+          formData.append("accessToken", accessToken);
+          formData.append("refreshToken", refreshToken);
+          axios({
+            method: "post",
+            url: "http://localhost:3000/api/v1/users/reissue",
+            data: formData,
+          })
+            .then((response) => {
+              console.log("12");
+              console.log(response.data);
+            })
+            .catch((error) => {
+              if (error.response.status === 403) {
+                console.log("Token reissue failed.");
+              }
+            });
+        }
       });
   };
 

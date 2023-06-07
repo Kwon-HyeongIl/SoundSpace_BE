@@ -103,7 +103,29 @@ function Likeother() {
           // 처리할 오류에 대한 코드
         }
       } catch (error) {
-        // 오류 처리
+        //CORS 오류로 여기로 넘어감 ..
+        if (error.response.status === 403) {
+          // 서버로부터의 응답을 받은 경우
+          console.log("sfesl");
+          const formData = new FormData();
+          formData.append("accessToken", localStorage.getItem("accessToken"));
+          formData.append("refreshToken", localStorage.getItem("refreshToken"));
+          try {
+            const response = await axios.post(
+              "http://localhost:3000/api/v1/users/reissue",
+              formData
+            );
+            console.log("Token reissued.");
+            localStorage.setItem("accessToken", response.data.data.accessToken);
+
+            // 토큰을 재발급 받은 후에 다시 fetchData를 호출하여 API를 실행
+            await fetchData();
+          } catch (error) {
+            if (error.response.status === 403) {
+              console.log("Token reissue failed.");
+            }
+          }
+        }
       }
     };
 

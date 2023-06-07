@@ -51,9 +51,9 @@ function NavBar() {
         <a className="navitem" onClick={() => navigate("/search")} href="">
           SEARCH
         </a>
-        <a className="navitem" onClick={() => navigate("/rank")} href="">
+        {/* <a className="navitem" onClick={() => navigate("/rank")} href="">
           RANKING
-        </a>
+        </a> */}
       </div>
     </nav>
   );
