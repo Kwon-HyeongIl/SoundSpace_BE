@@ -24,7 +24,7 @@ export default function App() {
           <Route path={"/search"} element={<SearchPage />}></Route>
           <Route path={"/rank"} element={<RankPage />}></Route>
           <Route path={"/bookmark"} element={<BookmarkPage />}></Route>
-          <Route path={"/gallery"} element={<GalleryPage />}></Route>
+          <Route path="/gallery/:userId" element={<GalleryPage />}></Route>
           <Route path={"/likem"} element={<LikemPage />}></Route>
           <Route path={"/likeo"} element={<LikeoPage />}></Route>
           <Route path={"/MusicInfo"} element={<MusicInfoPage />}></Route>

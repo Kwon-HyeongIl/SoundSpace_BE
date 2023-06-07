@@ -12,7 +12,7 @@ import { Physics, usePlane, useBox } from "@react-three/cannon";
 import { Text } from "@react-three/drei";
 import { useNavigate } from "react-router-dom";
 
-function GuestBox({ position }) {
+function GuestBox({ userId }) {
   const [ref, api] = useBox(() => ({ mass: 0, position: [0, 0, 9] }));
 
   const [isHovered, setHovered] = useState(false);
@@ -24,7 +24,11 @@ function GuestBox({ position }) {
   const handlePointerOut = () => {
     setHovered(false);
   };
+
   const navigate = useNavigate();
+  const handleBoxClick = (userId) => {
+    navigate("/guest", { state: { userId } });
+  };
 
   return (
     <group>
@@ -34,7 +38,7 @@ function GuestBox({ position }) {
         ref={ref}
         position={[0, 2, 0]}
         castShadow
-        onClick={() => navigate("/guest")}
+        onClick={() => handleBoxClick(userId)}
       >
         <boxBufferGeometry attach="geometry" />
         <meshLambertMaterial attach="material" color="hotpink" />

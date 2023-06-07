@@ -114,7 +114,7 @@ function PlaneFront() {
 //   );
 // }
 
-export default function GalleryCanvas() {
+export default function GalleryCanvas({ userId }) {
   const [albumUrlList, setAlbumUrlList] = useState([]);
 
   // const cameraPosition = new THREE.Vector3(0, 50, 0);
@@ -128,10 +128,8 @@ export default function GalleryCanvas() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Replace with your actual access token
-
         const response = await axios.get(
-          "http://localhost:3000/api/v1/users/me/tracks",
+          `http://localhost:3000/api/v1/users/${userId}/tracks`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -140,8 +138,7 @@ export default function GalleryCanvas() {
         );
 
         if (response.data.state === 200) {
-          console.log(response.data.message);
-          console.log(response.data.data);
+          // 요청이 성공한 경우의 처리
           const { data } = response.data;
           const albumUrlList = data.map((item) =>
             item.albumImageUrl
@@ -149,17 +146,53 @@ export default function GalleryCanvas() {
               : "https://cdn-icons-png.flaticon.com/512/109/109602.png"
           );
           setAlbumUrlList(albumUrlList);
-          console.log(albumUrlList);
         } else {
-          // Handle error response
+          // 요청이 실패한 경우의 처리
         }
       } catch (error) {
-        // Handle error
+        // 에러 처리
       }
     };
 
     fetchData();
-  }, []);
+  }, [userId]);
+
+  // me인 경우
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       // Replace with your actual access token
+
+  //       const response = await axios.get(
+  //         "http://localhost:3000/api/v1/users/me/tracks",
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${accessToken}`,
+  //           },
+  //         }
+  //       );
+
+  //       if (response.data.state === 200) {
+  //         console.log(response.data.message);
+  //         console.log(response.data.data);
+  //         const { data } = response.data;
+  //         const albumUrlList = data.map((item) =>
+  //           item.albumImageUrl
+  //             ? item.albumImageUrl + "?t=" + Date.now()
+  //             : "https://cdn-icons-png.flaticon.com/512/109/109602.png"
+  //         );
+  //         setAlbumUrlList(albumUrlList);
+  //         console.log(albumUrlList);
+  //       } else {
+  //         // Handle error response
+  //       }
+  //     } catch (error) {
+  //       // Handle error
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
 
   return (
     <>
@@ -261,7 +294,12 @@ export default function GalleryCanvas() {
               boxPosition = [9, 0, 3];
             }
             return (
-              <Box trackKey={index} box_position={boxPosition} url={albumUrl} />
+              <Box
+                trackKey={index}
+                box_position={boxPosition}
+                url={albumUrl}
+                userId={userId}
+              />
             );
           })}
           {/* <SmallBox />
@@ -271,7 +309,7 @@ export default function GalleryCanvas() {
           <EmojiMusic />
           {/* <EmojiHeart /> */}
           <Crazy />
-          <GuestBox />
+          <GuestBox userId={userId} />
           <PlaneLeft />
           <PlaneRight />
           <PlaneFront />

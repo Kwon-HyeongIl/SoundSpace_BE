@@ -12,6 +12,7 @@ export default function MusicInfo() {
   const [onBookmark, setOnBookmark] = useState(false);
   const location = useLocation();
   const trackIndexing = location.state && location.state.trackKey;
+  const userId = location.state && location.state.userId;
   const [musicData, setMusicData] = useState(null);
   const handleBookmarkClick = () => {
     setOnBookmark(!onBookmark);
@@ -26,7 +27,7 @@ export default function MusicInfo() {
         const trackIndex = trackIndexing + 1;
         console.log("trackIndex 값은 ", trackIndex);
         const response = await axios.get(
-          `http://localhost:3000/api/v1/users/me/tracks/${trackIndex}`,
+          `http://localhost:3000/api/v1/users/${userId}/tracks/${trackIndex}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -49,6 +50,40 @@ export default function MusicInfo() {
 
     fetchData();
   }, []);
+
+  //me일때
+  // const accessToken = localStorage.getItem("accessToken");
+  // const refreshToken = localStorage.getItem("refreshToken");
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const accessToken = localStorage.getItem("accessToken");
+  //       const trackIndex = trackIndexing + 1;
+  //       console.log("trackIndex 값은 ", trackIndex);
+  //       const response = await axios.get(
+  //         `http://localhost:3000/api/v1/users/me/tracks/${trackIndex}`,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${accessToken}`,
+  //           },
+  //         }
+  //       );
+
+  //       if (response.status === 200) {
+  //         console.log(response.data.message);
+  //         console.log(response.data.data);
+  //         setMusicData(response.data.data);
+  //       } else {
+  //         // 처리할 오류에 대한 코드
+  //       }
+  //     } catch (error) {
+  //       // 오류 처리
+  //       console.log(error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
 
   return (
     <>
