@@ -83,11 +83,12 @@
 }
 .navitem {
   text-align: center;
-  padding-right: 20px;
+  /* padding-right: 20px; */
   color: white;
   font-weight: 700;
   /* a태그 밑줄 없애기 : text-decoration-line:none 추가 */
   text-decoration-line: none;
+
   /* background-color: blueviolet; */
 }
 .navitem:hover {

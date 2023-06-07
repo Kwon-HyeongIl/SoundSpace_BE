@@ -133,6 +133,7 @@ function SearchResult({
           .then((response) => {
             console.log("add 이후");
             console.log(response.data);
+            navigate("/edit");
           })
           .catch((error) => {
             console.error(error);

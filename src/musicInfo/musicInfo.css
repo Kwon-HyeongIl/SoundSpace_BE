@@ -5,34 +5,33 @@
   display: grid;
   grid-template-columns: 4fr 5fr;
   background: linear-gradient(#282828, #000000);
-
 }
 .music_bmark {
-    background-image: url("./bookmark.png");
-    background-size: cover;
-    background-color: #0f0f0f;
-    margin-top: -100px;
-    margin-left: 85%;
-    width: 60px;
-    height: 60px;
+  background-image: url("./bookmark.png");
+  background-size: cover;
+  background-color: #0f0f0f;
+  margin-top: -100px;
+  margin-left: 85%;
+  width: 60px;
+  height: 60px;
 
-    border: solid 3px #0f0f0f;
-    cursor: pointer;
-    z-index: 2;
+  border: solid 3px #0f0f0f;
+  cursor: pointer;
+  z-index: 2;
 }
 
-.on_bmark{
-    background-image: url("./bookmarkOn.png");
-    background-size: cover;
-    background-color:#0f0f0f;
-    margin-top: -100px;
-    margin-left: 85%;
-    width: 60px;
-    height: 60px;
+.on_bmark {
+  background-image: url("./bookmarkOn.png");
+  background-size: cover;
+  background-color: #0f0f0f;
+  margin-top: -100px;
+  margin-left: 85%;
+  width: 60px;
+  height: 60px;
 
-    border: solid 3px #0f0f0f;
-    cursor: pointer;
-    z-index: 2;
+  border: solid 3px #0f0f0f;
+  cursor: pointer;
+  z-index: 2;
 }
 .leftBox {
   margin: auto;
@@ -86,7 +85,7 @@
 .music-lyrics {
   margin-top: 50px;
   width: 450px;
-  height: 550px;
+  height: 400px;
   overflow: scroll;
   color: white;
   font-family: "Inter";
@@ -114,7 +113,7 @@
   fill: black;
 }
 
-.album-image{
+.album-image {
   margin-top: -3px;
   border-radius: 20px;
 }

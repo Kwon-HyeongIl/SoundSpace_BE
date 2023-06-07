@@ -50,7 +50,7 @@ function SignLogo() {
           response.data.error.forEach((error) => {
             errorMessage += `${error.message}\n`;
           });
-          alert(errorMessage);
+          alert(response.data.message);
         } else {
           alert(response.data.message);
         }

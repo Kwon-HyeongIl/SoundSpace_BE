@@ -101,15 +101,16 @@ function UserInfo() {
       );
       if (response.data.state === 200) {
         // 변경 성공 처리
-        console.log(response.data.message);
+        alert(response.data.message);
         // 추가적인 액션 수행 가능
       } else {
         // 변경 실패 처리
-        console.log(response.data.message);
+        alert(response.data.message);
         // 추가적인 오류 처리 수행 가능
       }
     } catch (error) {
       // 오류 처리
+      alert(error.message);
     }
   };
 
@@ -150,8 +151,8 @@ function UserInfo() {
             onChange={handleNewPasswordChange}
           ></input>
           <div className="password_values">
-            <div>Now Password: {nowPassword}</div>
-            <div>New Password: {newPassword}</div>
+            <div> {nowPassword}</div>
+            <div> {newPassword}</div>
           </div>
           <button className="change_button" onClick={handleChange}>
             CHANGE

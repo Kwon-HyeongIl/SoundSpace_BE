@@ -179,7 +179,9 @@ export default function MusicInfo() {
             <span className="music-title">{musicData?.trackTitle}</span>
             <span>{/* <button className="cancle-button">X</button> */}</span>
             <div className="music-artist">{musicData?.artistName}</div>
-            <div className="music-lyrics">{musicData?.lyrics}</div>
+            <div className="music-lyrics" style={{ whiteSpace: "pre-line" }}>
+              {musicData?.lyrics}
+            </div>
           </div>
         </div>
         <div className="albumBox">
