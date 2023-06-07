@@ -142,7 +142,7 @@ function CenterLogo() {
                   // name="user_input_password"
                   placeholder="TYPING YOUR PASSWORD..."
                 />
-                <button onClick={handleRefreshClick}>refresh</button>
+                {/* <button onClick={handleRefreshClick}>refresh</button> */}
 
                 <div>
                   {/* <Link to={"./gallery"} className="no_line"> */}
