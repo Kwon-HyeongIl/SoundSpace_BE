@@ -108,20 +108,20 @@ function SearchResult({
       .then((response) => {
         console.log("add 이전");
         const update = response.data.data;
-        const { musicId, ...updateWithoutId } = update;
+        // const { musicId, ...updateWithoutId } = update;
 
         console.log(response.data.data);
 
         console.log("here");
 
         console.log("update는", update);
-        console.log("updateWithoutId는 ", updateWithoutId);
+        // console.log("updateWithoutId는 ", updateWithoutId);
         console.log("t는", trackIndex);
         axios
           .patch(
             `http://localhost:3000/api/v1/users/me/tracks/${trackIndex}/update`,
 
-            updateWithoutId,
+            update,
 
             {
               headers: {

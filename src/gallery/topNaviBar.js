@@ -3,19 +3,21 @@ import "./gallery.css";
 import Sidebar from "../sidebar/newSidebar";
 import GalleryCanvas from "./galleryCanvas";
 import { useNavigate } from "react-router-dom";
+// import { USERNAME } from "../user_info/user_info";
 
 //상단네비게이션바
-function NavBar() {
+function NavBar({ userId }) {
   const navigate = useNavigate();
+  console.log(userId);
 
   return (
     <nav>
       <div className="navbar">
         <Sidebar>
-          <div className="userInfo">
+          {/* <div className="userInfo">
             <div className="userImg"></div>
-            <div className="userName">User Name</div>
-          </div>
+            <div className="userName">{USERNAME}</div>
+          </div> */}
           <div className="sideContent">
             <div className="itemContainer" onClick={() => navigate("/info")}>
               CHANGE INFO

@@ -324,12 +324,11 @@ export default function GalleryCanvas({ userId }) {
               />
             );
           })}
-          {/* <SmallBox />
+          {/* <SmallBox />*/}
           <Model />
           <Model1 />
           <Model2 />
           <EmojiMusic />
-          {/* <EmojiHeart /> */}
           <Crazy />
           <GuestBox userId={userId} />
           <PlaneLeft />
