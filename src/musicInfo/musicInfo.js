@@ -136,6 +136,11 @@ export default function MusicInfo() {
       });
   };
 
+  function handleUserClick(userId) {
+    // setSelectedUserId(userId); // 선택된 사용자의 ID 설정
+    navigate(`/gallery/${userId}`);
+  }
+
   //me일때
   // const accessToken = localStorage.getItem("accessToken");
   // const refreshToken = localStorage.getItem("refreshToken");
@@ -177,7 +182,14 @@ export default function MusicInfo() {
         <div className="leftBox">
           <div className="music-frame">
             <span className="music-title">{musicData?.trackTitle}</span>
-            <span>{/* <button className="cancle-button">X</button> */}</span>
+            <span>
+              <button
+                className="cancle-button"
+                onClick={() => handleUserClick(userId)}
+              >
+                X
+              </button>
+            </span>
             <div className="music-artist">{musicData?.artistName}</div>
             <div className="music-lyrics" style={{ whiteSpace: "pre-line" }}>
               {musicData?.lyrics}
