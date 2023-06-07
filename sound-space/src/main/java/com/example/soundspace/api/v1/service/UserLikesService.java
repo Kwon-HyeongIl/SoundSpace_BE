@@ -28,12 +28,19 @@ public class UserLikesService {
     private final UserLikesRepository userLikesRepository;
     private final Response response;
 
-    public ResponseEntity<?> toggleLikeByUserId(Long userId) {
+    public ResponseEntity<?> toggleLikeByUserId(String userId) {
         String username = SecurityUtil.getCurrentUsername();
         Users liker = (Users) customUserDetailsService.loadUserByUsername(username);
+        Users likee;
 
-        Users likee = usersRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found."));
+        if (userId.equals("me")) {
+            likee = liker;
+        } else if (usersRepository.existsById(Long.parseLong(userId))) {
+            Optional<Users> optionalLikee = usersRepository.findById(Long.parseLong(userId));
+            likee = optionalLikee.get();
+        } else {
+            return response.fail("존재하지 않는 유저입니다.", HttpStatus.NOT_FOUND);
+        }
 
         Optional<UserLikes> optionalUserLike = userLikesRepository.findByLikerAndLikee(liker, likee);
         if (optionalUserLike.isPresent()) {
