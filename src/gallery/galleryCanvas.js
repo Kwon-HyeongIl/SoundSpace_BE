@@ -125,41 +125,41 @@ export default function GalleryCanvas() {
   const [albumUrl, setAlbumUrl] = useState("");
   const accessToken = localStorage.getItem("accessToken");
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       // Replace with your actual access token
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Replace with your actual access token
 
-  //       const response = await axios.get(
-  //         "http://localhost:3000/api/v1/users/me/tracks",
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${accessToken}`,
-  //           },
-  //         }
-  //       );
+        const response = await axios.get(
+          "http://localhost:3000/api/v1/users/me/tracks",
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
 
-  //       if (response.data.state === 200) {
-  //         console.log(response.data.message);
-  //         console.log(response.data.data);
-  //         const { data } = response.data;
-  //         const albumUrlList = data.map((item) =>
-  //           item.albumImageUrl
-  //             ? item.albumImageUrl
-  //             : "https://cdn-icons-png.flaticon.com/512/109/109602.png"
-  //         );
-  //         setAlbumUrlList(albumUrlList);
-  //         console.log(albumUrlList);
-  //       } else {
-  //         // Handle error response
-  //       }
-  //     } catch (error) {
-  //       // Handle error
-  //     }
-  //   };
+        if (response.data.state === 200) {
+          console.log(response.data.message);
+          console.log(response.data.data);
+          const { data } = response.data;
+          const albumUrlList = data.map((item) =>
+            item.albumImageUrl
+              ? item.albumImageUrl
+              : "https://cdn-icons-png.flaticon.com/512/109/109602.png"
+          );
+          setAlbumUrlList(albumUrlList);
+          console.log(albumUrlList);
+        } else {
+          // Handle error response
+        }
+      } catch (error) {
+        // Handle error
+      }
+    };
 
-  //   fetchData();
-  // }, []);
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -192,10 +192,10 @@ export default function GalleryCanvas() {
               url={albumUrl}
             />
           ))} */}
-          {/* <Box
+          <Box
             box_position={[-7.5, 0, -9]}
             url="https://images.genius.com/12350206ae2ebb69d2289908e1acf86f.300x300x1.jpg"
-          /> */}
+          />
           <Box
             box_position={[-2.5, 0, -9]}
             url="https://images.genius.com/960edcb36156c3aed9cb70ede250780a.300x300x1.jpg"

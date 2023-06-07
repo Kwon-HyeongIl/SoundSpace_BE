@@ -8,7 +8,7 @@ function MusicSearch() {
   const [showResult, setShowResult] = useState(false);
   const [musicInput, setMusicInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [index, setIndex] = useState(5);
+  const [index, setIndex] = useState(0);
 
   const musicList = [
     { title: "Love dive", artist: "New jeans" },
