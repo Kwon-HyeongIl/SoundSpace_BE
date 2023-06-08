@@ -3,112 +3,213 @@ import Sidebar from "../sidebar/newSidebar";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavBar from "../gallery/topNaviBar";
 import "./musicInfo.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "../api/axios";
 
 export default function MusicInfo() {
   const bookmark = true;
-  const navigate = useNavigate;
+  const navigate = useNavigate();
+  const [onBookmark, setOnBookmark] = useState(false);
+  const location = useLocation();
+  const trackIndexing = location.state && location.state.trackKey;
+  const userId = location.state && location.state.userId;
+  const [musicData, setMusicData] = useState(null);
+  const [musicId, setMusicId] = useState("");
+  const [albumUrl, setAlbumUrl] = useState("");
+  const [trackTitle, setTrackTitle] = useState("");
+  const [artistName, setArtistName] = useState("");
+
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const accessToken = localStorage.getItem("accessToken");
+        const trackIndex = trackIndexing + 1;
+        console.log("trackIndex 값은 ", trackIndex);
+        const response = await axios.get(
+          'http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/${userId}/tracks/${trackIndex}',
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          console.log(response.data.message);
+          console.log(response.data.data);
+          console.log(response.data.data.musicId);
+          setMusicData(response.data.data);
+          setOnBookmark(response.data.data.bookmarked);
+          setMusicId(response.data.data.musicId);
+          setAlbumUrl(response.data.data.albumImageUrl);
+          setTrackTitle(response.data.data.trackTitle);
+          setArtistName(response.data.data.artistName);
+          // musicId = response.data.data.musicId;
+          console.log("musicId", musicId);
+        } else {
+          // 처리할 오류에 대한 코드
+        }
+      } catch (error) {
+        //CORS 오류로 여기로 넘어감 ..
+        if (error.response.status === 403) {
+          // 서버로부터의 응답을 받은 경우
+          console.log("sfesl");
+          const formData = new FormData();
+          formData.append("accessToken", localStorage.getItem("accessToken"));
+          formData.append("refreshToken", localStorage.getItem("refreshToken"));
+          try {
+            const response = await axios.post(
+              "http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/reissue",
+              formData
+            );
+            console.log("Token reissued.");
+            localStorage.setItem("accessToken", response.data.data.accessToken);
+
+            // 토큰을 재발급 받은 후에 다시 fetchData를 호출하여 API를 실행
+            await fetchData();
+          } catch (error) {
+            if (error.response.status === 403) {
+              console.log("Token reissue failed.");
+            }
+          }
+        }
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleBookmarkClick = () => {
+    // 북마크 상태를 토글
+    const newBookmark = !onBookmark;
+    setOnBookmark(newBookmark);
+    console.log("then 이전");
+    console.log(newBookmark);
+
+    const formData = new FormData();
+    formData.append("musicId", musicId);
+    formData.append("artistName", artistName);
+    formData.append("trackTitle", trackTitle);
+    formData.append("albumImageUrl", albumUrl);
+    // 북마크 업데이트 API 호출
+    axios({
+      method: "post",
+      url: 'http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/music/${musicId}/bookmarks',
+      data: formData,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((response) => {
+        console.log("then 이후");
+        console.log(response.data);
+      })
+      .catch((error) => {
+        //CORS 오류로 여기로 넘어감 ..
+        // console.log("2");
+        // console.error(error);
+        if (error.response.status === 403) {
+          // 서버로부터의 응답을 받은 경우
+          console.log("sfesl");
+          const formData = new FormData();
+          formData.append("accessToken", accessToken);
+          formData.append("refreshToken", refreshToken);
+          axios({
+            method: "post",
+            url: "http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/reissue",
+            data: formData,
+          })
+            .then((response) => {
+              console.log("12");
+              console.log(response.data);
+            })
+            .catch((error) => {
+              if (error.response.status === 403) {
+                console.log("Token reissue failed.");
+              }
+            });
+        }
+      });
+  };
+
+  function handleUserClick(userId) {
+    // setSelectedUserId(userId); // 선택된 사용자의 ID 설정
+    navigate(`/gallery/${userId}`);
+  }
+
+  //me일때
+  // const accessToken = localStorage.getItem("accessToken");
+  // const refreshToken = localStorage.getItem("refreshToken");
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const accessToken = localStorage.getItem("accessToken");
+  //       const trackIndex = trackIndexing + 1;
+  //       console.log("trackIndex 값은 ", trackIndex);
+  //       const response = await axios.get(
+  //         `http://localhost:3000/api/v1/users/me/tracks/${trackIndex}`,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${accessToken}`,
+  //           },
+  //         }
+  //       );
+
+  //       if (response.status === 200) {
+  //         console.log(response.data.message);
+  //         console.log(response.data.data);
+  //         setMusicData(response.data.data);
+  //       } else {
+  //         // 처리할 오류에 대한 코드
+  //       }
+  //     } catch (error) {
+  //       // 오류 처리
+  //       console.log(error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+
   return (
     <>
       <NavBar />
       <div className="MusicInfo_frame">
         <div className="leftBox">
           <div className="music-frame">
-            <span className="music-title">Attention</span>
+            <span className="music-title">{musicData?.trackTitle}</span>
             <span>
-              <button className="cancle-button">X</button>
+              <button
+                className="cancle-button"
+                onClick={() => handleUserClick(userId)}
+              >
+                X
+              </button>
             </span>
-            <div className="music-artist">NewJeans</div>
-            <div className="music-lyrics">
-              <p>
-                You and me 내 맘이 보이지? <br />
-                한참을 쳐다봐, 가까이 다가가 you see (ey-yeah) <br />
-                You see, ey, ey, ey, ey <br />
-                One, two, three 용기가 생겼지
-                <br />
-                이미 아는 니 눈치 <br />
-                고개를 돌려 천천히, 여기 <br />
-                You see 여기 보이니?
-                <br />
-                Looking for attention <br />
-                너야겠어 확실하게 나로 만들겠어 stop <br />
-                Ey, drop the question <br />
-                Drop the, drop the question <br />
-                Want attention
-                <br />
-                Wanna want attention <br />
-                You give me butterflies, you know <br />내 맘은 온통 paradise{" "}
-                <br />
-                꿈에서 깨워주지 마 <br />
-                You got me looking for attention <br />
-                You got me looking for attention <br />
-                가끔은 정말 헷갈리지만 분명한 건 <br />
-                Got me looking for attention <br />널 우연히 마주친 척할래{" "}
-                <br />못 본 척 지나갈래 <br />
-                You're so fine (ey) <br />
-                Gotta, gotta get to know ya <br />
-                나와, 나와 걸어가 줘 <br />
-                지금 돌아서면 I need ya, need ya, need ya <br />
-                To look at me back <br />
-                Hey 다 들켰었나? <br />널 보면 하트가 튀어나와 <br />난 사탕을
-                찾는 baby (baby) <br />내 맘은 설레이지 <br />
-                Ey, drop the question <br />
-                Drop the, drop the question <br />
-                Want attention
-                <br />
-                Wanna want attention <br />
-                You give me butterflies, you know <br />내 맘은 온통 paradise{" "}
-                <br />
-                꿈에서 깨워주지 마 (one, two, three ey)
-                <br /> You got me looking for attention <br />
-                You got me looking for attention <br />
-                가끔은 정말 헷갈리지만 분명한 건 <br />
-                Got me looking for attention
-                <br /> You got me looking for attention
-                <br /> You got me looking for attention
-                <br /> 가끔은 정말 헷갈리지만 분명한 건 <br />
-                Got me looking for attention
-                <br />
-                A-T-T-E-N-T-I-ON <br />
-                Attention is what I want
-                <br /> A-T-T-E-N-T-I-ON
-                <br />
-                Attention is what I want <br />
-                A-T-T-E-N-T-I-ON <br />
-                Attention is what I want <br />
-                A-T-T-E-N-T-I-ON <br />
-                You got me looking for attention
-              </p>
+            <div className="music-artist">{musicData?.artistName}</div>
+            <div className="music-lyrics" style={{ whiteSpace: "pre-line" }}>
+              {musicData?.lyrics}
             </div>
           </div>
         </div>
         <div className="albumBox">
           <div className="album-frame">
-            <link
-              rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
-            />
-            {bookmark ? (
-              <a href="https://fonts.google.com/icons?selected=Material+Icons+Outlined:bookmark:&icon.query=bookmark&icon.set=Material+Icons">
-                <span className="material-symbols-outlined" id="bookmark-icon">
-                  bookmark
-                </span>
-              </a>
-            ) : (
-              <a href="https://fonts.google.com/icons?selected=Material+Icons+Outlined:bookmark_border:&icon.query=bookmark&icon.set=Material+Icons">
-                <span className="material-symbols-outlined" id="bookmark-icon">
-                  bookmark_border
-                </span>
-              </a>
-            )}
-
             <img
               alt=""
-              src="https://image.bugsm.co.kr/album/images/500/40780/4078016.jpg"
+              src={musicData?.albumImageUrl}
               className="album-image"
             ></img>
-            <div>Play바 위치</div>
+            {/* <div>Play바 위치</div> */}
           </div>
+
+          <button
+            className={`music_bookmark ${onBookmark ? "on_bookmark" : ""}`}
+            onClick={handleBookmarkClick}
+          ></button>
         </div>
       </div>
     </>

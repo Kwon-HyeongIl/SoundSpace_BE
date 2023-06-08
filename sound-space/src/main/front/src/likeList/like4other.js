@@ -3,6 +3,7 @@ import "./likeList.css";
 import Sidebar from "../sidebar/newSidebar";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavBar from "../gallery/topNaviBar.js";
+import axios from "../api/axios";
 
 //상단네비게이션바
 /*
@@ -69,6 +70,67 @@ function NavBar() {
 */
 
 function Likeother() {
+  const [username, setUsername] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const accessToken = localStorage.getItem("accessToken");
+
+        const response = await axios.get(
+          "http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/me/likes-given",
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          console.log(response.data.message);
+          console.log(response.data.data);
+
+          if (Array.isArray(response.data.data)) {
+            setUsername(response.data.data);
+          } else {
+            // 처리할 오류에 대한 코드
+          }
+
+          if (response.data.data.length === 0) {
+            alert(response.data.message);
+          }
+        } else {
+          // 처리할 오류에 대한 코드
+        }
+      } catch (error) {
+        //CORS 오류로 여기로 넘어감 ..
+        if (error.response.status === 403) {
+          // 서버로부터의 응답을 받은 경우
+          console.log("sfesl");
+          const formData = new FormData();
+          formData.append("accessToken", localStorage.getItem("accessToken"));
+          formData.append("refreshToken", localStorage.getItem("refreshToken"));
+          try {
+            const response = await axios.post(
+              "http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/reissue",
+              formData
+            );
+            console.log("Token reissued.");
+            localStorage.setItem("accessToken", response.data.data.accessToken);
+
+            // 토큰을 재발급 받은 후에 다시 fetchData를 호출하여 API를 실행
+            await fetchData();
+          } catch (error) {
+            if (error.response.status === 403) {
+              console.log("Token reissue failed.");
+            }
+          }
+        }
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <div className="rankingBackground">
       <div className="likeforme">
@@ -90,16 +152,16 @@ function Likeother() {
             <div className="rankingItem_head">User Name</div>
             <div className="rankingItem_head">Like</div>
           </div>
-          {Array.from({ length: 10 }, (i) => (
+          {username.map((user) => (
             <div>
               <hr className="like-hr" />
-              <div className="rankContainer" key={i}>
+              <div className="rankContainer">
                 <link
                   href="https://fonts.googleapis.com/icon?family=Material+Icons"
                   rel="stylesheet"
                 />
                 <div className="rankingItem" id="profile-like"></div>
-                <span className="rankingItem">User_Name</span>
+                <span className="rankingItem">{user.username}</span>
                 <span className="rankingItem">
                   <span className="favorite material-icons" id="like-icon">
                     favorite

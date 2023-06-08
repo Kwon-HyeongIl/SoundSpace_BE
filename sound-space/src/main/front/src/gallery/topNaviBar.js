@@ -3,19 +3,21 @@ import "./gallery.css";
 import Sidebar from "../sidebar/newSidebar";
 import GalleryCanvas from "./galleryCanvas";
 import { useNavigate } from "react-router-dom";
+// import { USERNAME } from "../user_info/user_info";
 
 //상단네비게이션바
-function NavBar() {
+function NavBar({ userId }) {
   const navigate = useNavigate();
+  console.log(userId);
 
   return (
     <nav>
       <div className="navbar">
         <Sidebar>
-          <div className="userInfo">
+          {/* <div className="userInfo">
             <div className="userImg"></div>
-            <div className="userName">User Name</div>
-          </div>
+            <div className="userName">{USERNAME}</div>
+          </div> */}
           <div className="sideContent">
             <div className="itemContainer" onClick={() => navigate("/info")}>
               CHANGE INFO
@@ -34,21 +36,26 @@ function NavBar() {
               className="itemContainer"
               onClick={() => navigate("/bookmark")}
             >
-            BOOK MARK
+              BOOK MARK
             </button>
             {/* <button className="itemContainer" onClick={() => navigate("/")}>RANKING</button> */}
           </div>
         </Sidebar>
-        <a className="logo" id="center_fix" onClick={() => navigate("/gallery")} href="">
+        <a
+          className="logo"
+          id="center_fix"
+          onClick={() => navigate(`/gallery/me`, { state: { userType: "me" } })}
+          href=""
+        >
           <sapn className="logo_f">S</sapn>OUND{" "}
           <span className="logo_f">S</span>PACE
         </a>
         <a className="navitem" onClick={() => navigate("/search")} href="">
           SEARCH
         </a>
-        <a className="navitem" onClick={() => navigate("/rank")} href="">
+        {/* <a className="navitem" onClick={() => navigate("/rank")} href="">
           RANKING
-        </a>
+        </a> */}
       </div>
     </nav>
   );
