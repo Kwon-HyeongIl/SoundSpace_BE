@@ -121,22 +121,22 @@ function SignLogo() {
             type="text"
             id="username"
             ref={userRef}
-            // autoComplete="off" 자동완성 일단 주석처리
+            autoComplete="off" 
             onChange={(e) => setUser(e.target.value)}
             value={username}
             required
-            // name="user_input_id"
+            name="user_input_id"
             placeholder="TYPING YOUR ID..."
           ></input>
           <label htmlFor="password"></label>
           <input
             className="Enter_info"
-            // type="password"
+            type="password"
             id="password"
             onChange={(e) => setPwd(e.target.value)}
             value={password}
             required
-            // name="user_input_password"
+            name="user_input_password"
             placeholder="TYPING YOUR PASSWORD..."
           ></input>
           {/* <Link to={"/"} className="no_line"> */}
