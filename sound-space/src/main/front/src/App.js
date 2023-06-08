@@ -17,7 +17,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 export default function App() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/">
         <Routes>
           <Route path={"/"} element={<LoginPage />}></Route>
           <Route path={"/sign"} element={<SignPage />}></Route>

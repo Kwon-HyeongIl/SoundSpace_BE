@@ -76,7 +76,7 @@ function UserSearch() {
       const refreshToken = localStorage.getItem("refreshToken");
       const params = new URLSearchParams();
       params.append("username", username);
-      const url = `http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/search`;
+      const url = `http://localhost:3000/api/v1/users/search`;
 
       axios
         .get(url, {
@@ -107,7 +107,7 @@ function UserSearch() {
             formData.append("refreshToken", refreshToken);
             axios({
               method: "post",
-              url: "http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/reissue",
+              url: "http://localhost:3000/api/v1/users/reissue",
               data: formData,
             })
               .then((response) => {
@@ -166,17 +166,18 @@ function UserSearch() {
         </div>
 
         {showResult && searchResult.length > 0 && (
-          <div className="user_search_result">
+          <div className="user_result_list">
             {searchResult.map((user) => (
-              <div
-                className="user_result"
-                key={user.id}
-                onClick={() => handleUserClick(user.id)}
-              >
-                <div className="user_UI"></div>
-                <div className="user_ID">{user.username}</div>
-                <div className="s_heart"></div>
-                {/* <div className="user_like">3</div> */}
+              <div className="user_search_result" key={user.id}>
+                <div
+                  className="user_result"
+                  onClick={() => handleUserClick(user.id)}
+                >
+                  <div className="user_UI"></div>
+                  <div className="user_ID">{user.username}</div>
+                  <div className="s_heart"></div>
+                  {/* <div className="user_like">3</div> */}
+                </div>
               </div>
             ))}
           </div>
