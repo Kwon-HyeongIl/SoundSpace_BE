@@ -1,6 +1,1 @@
-![Sound Space](https://github.com/Kwon-HyeongIl/BoostCourse/assets/119515797/d807f5a8-d232-4c3d-8fa8-cd003df6e5ba)
-**Sound Space**
-
-<br><br>
-![Members](https://github.com/Kwon-HyeongIl/BoostCourse/assets/119515797/dec1571b-da11-4b41-85fc-de6e134212aa)
-
+![Sound Space](https://github.com/pknu-wap/2023_1_WAP_WEB_TEAM2/assets/119515797/bb135045-925a-4f67-899f-80ee2c36e074)
