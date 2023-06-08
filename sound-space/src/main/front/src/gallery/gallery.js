@@ -31,7 +31,7 @@ function Heart() {
     // 북마크 업데이트 API 호출
     axios({
       method: "post",
-      url: 'http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/${userId}/likes',
+      url: `http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/${userId}/likes`,
       data: formData,
       headers: {
         "Content-Type": "application/json",

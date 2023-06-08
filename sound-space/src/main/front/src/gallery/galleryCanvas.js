@@ -129,7 +129,7 @@ export default function GalleryCanvas({ userId }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          'http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/${userId}/tracks',
+          `http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/${userId}/tracks`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,

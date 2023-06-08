@@ -29,7 +29,7 @@ export default function MusicInfo() {
         const trackIndex = trackIndexing + 1;
         console.log("trackIndex 값은 ", trackIndex);
         const response = await axios.get(
-          'http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/${userId}/tracks/${trackIndex}',
+          `http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/${userId}/tracks/${trackIndex}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -97,7 +97,7 @@ export default function MusicInfo() {
     // 북마크 업데이트 API 호출
     axios({
       method: "post",
-      url: 'http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/music/${musicId}/bookmarks',
+      url: `http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/music/${musicId}/bookmarks`,
       data: formData,
       headers: {
         "Content-Type": "application/json",

@@ -33,7 +33,7 @@ function SearchResult({
     // 북마크 업데이트 API 호출
     axios({
       method: "post",
-      url: 'http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/music/${musicId}/bookmarks',
+      url: `http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/music/${musicId}/bookmarks`,
       data: formData,
       headers: {
         "Content-Type": "application/json",
@@ -104,7 +104,7 @@ function SearchResult({
     //   });
     // const trackIndex = index;
     axios
-      .get('http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/music/${musicId}')
+      .get(`http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/music/${musicId}`)
       .then((response) => {
         console.log("add 이전");
         const update = response.data.data;
@@ -119,7 +119,7 @@ function SearchResult({
         console.log("t는", trackIndex);
         axios
           .patch(
-            'http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/me/tracks/${trackIndex}/update',
+            `http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/me/tracks/${trackIndex}/update`,
 
             update,
 

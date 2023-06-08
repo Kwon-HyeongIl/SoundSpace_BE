@@ -22,7 +22,7 @@ export default function GuestList() {
 
   const fetchGuestbooks = () => {
     axios
-      .get('http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/${userId}/guestbooks', {
+      .get(`http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/${userId}/guestbooks`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -46,7 +46,7 @@ export default function GuestList() {
     const requestData = { content: inputValue };
     axios
       .post(
-        'http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/${userId}/guestbooks',
+        `http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/${userId}/guestbooks`,
         requestData,
         {
           headers: {

@@ -88,7 +88,7 @@ function Editing() {
   function clearTrack(trackIndex) {
     axios
       .patch(
-        'http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/me/tracks/${trackIndex}/clear',
+        `http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/me/tracks/${trackIndex}/clear`,
         {
           trackIndex,
         },
