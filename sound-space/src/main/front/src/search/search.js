@@ -162,8 +162,7 @@ function UserSearch() {
             ></input>
             <button className="find_user" onClick={findButtonClick}></button>
           </div>
-          <button className="random_dice" onClick={randomButtonClick}></button>
-        </div>
+</div>
 
         {showResult && searchResult.length > 0 && (
           <div className="user_result_list">
