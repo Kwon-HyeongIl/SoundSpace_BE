@@ -76,7 +76,7 @@ function UserSearch() {
       const refreshToken = localStorage.getItem("refreshToken");
       const params = new URLSearchParams();
       params.append("username", username);
-      const url = `http://localhost:3000/api/v1/users/search`;
+      const url = `http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/search`;
 
       axios
         .get(url, {
@@ -107,7 +107,7 @@ function UserSearch() {
             formData.append("refreshToken", refreshToken);
             axios({
               method: "post",
-              url: "http://localhost:3000/api/v1/users/reissue",
+              url: "http://test-env.eba-gatb5mmj.ap-northeast-2.elasticbeanstalk.com/api/v1/users/reissue",
               data: formData,
             })
               .then((response) => {
