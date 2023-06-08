@@ -166,17 +166,18 @@ function UserSearch() {
         </div>
 
         {showResult && searchResult.length > 0 && (
-          <div className="user_search_result">
+          <div className="user_result_list">
             {searchResult.map((user) => (
-              <div
-                className="user_result"
-                key={user.id}
-                onClick={() => handleUserClick(user.id)}
-              >
-                <div className="user_UI"></div>
-                <div className="user_ID">{user.username}</div>
-                <div className="s_heart"></div>
-                {/* <div className="user_like">3</div> */}
+              <div className="user_search_result" key={user.id}>
+                <div
+                  className="user_result"
+                  onClick={() => handleUserClick(user.id)}
+                >
+                  <div className="user_UI"></div>
+                  <div className="user_ID">{user.username}</div>
+                  <div className="s_heart"></div>
+                  {/* <div className="user_like">3</div> */}
+                </div>
               </div>
             ))}
           </div>
