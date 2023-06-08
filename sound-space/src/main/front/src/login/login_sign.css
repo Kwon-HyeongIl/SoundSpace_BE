@@ -1,0 +1,255 @@
+.back_color {
+  overflow: hidden;
+  background-color: black;
+  background: linear-gradient(#282828,black);
+  min-height: 100vh;
+  position: relative;
+}
+
+@font-face {
+  font-family: 'Aguafina Script';
+  src: url('./fonts/AguafinaScript-Regular.woff') format('woff');
+}
+
+.no_line {
+  text-decoration: none;
+}
+
+.main_logo {
+
+  padding-top: 20px;
+  padding-bottom: 10px;
+  text-shadow: 0px 0px 10px #282828;
+
+  position: relative;
+  text-align: center;
+  font-family: 'Aguafina Script';
+  font-style: normal;
+  font-size: 220px;
+  color: white;
+  
+}
+
+#sign{
+  font-size: 180px;
+}
+
+.main_logo_p {
+  text-align: center;
+  font-family: 'Aguafina Script';
+  font-style: normal;
+  font-size: 220px;
+  color: #EBFF00;
+}
+
+#f_r {
+  padding-right: 160px;
+  height: 175px;
+}
+
+#s_r {
+  padding-left: 160px;
+}
+
+.signtext {
+  position: relative;
+  text-align: center;
+  font-family: 'Inter';
+  font-style: normal;
+  font-size: 32px;
+  font-weight: 750;
+  color: white;
+  text-shadow: 0px 0px 10px #282828;
+}
+
+.Enter_info {
+  position: relative;
+  display: block;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-color: black;
+  border-width: 4px;
+  width: 400px;
+  height: 60px;
+  border-radius: 50px;
+  font-size: 24px;
+  margin-top: 0px;
+}
+
+form input.Enter_info {
+  margin-top: 3px;
+}
+
+.login_button {
+
+  height: 110px;
+  width: 180px;
+  border-radius: 60px;
+  background-color: #EBFF00;
+  position: relative;
+  border-color: black;
+  border-width: 4px;
+
+  display :block;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+
+  color: #282828;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 32px;
+}
+
+.check_click {
+  background-color: rgb(167, 167, 34);
+}
+
+#sign_check {
+  margin-top: 20px;
+}
+
+.login_to_sign{
+
+  position: absolute;
+  
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  background-color: #828D8D;
+  border-color: black;
+  border-width: 4px;
+
+  display :block;
+  margin-left: 67%;
+  margin-top: -8%;
+  
+  color: white;
+  font-size: 25px;
+
+}
+
+.back_circle{
+  position: absolute;
+  display: inline-block;
+  border-radius: 50%;
+  
+  box-shadow: 0px 0px 15px #282828;
+
+}
+
+#circle_one{
+  background-color: #EBFF00;
+  height: 450px;
+  width: 450px;
+  margin-top: 700px;
+  margin-left: 1600px;
+}
+
+#circle_two{
+  background-color: #EBFF00;
+  width: 300px;
+  height: 300px;
+  margin-top: -100px;
+  margin-left: 1670px;
+}
+
+#circle_three{
+  background-color: #EBFF00;
+  width: 500px;
+  height: 500px;
+  margin-top: -100px;
+  margin-left: -250px;
+}
+
+#circle_four{
+  background-color: white;
+  width: 650px;
+  height: 650px;
+  margin-top: 750px;
+  margin-left: -150px;
+}
+
+#circle_five{
+  background-color: white;
+  height: 200px;
+  width: 200px;
+  margin-top: 200px;
+  margin-left: 150px;
+}
+
+.note_head {
+  position: absolute;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.note_tail {
+  position: absolute;
+  display: inline-block;
+  background-color: white;
+  border-radius: 50px;
+}
+
+#note_1{
+  background-color: white;
+  height: 40px;
+  width: 50px;
+  margin-top: 461px;
+  margin-left: 1510px;
+  rotate: -35deg;
+}
+#tail_1 {
+  height: 120px;
+  width: 10px;
+  margin-top: 359px;
+  margin-left: 1531px;
+  rotate: -18deg;
+}
+#tail_2 {
+  height: 80px;
+  width: 10px;
+  margin-top: 350px;
+  margin-left: 1542.5px;
+  rotate: -50deg;
+}
+#tail_3 {
+  height: 20px;
+  width: 10px;
+  margin-top: 410px;
+  margin-left: 1573.5px;
+  rotate: -25deg;
+}
+#tail_4 {
+  height: 21px;
+  width: 10px;
+  margin-top: 422px;
+  margin-left: 1576.5px;
+  rotate: -5deg;
+}
+#tail_5 {
+  height: 20px;
+  width: 10px;
+  margin-top: 434.5px;
+  margin-left: 1575.5px;
+  rotate: 16deg;
+}
+
+#note_2{
+  background-color: #EBFF00;
+  height: 40px;
+  width: 50px;
+  margin-top: 591px;
+  margin-left: 440px;
+  rotate: 10deg;
+}
+#tail_6 {
+  height: 135px;
+  width: 10px;
+  margin-top: 490.1px;
+  margin-left: 499.5px;
+  rotate: 19deg;
+  background-color: #EBFF00;
+}
