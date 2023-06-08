@@ -1,4 +1,3 @@
-
 import { React, useState, useEffect, useRef } from "react";
 import "./gallery.css";
 import Sidebar from "../sidebar/newSidebar";
@@ -10,6 +9,10 @@ import { useNavigate } from "react-router-dom";
 function NavBar({ userId }) {
   const navigate = useNavigate();
   console.log(userId);
+
+  const handleLogoClick = () => {
+    navigate("/gallery/me");
+  };
 
   return (
     <nav>
@@ -42,12 +45,7 @@ function NavBar({ userId }) {
             {/* <button className="itemContainer" onClick={() => navigate("/")}>RANKING</button> */}
           </div>
         </Sidebar>
-        <a
-          className="logo"
-          id="center_fix"
-          onClick={() => navigate(`/gallery/me`, { state: { userId: "me" } })}
-          href=""
-        >
+        <a className="logo" id="center_fix" onClick={handleLogoClick} href="">
           <sapn className="logo_f">S</sapn>OUND{" "}
           <span className="logo_f">S</span>PACE
         </a>
