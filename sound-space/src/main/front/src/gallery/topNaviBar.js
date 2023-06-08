@@ -6,12 +6,13 @@ import { useNavigate } from "react-router-dom";
 // import { USERNAME } from "../user_info/user_info";
 
 //상단네비게이션바
-function NavBar({ userId }) {
+function NavBar() {
   const navigate = useNavigate();
-  console.log(userId);
+  // console.log(userId);
+  const userId = "me";
 
   const handleLogoClick = () => {
-    navigate("/gallery/me");
+    navigate(`/gallery/${userId}`);
   };
 
   return (
