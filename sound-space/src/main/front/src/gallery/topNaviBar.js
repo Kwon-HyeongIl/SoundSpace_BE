@@ -1,3 +1,4 @@
+
 import { React, useState, useEffect, useRef } from "react";
 import "./gallery.css";
 import Sidebar from "../sidebar/newSidebar";
@@ -44,7 +45,7 @@ function NavBar({ userId }) {
         <a
           className="logo"
           id="center_fix"
-          onClick={() => navigate(`/gallery/me`, { state: { userType: "me" } })}
+          onClick={() => navigate(`/gallery/me`, { state: { userId: "me" } })}
           href=""
         >
           <sapn className="logo_f">S</sapn>OUND{" "}

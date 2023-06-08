@@ -106,6 +106,15 @@ function SignLogo() {
       <div>
         <div className="signtext">SIGN UP</div>
         <form onSubmit={handleSubmit}>
+          <label htmlFor="email"></label>
+          <input
+            className="Enter_info"
+            type="email"
+            id="email"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            placeholder="TYPING YOUR E-MAIL..."
+          ></input>
           <label htmlFor="username"></label>
           <input
             className="Enter_info"
@@ -118,15 +127,6 @@ function SignLogo() {
             required
             // name="user_input_id"
             placeholder="TYPING YOUR ID..."
-          ></input>
-          <label htmlFor="email"></label>
-          <input
-            className="Enter_info"
-            type="email"
-            id="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            placeholder="TYPING YOUR E-MAIL..."
           ></input>
           <label htmlFor="password"></label>
           <input
