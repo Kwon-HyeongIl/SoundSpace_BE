@@ -23,6 +23,9 @@ public class Bookmarks {
     private String trackTitle;
 
     @Column
+    private String albumImageUrl;
+
+    @Column
     private String artistName;
 
     @ManyToOne
