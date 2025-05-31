@@ -2,17 +2,33 @@
 
 <br>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat&logo=JavaScript&logoColor=white"/>
-  <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Three.JS-000000?style=flat&logo=Three.js&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Java-FFFFFF?style=flat&logo=OpenJDK&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=flat&logo=Spring Boot&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Spring Security-00B14F?style=flat&logo=Spring Security&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Redis-DC382D?style=flat&logo=Redis&logoColor=white"/>
-  <img src="https://img.shields.io/badge/JWT-000000?style=flat&logo=JSON Web Tokens&logoColor=white"/>
-  <img src="https://img.shields.io/badge/MariaDB-003545?style=flat&logo=MariaDB&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=flat&logo=Amazon AWS&logoColor=white"/>
-</p>
+# 1. 프로젝트 소개
 
-📅 2023.3 ~ 2024.6
+3D 공간 음악 전시회
+
+<br><br>
+
+# 2. 팀원
+
+| **이홍주(팀장)** | **허나영** | **양동균** | **권형일** |
+| :-----------: | :------: | :------: | :------: |
+| FE | FE | BE | BE |
+
+<br><br>
+
+# 3. 개발 환경
+
+- 프론트엔드 : Javascript, React, Three.js
+- 백엔드 : Java, Spring Boot, Spring Security, Redis, JWT, MariaDB, AWS
+
+<br><br>
+
+# 5. 핵심 기능
+
+- Genius 뮤직 API를 활용하여 음악 정보 가져오기
+- 개인별 3D 공간에 본인이 원하는 음악 앨범을 전시 가능
+
+<br><br>
+
+# 5. 개발 기간
+2023.3 ~ 2024.6
